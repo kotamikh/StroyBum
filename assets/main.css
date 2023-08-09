@@ -6,6 +6,7 @@
   --yellow: #E3DD5F;
   --middle-grey: #808080;
   --background-grey: #FCFCFC;
+  color: var(--middle-grey);
 }
 
 a {

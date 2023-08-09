@@ -29,8 +29,6 @@ dd {
 }
 
 body {
-    width: 75%;
-    margin: 0 auto;
     min-height: 100vh;
     line-height: 1.5;
     scroll-behavior: smooth;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
    <NavBar/>
     <slot/>
   </div>
@@ -9,6 +9,8 @@
 
 </script>
 
-<style scoped>
-
+<style scoped lang="sass">
+.content
+  width: 80%
+  margin: 0 auto
 </style>
