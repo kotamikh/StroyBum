@@ -11,6 +11,6 @@
 
 <style scoped lang="sass">
 .content
-  width: 80%
+  width: 80vw
   margin: 0 auto
 </style>

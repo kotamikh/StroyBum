@@ -7,6 +7,16 @@
   --middle-grey: #808080;
   --background-grey: #FCFCFC;
   color: var(--middle-grey);
+  box-sizing: border-box;
+}
+
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+h2 {
+  color: var(--grey);
 }
 
 a {

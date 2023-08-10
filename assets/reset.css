@@ -40,8 +40,11 @@ body {
 }
 
 ul[class],
-ol[class] {
+ol[class],
+ul,
+ol {
     list-style: none;
+    padding: 0;
 }
 
 a:not([class]) {

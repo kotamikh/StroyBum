@@ -76,7 +76,7 @@ watch(() => route.name, () => {
 
 .navigation-panel
   display: flex
-  margin: 30px 0
+  margin: 30px auto
   flex-direction: column
 
   .line-1
@@ -124,14 +124,11 @@ watch(() => route.name, () => {
           &:hover,
           &:focus,
           .current
-            .nav-icon,
+            svg,
             p
               color: var(--yellow)
-
-          &:focus
-            .nav-icon,
-            p
-              color: var(--yellow)
+              stroke: var(--yellow)
+              stroke-width: 10px
 
         .nav-icon
           margin: 0 5px
