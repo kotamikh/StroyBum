@@ -5,8 +5,10 @@
           :key="id"
           class="category"
       >
-        <img :src="`${category.image}`" alt="img"/>
+        <NuxtLink :to="category.path">
+        <img :src="`${category.image}`" alt="img" style="width: 3rem"/>
         <h3>{{ category.text }}</h3>
+        </NuxtLink>
       </li>
     </ul>
 </template>
@@ -29,51 +31,63 @@ import other from '@/assets/catalog-images/прочее.png'
 const categories = {
   siding: {
     text: 'Сайдинг',
-    image: siding
+    image: siding,
+    path: 'siding'
   },
   additionalElements: {
     text: 'Доборные элементы сайдинга',
-    image: additionalElements
+    image: additionalElements,
+    path: 'additionalElements'
   },
   decking: {
     text: 'Террасная доска',
-    image: decking
+    image: decking,
+    path: 'decking'
   },
   facadePanels: {
     text: 'Фасадные панели',
-    image: facadePanels
+    image: facadePanels,
+    path: 'facadePanels'
   },
   windowSills: {
     text: 'Подоконники',
-    image: windowSills
+    image: windowSills,
+    path: 'windowSills'
   },
   roof: {
     text: 'Кровля',
-    image: roof
+    image: roof,
+    path: 'roof'
   },
   batteryScreens: {
     text: 'Декоративные экраны для батарей',
-    image: batteryScreens
+    image: batteryScreens,
+    path: 'batteryScreens'
   },
   insulation: {
     text: 'Утеплителти',
-    image: insulation
+    image: insulation,
+    path: 'insulation'
   },
   ceilings: {
     text: 'Подвесные потолки',
-    image: ceilings
+    image: ceilings,
+    path: 'ceilings'
   },
   foamSealant: {
     text: 'Пена герметики, пистолеты',
-    image: foamSealant
+    image: foamSealant,
+    path: 'foamSealant'
   },
   waterDisposal: {
     text: 'Водосточные системы',
-    image: waterDisposal
+    image: waterDisposal,
+    path: 'waterDisposal'
   },
   other: {
     text: 'Прочее',
-    image: other
+    image: other,
+    path: 'other'
   }
 }
 
@@ -88,7 +102,7 @@ const categories = {
   max-height: 400px
   flex-direction: column
 
-  .category
+  a
     gap: 10px
     display: flex
     cursor: pointer

@@ -17,7 +17,7 @@
           <NuxtLink to="favourites"
                     class="nav-icon"
                     :class="{ current : isCurrent('favourites') }">
-            <Icon name="ph:heart-straight" size="25px"/>
+            <Icon name="ph:heart-straight" size="25px" class="icon"/>
             <p style="font-size: 14px">Избранное</p>
           </NuxtLink>
           <NuxtLink to="basket"
@@ -28,7 +28,7 @@
           </NuxtLink>
           <NuxtLink to="admin-page"
                     class="nav-icon">
-            <Icon name="ph:user" size="25px"/>
+            <Icon name="ph:user" size="25px" color=""/>
             <p style="font-size: 14px">Войти</p>
           </NuxtLink>
         </div>
@@ -127,6 +127,7 @@ watch(() => route.name, () => {
             svg,
             p
               color: var(--yellow)
+              fill: var(--yellow)
               stroke: var(--yellow)
               stroke-width: 10px
 
