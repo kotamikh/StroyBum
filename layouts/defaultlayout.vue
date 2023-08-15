@@ -1,7 +1,8 @@
 <template>
   <div class="content">
-   <NavBar/>
+    <NavBar/>
     <slot/>
+    <TheFooter/>
   </div>
 </template>
 

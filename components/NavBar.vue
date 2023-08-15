@@ -1,7 +1,7 @@
 <template>
   <div class="navigation-panel">
     <div class="line-1">
-      <NuxtLink to="homepage">
+      <NuxtLink to="/">
         <h1>Строй<span>Бум</span></h1>
       </NuxtLink>
       <div class="nav-menu">
@@ -17,18 +17,18 @@
           <NuxtLink to="favourites"
                     class="nav-icon"
                     :class="{ current : isCurrent('favourites') }">
-            <Icon name="ph:heart-straight" size="25px" class="icon"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="#808080" d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82Zm-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"/></svg>
             <p style="font-size: 14px">Избранное</p>
           </NuxtLink>
           <NuxtLink to="basket"
                     class="nav-icon"
                     :class="{ current : isCurrent('basket') }">
-            <Icon name="ph:shopping-cart-simple" size="25px"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="#808080" d="M96 216a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm88-16a16 16 0 1 0 16 16a16 16 0 0 0-16-16Zm47.65-125.65l-28.53 92.71A23.89 23.89 0 0 1 180.18 184H84.07A24.11 24.11 0 0 1 61 166.59L24.82 40H8a8 8 0 0 1 0-16h16.82a16.08 16.08 0 0 1 15.39 11.6L48.32 64H224a8 8 0 0 1 7.65 10.35ZM213.17 80H52.89l23.49 82.2a8 8 0 0 0 7.69 5.8h96.11a8 8 0 0 0 7.65-5.65Z"/></svg>
             <p style="font-size: 14px">Корзина</p>
           </NuxtLink>
           <NuxtLink to="admin-page"
                     class="nav-icon">
-            <Icon name="ph:user" size="25px" color=""/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="#808080" d="M230.92 212c-15.23-26.33-38.7-45.21-66.09-54.16a72 72 0 1 0-73.66 0c-27.39 8.94-50.86 27.82-66.09 54.16a8 8 0 1 0 13.85 8c18.84-32.56 52.14-52 89.07-52s70.23 19.44 89.07 52a8 8 0 1 0 13.85-8ZM72 96a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56Z"/></svg>
             <p style="font-size: 14px">Войти</p>
           </NuxtLink>
         </div>
@@ -120,22 +120,20 @@ watch(() => route.name, () => {
             text-decoration-thickness: 2px
             text-decoration-color: var(--yellow)
 
-        a
-          &:hover,
-          &:focus,
-          .current
-            svg,
-            p
-              color: var(--yellow)
-              fill: var(--yellow)
-              stroke: var(--yellow)
-              stroke-width: 10px
-
         .nav-icon
           margin: 0 5px
           display: flex
           align-items: center
           flex-direction: column
+
+          &:hover,
+          &:focus,
+          .current
+            svg > path,
+            p
+              color: var(--yellow)
+              fill: var(--yellow)
+              stroke-width: 10px
 
   .line-2
     .search
