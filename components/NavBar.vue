@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="line-2">
-      <button class="search"
+      <button class="search-btn"
               @click="isActive = !isActive"
       >
         <Icon name="ph:magnifying-glass-light" size="20px" color="var(--middle-grey)"/>
@@ -52,7 +52,8 @@ import { useRoute } from "#app";
 const links = {
   'Каталог': 'catalog',
   'Скидки': 'discount',
-  'Доставка и оплата': 'deliveryPayment'
+  'Доставка и оплата': 'deliveryPayment',
+  'Контакты': 'contacts'
 }
 
 const currentLink = ref(null)
@@ -133,10 +134,9 @@ watch(() => route.name, () => {
             p
               color: var(--yellow)
               fill: var(--yellow)
-              stroke-width: 10px
 
   .line-2
-    .search
+    .search-btn
       gap: 10px
       display: flex
       align-items: center

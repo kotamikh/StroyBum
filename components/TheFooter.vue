@@ -1,9 +1,9 @@
 <template>
   <div class="footer">
     <div class="footer-item">
-      <p>+7 (8332)-75-69-83</p>
-      <p>ПН-ПТ 8:30 - 17:30<br/>
-        СБ 9:00 - 13:00</p>
+      <p class="telephone">+7 (8332)-75-69-83</p>
+      <p class="regime"><span>ПН-ПТ:</span> 8:30 - 17:30<br/>
+        <span>СБ:</span> 9:00 - 13:00</p>
     </div>
     <div class="footer-item">
       <a href="https://vk.com/stroibum_kirov">
@@ -11,7 +11,7 @@
         Группа ВКонтакте</a>
     </div>
     <div class="footer-item">
-      <p>Адрес: г. Киров<br/>
+      <p class="address">Адрес: г. Киров<br/>
         2-й Кирпичный  пер. 2/1</p>
     </div>
   </div>
@@ -29,14 +29,28 @@ export default {
   bottom: 10px
   display: flex
   position: fixed
+  padding-top: 20px
   color: var(--grey)
   align-items: center
   justify-content: space-between
+  background-color: white
+
 
   .footer-item
     a
       gap: 5px
       display: flex
       align-items: center
+      font-family: 'Russo One', sans-serif
 
+      &:hover,
+      &:focus
+        color: #0077ff
+    p
+      font-family: 'Russo One', sans-serif
+
+  .regime
+    span
+      color: var(--yellow)
+      font-weight: bolder
 </style>
