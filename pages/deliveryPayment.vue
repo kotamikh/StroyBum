@@ -45,7 +45,7 @@ import delivery from '@/assets/доставка.png'
 
     h3
       font-weight: bold
-      color: var(--grey)
+      color: var(--middle-grey)
       text-align: center
       margin-bottom: 10px
       font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 16) + 16px)

@@ -1,13 +1,49 @@
 <template>
-
+  <h2>Скидки</h2>
+  <div class="discount">
+    <product-card v-for="product in products"
+                  :key="product.name"
+                  :name="product.name"
+                  :image="product.image"
+                  :price="product.price"
+                  :stock="product.stock"
+                  :discount="product.discount"
+    />
+  </div>
 </template>
 
-<script>
-export default {
-  name: "discount"
-}
+<script setup lang="ts">
+import {IProduct, StockType, StockTypeDict} from "~/src/types/Product";
+
+const products: Array<IProduct> = [
+  {
+    name: 'Сайдинг NordSide Лапландия \n' +
+        '3,05 х 0,205м \n' +
+        'Цвет: Белый',
+    image: '',
+    price: 215,
+    stock: StockType.OutOfStock,
+    discount: 0.15,
+    description: 'бла-бла-бла',
+    characteristics: []
+  },
+  {
+    name: 'Сайдинг NordSide Лапландия \n' +
+        '3,05 х 0,205м \n' +
+        'Цвет: Белый',
+    image: '',
+    price: 215,
+    stock: StockType.InStock,
+    discount: 0,
+    description: 'бла-бла-бла',
+    characteristics: []
+  }
+]
 </script>
 
-<style scoped>
-
+<style scoped lang="sass">
+.discount
+  gap: 4rem
+  display: flex
+  margin: 30px 0
 </style>
