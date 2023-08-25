@@ -1,22 +1,25 @@
 <template>
   <div class="product-card">
     <div class="marks">
-      <div class="discount-mark" v-if="discount !== 0">скидка {{discount * 100}}%</div>
-      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
-        <path fill="#808080"
-              d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82Zm-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"/>
+      <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
+        <path
+            d="M217.36 133.36L128 224l-89.36-90.64a50 50 0 0 1 70.72-70.72L128 80l18.64-17.36a50 50 0 1 1 70.72 70.72Z"
+            opacity=".2"/>
+        <path
+            d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82Zm-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"/>
       </svg>
+      <div class="discount-mark" v-if="discount !== 0">скидка {{ discount * 100 }}%</div>
     </div>
-    <img src="image" alt="product-img"/>
-    <p>{{name}}</p>
-    <p>{{stock}}</p>
+    <img :src="image" class="product-img" alt="product-img"/>
+    <p>{{ name }}</p>
+    <p>{{ stock }}</p>
     <div class="price-cart">
       <div class="price">
         <p v-if="discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{
             Math.ceil(price / (100 - discount * 100) * 100)
           }} руб/шт.
         </p>
-        <p style="color: var(--yellow)">{{price}} руб/шт.</p>
+        <p style="color: var(--yellow); font-weight: bold">{{ price }} руб/шт.</p>
       </div>
       <button class="cart-btn">В корзину</button>
     </div>
@@ -24,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import {StockType} from "~/src/types/Product";
+import { StockType } from "~/src/types/Product";
 
 interface Props {
   name: string,
@@ -46,16 +49,18 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style scoped lang="sass">
 .product-card
-  min-width: 150px
   width: 25%
-  aspect-ratio: 1/1
-  //height: 300px
   padding: 20px
-  background-color: var(--background-grey)
+  min-width: 150px
+  max-height: 350px
   border-radius: 5%
+  background-color: var(--background-grey)
 
   .marks
+    width: 100%
     display: flex
+    align-items: center
+    flex-direction: row-reverse
     justify-content: space-between
 
     .discount-mark
@@ -65,14 +70,24 @@ const props = withDefaults(defineProps<Props>(), {
       height: fit-content
       padding: 0 5px
       color: var(--grey)
+      justify-self: left
 
-  img
-    height: 40%
+    .fav-mark
+      fill: var(--middle-grey)
+
+      &:hover
+        fill: var(--yellow)
+
+  .product-img
+    height: 50%
+    margin: 0 auto
+    padding: 20px 0
     min-height: 100px
 
   .price-cart
-    display: flex
     gap: 10%
+    display: flex
+    align-items: center
     justify-content: center
 
     .cart-btn

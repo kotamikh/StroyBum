@@ -13,14 +13,16 @@
 </template>
 
 <script setup lang="ts">
-import {IProduct, StockType, StockTypeDict} from "~/src/types/Product";
+import {IProduct, StockType } from "~/src/types/Product";
+import siding1 from '@/assets/сайдинг-лапландия.png'
+import siding2 from '@/assets/сайдинг-лапландия2.png'
 
 const products: Array<IProduct> = [
   {
     name: 'Сайдинг NordSide Лапландия \n' +
         '3,05 х 0,205м \n' +
-        'Цвет: Белый',
-    image: '',
+        'Цвет: Ламантин',
+    image: siding1,
     price: 215,
     stock: StockType.OutOfStock,
     discount: 0.15,
@@ -31,7 +33,7 @@ const products: Array<IProduct> = [
     name: 'Сайдинг NordSide Лапландия \n' +
         '3,05 х 0,205м \n' +
         'Цвет: Белый',
-    image: '',
+    image: siding2,
     price: 215,
     stock: StockType.InStock,
     discount: 0,
