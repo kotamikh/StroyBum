@@ -1,7 +1,9 @@
 <template>
-  <div class="content">
+  <div class="layout">
     <NavBar/>
-    <slot/>
+    <div class="content">
+      <slot/>
+    </div>
     <TheFooter/>
   </div>
 </template>
@@ -11,7 +13,7 @@
 </script>
 
 <style scoped lang="sass">
-.content
+.layout
   width: 80vw
   margin: 0 auto
 </style>

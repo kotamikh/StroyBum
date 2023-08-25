@@ -15,6 +15,10 @@ html {
   overflow-x: hidden;
 }
 
+body {
+  position: relative;
+}
+
 h2 {
   color: var(--grey);
 }

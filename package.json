@@ -15,7 +15,7 @@
     "nuxt-icon": "^0.4.2"
   },
   "dependencies": {
-    "cookie-universal-nuxt": "^2.2.2",
-    "sass": "^1.64.2"
+    "sass": "^1.64.2",
+    "typescript": "^5.1.6"
   }
 }
