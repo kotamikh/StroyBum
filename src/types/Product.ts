@@ -9,11 +9,11 @@ export interface IProduct {
 }
 
 export enum StockType {
-  OutOfStock,
   OnOrder,
   InStock
 }
 
 export const StockTypeDict = {
-  [StockType.OutOfStock]: "Нет в наличии"
+  [StockType.OnOrder]: "Под заказ",
+  [StockType.InStock]: "В наличии"
 }

@@ -70,4 +70,5 @@ const products: Array<IProduct> = [
   gap: 2rem
   display: flex
   margin: 30px 0
+  flex-wrap: wrap
 </style>

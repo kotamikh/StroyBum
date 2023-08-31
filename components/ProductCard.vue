@@ -13,8 +13,12 @@
     <div class="img-holder">
       <img :src="image" class="product-img" alt="product-img"/>
     </div>
-    <p class="product-name">{{ name }}</p>
-    <p>{{ stock }}</p>
+    <div class="name-stock">
+      <p class="product-name">{{ name }}</p>
+      <p :class="`${props.stock === 1 ? 'in-stock' : 'on-order'}`">{{
+          props.stock === 1 ? 'В наличии' : 'Под заказ'
+        }}</p>
+    </div>
     <div class="price-cart">
       <div class="price">
         <p v-if="discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{
@@ -43,7 +47,7 @@ const props = withDefaults(defineProps<Props>(), {
   name: 'unknown',
   image: 'unknown',
   price: 0,
-  stock: StockType.OutOfStock,
+  stock: StockType.OnOrder,
   discount: 0
 });
 
@@ -54,17 +58,22 @@ const props = withDefaults(defineProps<Props>(), {
   width: 20%
   display: flex
   flex-direction: column
-  padding: 10px
-  min-width: 150px
+  padding-bottom: 10px
+  min-width: 250px
   max-height: 380px
   border-radius: 10px
-  border: 1px solid grey
-  background-color: var(--background-grey)
+  position: relative
+  overflow: hidden
+  background-color: rgb(250, 250, 250)
 
   .marks
     width: 100%
     display: flex
+    left: 0
+    padding: 5px
+    position: absolute
     align-items: center
+    box-sizing: border-box
     flex-direction: row-reverse
     justify-content: space-between
 
@@ -85,18 +94,30 @@ const props = withDefaults(defineProps<Props>(), {
 
   .img-holder
     width: 100%
-    margin: 0 auto
-    padding: 10px 20px
-
-  .product-name
+    height: 200px
+    display: flex
+    padding: 0 30px
     overflow: hidden
-    text-overflow: ellipsis
+    align-items: center
+    border-top-left-radius: 10px
+    border-top-right-radius: 10px
+    justify-content: center
+    background-color: white
+    border: 1px solid var(--yellow)
+
+  .name-stock
+    margin: 10px
+
+  p.in-stock
+    color: var(--green)
+    font-weight: bold
 
   .price-cart
     gap: 10%
     display: flex
-    align-items: center
     margin-top: auto
+    align-items: flex-end
+    justify-content: center
 
     .cart-btn
       background-color: var(--yellow)
