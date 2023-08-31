@@ -107,6 +107,11 @@ const props = withDefaults(defineProps<Props>(), {
 
   .name-stock
     margin: 10px
+    .product-name
+      display: -webkit-box
+      -webkit-line-clamp: 2
+      -webkit-box-orient: vertical
+      overflow: hidden
 
   p.in-stock
     color: var(--green)

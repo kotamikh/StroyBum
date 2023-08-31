@@ -35,7 +35,7 @@
 <style scoped lang="sass">
 .contacts
   display: flex
-  margin: 30px 0
+  margin-top: 30px
 
   .contacts-text
     gap: 3em

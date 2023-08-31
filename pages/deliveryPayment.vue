@@ -36,7 +36,7 @@ import delivery from '@/assets/доставка.png'
 <style scoped lang="sass">
 .wrapper
   display: flex
-  margin: 50px 0
+  margin-top: 30px
   flex-direction: column
 
   .delivery-methods
@@ -66,7 +66,7 @@ import delivery from '@/assets/доставка.png'
           color: #FF6126
 
   .payment
-    margin: 20px 0
+    margin-top: 20px
     color: var(--grey)
     text-align: center
     font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)

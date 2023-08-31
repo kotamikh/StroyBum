@@ -15,9 +15,10 @@
 <style scoped lang="sass">
 .layout
   width: 90vw
-  margin: 20px auto 10px
+  margin: 20px auto
 
   .content
     display: flex
     flex-direction: column
+    padding-bottom: 65px
 </style>

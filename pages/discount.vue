@@ -24,7 +24,7 @@ const products: Array<IProduct> = [
         'Цвет: Ламантин',
     image: siding1,
     price: 215,
-    stock: StockType.OutOfStock,
+    stock: StockType.OnOrder,
     discount: 0.15,
     description: 'бла-бла-бла',
     characteristics: []
@@ -46,7 +46,7 @@ const products: Array<IProduct> = [
         'Цвет: Ламантин',
     image: siding1,
     price: 215,
-    stock: StockType.OutOfStock,
+    stock: StockType.OnOrder,
     discount: 0.15,
     description: 'бла-бла-бла',
     characteristics: []
@@ -69,6 +69,6 @@ const products: Array<IProduct> = [
 .discount
   gap: 2rem
   display: flex
-  margin: 30px 0
+  margin-top: 30px
   flex-wrap: wrap
 </style>
