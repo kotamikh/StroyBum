@@ -128,6 +128,7 @@ const props = withDefaults(defineProps<Props>(), {
       background-color: var(--yellow)
       border-radius: 0.3rem
       border: none
+      cursor: pointer
       height: fit-content
       padding: 5px 10px
       color: var(--grey)

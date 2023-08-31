@@ -143,6 +143,7 @@ watch(() => route.name, () => {
 
       border: 0
       height: 40px
+      cursor: pointer
       padding: 5px 20px
       border-radius: 5px
       font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
