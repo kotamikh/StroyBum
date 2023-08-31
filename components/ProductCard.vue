@@ -10,8 +10,10 @@
       </svg>
       <div class="discount-mark" v-if="discount !== 0">скидка {{ discount * 100 }}%</div>
     </div>
-    <img :src="image" class="product-img" alt="product-img"/>
-    <p>{{ name }}</p>
+    <div class="img-holder">
+      <img :src="image" class="product-img" alt="product-img"/>
+    </div>
+    <p class="product-name">{{ name }}</p>
     <p>{{ stock }}</p>
     <div class="price-cart">
       <div class="price">
@@ -49,11 +51,14 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style scoped lang="sass">
 .product-card
-  width: 25%
-  padding: 20px
+  width: 20%
+  display: flex
+  flex-direction: column
+  padding: 10px
   min-width: 150px
-  max-height: 350px
-  border-radius: 5%
+  max-height: 380px
+  border-radius: 10px
+  border: 1px solid grey
   background-color: var(--background-grey)
 
   .marks
@@ -78,17 +83,20 @@ const props = withDefaults(defineProps<Props>(), {
       &:hover
         fill: var(--yellow)
 
-  .product-img
-    height: 50%
+  .img-holder
+    width: 100%
     margin: 0 auto
-    padding: 20px 0
-    min-height: 100px
+    padding: 10px 20px
+
+  .product-name
+    overflow: hidden
+    text-overflow: ellipsis
 
   .price-cart
     gap: 10%
     display: flex
     align-items: center
-    justify-content: center
+    margin-top: auto
 
     .cart-btn
       background-color: var(--yellow)

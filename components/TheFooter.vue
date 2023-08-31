@@ -28,13 +28,10 @@ export default {
   bottom: 0
   display: flex
   width: inherit
-  position: absolute
-  padding-top: 10px
   color: var(--grey)
   align-items: center
   background-color: white
   justify-content: space-between
-
 
   .footer-item
     a

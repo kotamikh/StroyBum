@@ -39,13 +39,35 @@ const products: Array<IProduct> = [
     discount: 0,
     description: 'бла-бла-бла',
     characteristics: []
+  },
+  {
+    name: 'Сайдинг NordSide Лапландия \n' +
+        '3,05 х 0,205м \n' +
+        'Цвет: Ламантин',
+    image: siding1,
+    price: 215,
+    stock: StockType.OutOfStock,
+    discount: 0.15,
+    description: 'бла-бла-бла',
+    characteristics: []
+  },
+  {
+    name: 'Сайдинг NordSide Лапландия \n' +
+        '3,05 х 0,205м \n' +
+        'Цвет: Белый',
+    image: siding2,
+    price: 215,
+    stock: StockType.InStock,
+    discount: 0,
+    description: 'бла-бла-бла',
+    characteristics: []
   }
 ]
 </script>
 
 <style scoped lang="sass">
 .discount
-  gap: 4rem
+  gap: 2rem
   display: flex
   margin: 30px 0
 </style>
