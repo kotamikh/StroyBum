@@ -97,8 +97,8 @@ const categories = {
 .categories
   gap: 20px
   display: flex
-  margin-top: 30px
   flex-wrap: wrap
+  margin-top: 30px
   max-height: 400px
   flex-direction: column
 

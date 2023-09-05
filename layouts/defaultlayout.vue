@@ -19,6 +19,6 @@
 
   .content
     display: flex
+    padding-bottom: 70px
     flex-direction: column
-    padding-bottom: 65px
 </style>

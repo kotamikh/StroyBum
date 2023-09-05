@@ -40,20 +40,20 @@ import delivery from '@/assets/доставка.png'
   flex-direction: column
 
   .delivery-methods
-    display: grid
     grid-gap: 5%
+    display: grid
     height: max-content
-    grid-template-columns: repeat(2, 1fr)
     grid-template-rows: 0.5fr 2fr 3fr
+    grid-template-columns: repeat(2, 1fr)
 
     .method
       display: contents
 
       h3
         font-weight: bold
-        color: var(--middle-grey)
         text-align: center
         margin-bottom: 10px
+        color: var(--middle-grey)
         font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 16) + 16px)
 
       p
@@ -62,8 +62,8 @@ import delivery from '@/assets/доставка.png'
         font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 
         span
-          font-weight: bold
           color: #FF6126
+          font-weight: bold
 
   .payment
     margin-top: 20px

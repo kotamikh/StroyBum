@@ -1,5 +1,6 @@
 <template>
-  <div class="product-card">
+  <div class="product-card"
+       @click="goToProductPage">
     <div class="marks">
       <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
         <path
@@ -35,7 +36,7 @@
 <script setup lang="ts">
 import { StockType } from "~/src/types/Product";
 
-interface Props {
+export interface Props {
   name: string,
   image: string
   price: number,
@@ -51,40 +52,53 @@ const props = withDefaults(defineProps<Props>(), {
   discount: 0
 });
 
+const router = useRouter()
+const goToProductPage = () => {
+  router.push({
+    name: "productPage",
+    params: {
+      name: "таня",
+      image: "козлоува"
+    },
+    query: {
+      name: "таня",
+      image: "козлоува"
+    }
+  })
+}
+
 </script>
 
 <style scoped lang="sass">
 .product-card
-  width: 20%
   display: flex
   flex-direction: column
-  padding-bottom: 10px
+
+  width: 20%
   min-width: 250px
   max-height: 380px
-  border-radius: 10px
   position: relative
-  overflow: hidden
-  background-color: rgb(250, 250, 250)
+  padding-bottom: 10px
 
   .marks
+    left: 0
+    padding: 2px
+    position: absolute
+
     width: 100%
     display: flex
-    left: 0
-    padding: 5px
-    position: absolute
     align-items: center
     box-sizing: border-box
     flex-direction: row-reverse
     justify-content: space-between
 
     .discount-mark
-      background-color: var(--yellow)
+      padding: 0 5px
       border-radius: 5%
       font-size: 0.9rem
-      height: fit-content
-      padding: 0 5px
       color: var(--grey)
-      justify-self: left
+      height: fit-content
+      background-color: var(--yellow)
 
     .fav-mark
       fill: var(--middle-grey)
@@ -97,25 +111,21 @@ const props = withDefaults(defineProps<Props>(), {
     height: 200px
     display: flex
     padding: 0 30px
-    overflow: hidden
     align-items: center
-    border-top-left-radius: 10px
-    border-top-right-radius: 10px
     justify-content: center
-    background-color: white
-    border: 1px solid var(--yellow)
 
   .name-stock
     margin: 10px
+
     .product-name
+      overflow: hidden
       display: -webkit-box
       -webkit-line-clamp: 2
       -webkit-box-orient: vertical
-      overflow: hidden
 
   p.in-stock
-    color: var(--green)
     font-weight: bold
+    color: var(--green)
 
   .price-cart
     gap: 10%
@@ -125,11 +135,10 @@ const props = withDefaults(defineProps<Props>(), {
     justify-content: center
 
     .cart-btn
-      background-color: var(--yellow)
-      border-radius: 0.3rem
       border: none
       cursor: pointer
-      height: fit-content
       padding: 5px 10px
       color: var(--grey)
+      border-radius: 5px
+      background-color: var(--yellow)
 </style>

@@ -3,9 +3,9 @@ export interface IProduct {
   image: string,
   price: number,
   stock: StockType,
-  discount: number,
-  description: string,
-  characteristics: []
+  discount?: number,
+  description?: string,
+  characteristics?: []
 }
 
 export enum StockType {
