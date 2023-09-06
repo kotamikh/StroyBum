@@ -1,5 +1,5 @@
 <template>
-  <h2>Каталог</h2>
+  <h1>Каталог</h1>
     <ul class="categories">
       <li v-for="(category, id) in categories"
           :key="id"

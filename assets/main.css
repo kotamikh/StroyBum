@@ -14,8 +14,12 @@ body {
   position: relative;
 }
 
+h1 {
+  font-size: calc((100vw - 320px) / (1280 - 320) * (26 - 24) + 24px);
+}
+
 h2 {
-  color: var(--grey);
+  font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px);
 }
 
 a {

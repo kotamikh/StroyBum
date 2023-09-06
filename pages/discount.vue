@@ -1,5 +1,5 @@
 <template>
-  <h2>Скидки</h2>
+  <h1>Скидки</h1>
   <div class="discount">
     <product-card v-for="product in products"
                   :key="product.name"
@@ -75,7 +75,7 @@ const products: Array<IProduct> = [
     characteristics: []
   },
   {
-    name: 'Потолок Грильято' +
+    name: 'Потолок Грильято ' +
         'Цвет: Золотой',
     image: ceiling2,
     price: 600,

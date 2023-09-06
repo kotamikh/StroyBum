@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="delivery-methods">
       <div class="method">
-        <h3 style="grid-area: 1 / 1 / 2 / 2">Самовывоз</h3>
+        <h2 style="grid-area: 1 / 1 / 2 / 2">Самовывоз</h2>
         <div class="method-text" style="grid-area: 2 / 1 / 3 / 2">
           <p>г. Киров, 2-й Кирпичный пер. 2/1
             (территория базы “Слон”).</p>
@@ -12,7 +12,7 @@
         <img :src="pickup" alt="самовывоз" style="max-width: 150px; margin: auto; grid-area: 3 / 1 / 4 / 2"/>
       </div>
       <div class="method">
-        <h3 style="grid-area: 1 / 2 / 2 / 3">Доставка</h3>
+        <h2 style="grid-area: 1 / 2 / 2 / 3">Доставка</h2>
         <div class="method-text" style="grid-area: 2 / 2 / 3 / 3">
           <p>В любой город России через транспортные компании БайкалСервис, ПЭК, Объём, Деловые линии.</p>
           <p><span>Внимание!</span> Стоимость доставки рассчитывается согласно тарифу транспортной компании.</p>
@@ -49,12 +49,10 @@ import delivery from '@/assets/доставка.png'
     .method
       display: contents
 
-      h3
+      h2
         font-weight: bold
         text-align: center
         margin-bottom: 10px
-        color: var(--middle-grey)
-        font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 16) + 16px)
 
       p
         color: var(--grey)

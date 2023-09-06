@@ -16,6 +16,10 @@
 .layout
   width: 90vw
   margin: 20px auto
+  box-sizing: border-box
+
+  @media screen and (max-width: 1000px)
+    width: 95vw
 
   .content
     display: flex

@@ -2,7 +2,7 @@
   <div class="navigation-panel">
     <div class="line-1">
       <NuxtLink to="/">
-        <h1>Строй<span>Бум</span></h1>
+        <div class="header">Строй<span>Бум</span></div>
       </NuxtLink>
       <div class="nav-menu">
         <ul class="nav-menu-left">
@@ -87,14 +87,15 @@ watch(() => route.name, () => {
     a
       align-self: center
 
-      h1
+      .header
         color: #9B9B9B
         margin-right: 30px
         font-family: 'Russo One', sans-serif
+        font-size: calc((100vw - 320px) / (1280 - 320) * (34 - 30) + 30px)
 
-      span
-        color: var(--yellow)
-        font-family: 'Russo One', sans-serif
+        span
+          color: var(--yellow)
+          font-family: 'Russo One', sans-serif
 
     .nav-menu
       width: 100%

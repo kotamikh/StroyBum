@@ -35,6 +35,7 @@ html {
     line-height: 1.5;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    background-color: white;
     text-rendering: optimizeSpeed;
 }
 
