@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="contacts-map">
-
+      <component :is="'script'" type="application/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0f5ae8f64d658ba78051cb8f2f83e9be1c18cc4a080af3742893da1b3fecd609&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></component>
     </div>
   </div>
 </template>
@@ -35,7 +35,6 @@
 <style scoped lang="sass">
 .contacts
   display: flex
-  margin-top: 30px
 
   .contacts-text
     gap: 30px

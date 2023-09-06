@@ -112,5 +112,4 @@ const products: Array<IProduct> = [
   gap: 2rem
   display: flex
   flex-wrap: wrap
-  margin-top: 30px
 </style>

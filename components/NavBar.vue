@@ -77,7 +77,7 @@ watch(() => route.name, () => {
 
 .navigation-panel
   display: flex
-  margin: 0 auto 30px
+  margin: 0 auto
   flex-direction: column
 
   .line-1
