@@ -65,7 +65,7 @@ const categories = {
     path: 'batteryScreens'
   },
   insulation: {
-    text: 'Утеплителти',
+    text: 'Утеплители',
     image: insulation,
     path: 'insulation'
   },
@@ -100,13 +100,46 @@ const categories = {
   flex-wrap: wrap
   max-height: 400px
   flex-direction: column
+  align-content: space-evenly
 
-  a
+  @media screen and (max-width: 750px)
+    flex-direction: row
+    justify-content: center
+    max-height: max-content
+
+    li
+      width: 180px
+      height: 80px
+      display: flex
+      border: 2px solid transparent
+      flex-direction: column
+      justify-content: center
+
+      a
+        padding: 0 5px
+
+      &:hover
+        border-radius: 5px
+        border: 2px solid var(--yellow)
+
+  @media screen and (max-width: 610px)
+    gap: 30px
+
+    li
+      width: 160px
+
+  @media screen and (max-width: 565px)
+    gap: 20px
+    justify-content: space-evenly
+
+  @media screen and (max-width: 370px)
     gap: 10px
-    display: flex
-    cursor: pointer
-    align-items: center
 
+    li
+      width: 300px
+      align-items: flex-start
+
+  @media screen and (min-width: 750px)
     &:hover
       h3
         color: #4d4d4d
@@ -114,4 +147,11 @@ const categories = {
         text-underline-position: under
         text-decoration-thickness: 2px
         text-decoration-color: var(--yellow)
+
+  a
+    gap: 10px
+    display: flex
+    cursor: pointer
+    align-items: center
+    font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
 </style>
