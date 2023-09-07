@@ -111,9 +111,9 @@ const categories = {
       width: 180px
       height: 80px
       display: flex
-      border: 2px solid transparent
       flex-direction: column
       justify-content: center
+      border: 2px solid transparent
 
       a
         padding: 0 5px
@@ -140,13 +140,14 @@ const categories = {
       align-items: flex-start
 
   @media screen and (min-width: 750px)
-    &:hover
-      h3
-        color: #4d4d4d
-        text-decoration: underline
-        text-underline-position: under
-        text-decoration-thickness: 2px
-        text-decoration-color: var(--yellow)
+    li
+      &:hover
+        h3
+          color: #4d4d4d
+          text-decoration: underline
+          text-underline-position: under
+          text-decoration-thickness: 2px
+          text-decoration-color: var(--yellow)
 
   a
     gap: 10px
