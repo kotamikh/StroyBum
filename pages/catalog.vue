@@ -104,11 +104,11 @@ const categories = {
 
   @media screen and (max-width: 750px)
     flex-direction: row
-    justify-content: center
     max-height: max-content
+    justify-content: space-evenly
 
     li
-      width: 180px
+      width: 200px
       height: 80px
       display: flex
       flex-direction: column
@@ -122,17 +122,7 @@ const categories = {
         border-radius: 5px
         border: 2px solid var(--yellow)
 
-  @media screen and (max-width: 610px)
-    gap: 30px
-
-    li
-      width: 160px
-
-  @media screen and (max-width: 565px)
-    gap: 20px
-    justify-content: space-evenly
-
-  @media screen and (max-width: 370px)
+  @media screen and (max-width: 445px)
     gap: 10px
 
     li

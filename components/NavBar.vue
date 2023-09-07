@@ -66,7 +66,6 @@ const isCurrent = (link) => {
 const route = useRoute()
 
 watch(() => route.name, () => {
-  console.log(route.name)
   currentLink.value = route.name
 }, { immediate: true })
 

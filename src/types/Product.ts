@@ -1,6 +1,6 @@
 export interface IProduct {
   name: string,
-  image: string,
+  images: Array<string>,
   price: number,
   stock: StockType,
   discount?: number,
