@@ -2,12 +2,14 @@ import { defineStore } from 'pinia'
 import { IProduct } from "~/src/types/Product";
 
 export const useCardsStore = defineStore('cardsStore', () => {
+    const products: Ref<Array<IProduct>> = ref([])
+
     const getAll = async () => {
         const response = await useFetch("http://192.168.0.2:8000/api/v1/products", {
             method: "GET",
             params: {
                 offset: 0,
-                limit: 30
+                limit: 20
             }
         })
         const target: Array<IProduct> = JSON.parse(JSON.stringify(response["data"]["value"]))
@@ -15,17 +17,17 @@ export const useCardsStore = defineStore('cardsStore', () => {
         console.log(target)
     }
     const addCard = async () => {
-        const response = await useFetch("http://192.168.0.2:8000/api/v1/products", {
+        await useFetch("http://192.168.0.2:8000/api/v1/products", {
             method: 'POST',
             body: {
-                name: 'моня',
-                images: ['https://sun9-80.userapi.com/impg/WNeSBWfpDvydNkWlLILByaOfZIj5dSzhA0QHNQ/G4QliPr8CX4.jpg?size=1255x1348&quality=95&sign=139ee0ee89ac1c668291e27337463fe0&type=album', 'https://sun9-39.userapi.com/impg/K3afhp2v5cTt0tWPVMS8gIkwhvO3p4ldQvsm5w/dFMsJDp5mSE.jpg?size=1620x2160&quality=95&sign=869cd60664fdd5cfad6e65e4488b6d72&type=album', 'https://sun9-62.userapi.com/impg/t7zEX05a1pERpV0sIPW8p2kyKO_g4g6oMRry4A/KxNkwRY6rmQ.jpg?size=1620x2160&quality=95&sign=84709194c9d2041c3c38f0b26a6fd3ab&type=album'],
-                stock: 0,
-                discount: 0,
+                name: 'сайдинг',
+                images: ['https://detinez.ru/_mod_files/ce_images/articles/generated/vynil-3_a24493cbcd23f345792e627e4d495440_500x334.jpg', 'https://start46.ru/wp-content/uploads/2019/07/uplast-stown-house-kirpich-bez-fasad.jpg'],
+                stock: 1,
+                discount: 5,
                 description: 'описание',
                 characteristics: [
-                    ["цвет", "черно-белый"],
-                    ["размер", "нормальный"]
+                    ["цвет", "серый"],
+                    ["размер", "2+2"]
                 ]
             }
         })
@@ -50,6 +52,7 @@ export const useCardsStore = defineStore('cardsStore', () => {
     }
 
     return {
+        products,
         getAll,
         addCard,
         deleteAll
