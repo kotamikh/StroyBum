@@ -6,7 +6,8 @@
   <div class="discount">
 
     <product-card v-for="product in useCardsStore().products"
-                  :key="product.name"
+                  :key="product.id"
+                  :id="product.id"
                   :name="product.name"
                   :images="product.images"
                   :price="500"
@@ -19,7 +20,6 @@
 
 <script setup lang="ts">
 import { useCardsStore } from "~/store";
-
 </script>
 
 <style scoped lang="sass">

@@ -1,4 +1,4 @@
-export interface IProduct {
+export interface IProductDto {
   name: string,
   images: Array<string>,
   price: number,
@@ -6,6 +6,10 @@ export interface IProduct {
   discount?: number,
   description?: string,
   characteristics?: []
+}
+
+export interface IProduct extends IProductDto {
+  id: number,
 }
 
 export enum StockType {

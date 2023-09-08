@@ -1,6 +1,6 @@
 <template>
   <div class="product-card"
-       @click="goToProductPage">
+       @click="useCardsStore().goToProductPage(id)">
     <div class="marks">
       <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
         <path
@@ -35,8 +35,10 @@
 
 <script setup lang="ts">
 import { StockType } from "~/src/types/Product";
+import { useCardsStore } from "~/store";
 
 export interface Props {
+  id: number,
   name: string,
   images: Array<string>,
   price: number,
@@ -45,27 +47,13 @@ export interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  id: 0,
   name: 'unknown',
   images: ['unknown'],
   price: 0,
   stock: StockType.OnOrder,
   discount: 0
 });
-
-const router = useRouter()
-const goToProductPage = () => {
-  router.push({
-    name: "productPage",
-    params: {
-      name: props.name,
-      image: props.images
-    },
-    query: {
-      name: "таня",
-      image: "козлоува"
-    }
-  })
-}
 
 </script>
 
