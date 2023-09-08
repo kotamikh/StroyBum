@@ -46,7 +46,7 @@ export interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   name: 'unknown',
-  image: 'unknown',
+  images: ['unknown'],
   price: 0,
   stock: StockType.OnOrder,
   discount: 0
@@ -57,8 +57,8 @@ const goToProductPage = () => {
   router.push({
     name: "productPage",
     params: {
-      name: "таня",
-      image: "козлоува"
+      name: props.name,
+      image: props.images
     },
     query: {
       name: "таня",
