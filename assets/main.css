@@ -5,7 +5,7 @@
   --green: #49AE66;
   --yellow: #E3DD5F;
   --middle-grey: #808080;
-  --background-grey: #FCFCFC;
+  --background-grey: #eeeeee;
   color: var(--middle-grey);
   box-sizing: border-box;
 }
