@@ -31,9 +31,7 @@
             product.stock === 1 ? 'В наличии' : 'Под заказ'
           }}</p>
         <div class="price">
-          <p v-if="product.discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{
-              Math.ceil(500 / (100 - product.discount) * 100)
-            }} руб/шт.
+          <p v-if="product.discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{ countDiscount }} руб/шт.
           </p>
           <p style="color: var(--yellow); font-weight: bold">{{ 500 }} руб/шт.</p>
         </div>
@@ -56,6 +54,8 @@
 import { IProduct } from "~/types/Product";
 import { useProductsStore } from "~/store/products";
 
+
+
 const route = useRoute()
 const store = useProductsStore()
 
@@ -66,6 +66,8 @@ const result = await store.getProduct(id.value)
 if (result.ok) {
   product.value = result.data
 }
+
+const countDiscount = computed(() => Math.ceil(500 / (100 - product.value.discount) * 100))
 
 const currentImageIndex = ref<number>(0)
 const currentImage = computed<string>(() => product.value.images[currentImageIndex.value] || store.getDefaultImage())

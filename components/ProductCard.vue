@@ -22,10 +22,7 @@
     </div>
     <div class="price-cart">
       <div class="price">
-        <p v-if="discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{
-            Math.ceil(price / (100 - discount) * 100)
-          }} руб/шт.
-        </p>
+        <p v-if="discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{ countDiscount }} руб/шт.</p>
         <p style="color: var(--yellow); font-weight: bold">{{ price }} руб/шт.</p>
       </div>
       <button class="cart-btn">В корзину</button>
@@ -53,6 +50,8 @@ const props = withDefaults(defineProps<Props>(), {
   stock: StockType.OnOrder,
   discount: 0
 });
+
+const countDiscount = computed(() => Math.ceil(props.price / (100 - props.discount) * 100))
 
 const router = useRouter()
 const goToProductPage = () => {
