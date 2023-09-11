@@ -1,13 +1,12 @@
 <template>
   <h1>Скидки</h1>
-  <button @click="useCardsStore().getAll" style="width: max-content; margin-bottom: 30px">Get All</button>
-  <button @click="useCardsStore().addCard" style="width: max-content; margin-bottom: 30px">Add</button>
-  <button @click="useCardsStore().deleteAll(75, 76)" style="width: max-content; margin-bottom: 30px">Delete</button>
+  <button @click="useProductsStore().loadAll(0, 10)" style="width: max-content; margin-bottom: 30px">Get All</button>
+  <button @click="useProductsStore().addCard" style="width: max-content; margin-bottom: 30px">Add</button>
   <div class="discount">
 
-    <product-card v-for="product in useCardsStore().products"
-                  :key="product.id"
-                  :id="product.id"
+    <product-card v-for="[id, product] in useProductsStore().products"
+                  :key="id"
+                  :id="id"
                   :name="product.name"
                   :images="product.images"
                   :price="500"
@@ -19,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { useCardsStore } from "~/store";
+import { useProductsStore } from "~/store/products";
 </script>
 
 <style scoped lang="sass">

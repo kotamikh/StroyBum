@@ -3,9 +3,9 @@ export interface IProductDto {
   images: Array<string>,
   price: number,
   stock: StockType,
-  discount?: number,
-  description?: string,
-  characteristics?: []
+  discount: number,
+  description: string,
+  characteristics: []
 }
 
 export interface IProduct extends IProductDto {

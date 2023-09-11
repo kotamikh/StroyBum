@@ -3,9 +3,9 @@
     <div class="main-information">
       <div class="product-images">
         <div class="images-gallery">
-          <img v-for="(img, id) in product.images"
-               :key="id"
-               :src="img" :alt="product.name" @click="makeCurrent(product.images[id])"/>
+          <img v-for="(img, index) in product.images"
+               :key="index"
+               :src="img" :alt="product.name" @click="setCurrentImage(index)"/>
         </div>
         <div class="current-photo">
           <img :src="currentImage" :alt="product.name"/>
@@ -53,17 +53,27 @@
 </template>
 
 <script setup lang="ts">
-import { IProduct } from "~/src/types/Product";
-import { useCardsStore } from "~/store";
+import { IProduct } from "~/types/Product";
+import { useProductsStore } from "~/store/products";
 
-const product: IProduct = useCardsStore().currentProduct
-const currentImage = ref(product.images[0])
+const route = useRoute()
+const store = useProductsStore()
 
-const makeCurrent = (img: string) => {
-  currentImage.value = img
+const id = computed<number>(() => Number(route.params.id))
+const product = ref<IProduct>(store.getDefaultProduct())
+
+const result = await store.getProduct(id.value)
+if (result.ok) {
+  product.value = result.data
 }
 
+const currentImageIndex = ref<number>(0)
+const currentImage = computed<string>(() => product.value.images[currentImageIndex.value] || store.getDefaultImage())
 
+const setCurrentImage = (index: number) => {
+  if (index < 0 || index >= product.value.images.length) return
+  currentImageIndex.value = index
+}
 </script>
 
 <style scoped lang="sass">
