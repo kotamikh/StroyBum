@@ -3,7 +3,8 @@
     <div class="main-information">
       <div class="product-images">
         <div class="gallery-wrapper">
-          <button v-if="product.images.length > 3" :class="[{ active : isUpButtonActive },  'up-button']" @click="moveToTop">
+          <button v-if="product.images.length > 3" :class="[{ active : isUpButtonActive },  'up-button']"
+                  @click="moveToTop">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
               <path d="m12 10.8l-4.6 4.6L6 14l6-6l6 6l-1.4 1.4l-4.6-4.6Z"/>
             </svg>
@@ -19,7 +20,8 @@
                    @click="setCurrentImage(index)"/>
             </div>
           </div>
-          <button v-if="product.images.length > 3" :class="[{ active : isDownButtonActive }, 'down-button']" @click="moveToDown">
+          <button v-if="product.images.length > 3" :class="[{ active : isDownButtonActive }, 'down-button']"
+                  @click="moveToDown">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
               <path d="m12 15.4l-6-6L7.4 8l4.6 4.6L16.6 8L18 9.4l-6 6Z"/>
             </svg>
@@ -28,23 +30,17 @@
         <div class="current-photo">
           <img :src="currentImage" :alt="product.name"/>
         </div>
-        <div class="buttons">
+      </div>
+      <div class="name-price">
+        <div class="name">
+          <h1>{{ product.name }}</h1>
           <button class="fav-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
               <path fill="#808080"
                     d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82Zm-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"/>
             </svg>
           </button>
-          <button class="cart-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
-              <path fill="#808080"
-                    d="M96 216a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm88-16a16 16 0 1 0 16 16a16 16 0 0 0-16-16Zm47.65-125.65l-28.53 92.71A23.89 23.89 0 0 1 180.18 184H84.07A24.11 24.11 0 0 1 61 166.59L24.82 40H8a8 8 0 0 1 0-16h16.82a16.08 16.08 0 0 1 15.39 11.6L48.32 64H224a8 8 0 0 1 7.65 10.35ZM213.17 80H52.89l23.49 82.2a8 8 0 0 0 7.69 5.8h96.11a8 8 0 0 0 7.65-5.65Z"/>
-            </svg>
-          </button>
         </div>
-      </div>
-      <div class="name-price">
-        <h1>{{ product.name }}</h1>
         <p :class="`${product.stock === 1 ? 'in-stock' : 'on-order'}`">{{
             product.stock === 1 ? 'В наличии' : 'Под заказ'
           }}</p>
@@ -54,6 +50,13 @@
           </p>
           <p style="color: var(--yellow); font-weight: bold">{{ 500 }} руб/шт.</p>
         </div>
+        <button class="cart-btn">
+          В корзину
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
+            <path fill="#808080"
+                  d="M96 216a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm88-16a16 16 0 1 0 16 16a16 16 0 0 0-16-16Zm47.65-125.65l-28.53 92.71A23.89 23.89 0 0 1 180.18 184H84.07A24.11 24.11 0 0 1 61 166.59L24.82 40H8a8 8 0 0 1 0-16h16.82a16.08 16.08 0 0 1 15.39 11.6L48.32 64H224a8 8 0 0 1 7.65 10.35ZM213.17 80H52.89l23.49 82.2a8 8 0 0 0 7.69 5.8h96.11a8 8 0 0 0 7.65-5.65Z"/>
+          </svg>
+        </button>
       </div>
     </div>
     <div class="additional-information">
@@ -100,12 +103,16 @@ const isCurrent = (index: number) => {
   return currentImageIndex.value === index
 }
 
-const track: VNodeRef = ref<VNodeRef| undefined>()
+const track: VNodeRef = ref<VNodeRef | undefined>()
 const trackTranslate = ref(0)
 const translateLimit = -(product.value.images.length - 3) * 140
 
-const isUpButtonActive = computed(() => {return trackTranslate.value !== 0})
-const isDownButtonActive = computed(() => {return trackTranslate.value > translateLimit})
+const isUpButtonActive = computed(() => {
+  return trackTranslate.value !== 0
+})
+const isDownButtonActive = computed(() => {
+  return trackTranslate.value > translateLimit
+})
 
 const moveToTop = () => {
   if (trackTranslate.value < 0) {
@@ -132,7 +139,7 @@ const moveToDown = () => {
 
     .product-images
       gap: 20px
-      width: 60%
+      width: 50%
       height: 400px
       display: flex
 
@@ -193,30 +200,34 @@ const moveToDown = () => {
           height: 100%
           object-fit: contain
 
-      .buttons
-        gap: 20px
+    .name-price
+      .name
+        gap: 5px
         display: flex
-        flex-direction: column
+        align-items: center
 
-        .fav-btn,
-        .cart-btn
+        .fav-btn
           border: none
           display: flex
           width: 45px
           height: 45px
           border-radius: 2px
           align-items: center
-
-        .fav-btn
-          background-color: var(--background-grey)
-
-        .cart-btn
-          background-color: var(--yellow)
-
-    .name-price
-      margin: 0 auto
+          background-color: transparent
 
       .price p
+        font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px)
+
+      .cart-btn
+        gap: 5px
+        border: none
+        display: flex
+        padding: 5px 10px
+        align-items: center
+        margin-top: 20px
+        border-radius: 5px
+
+        background-color: var(--yellow)
         font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px)
 
   .additional-information
