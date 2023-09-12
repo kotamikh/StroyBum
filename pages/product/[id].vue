@@ -15,6 +15,7 @@
                    :key="index"
                    :src="img"
                    :alt="product.name"
+                   :class="{ current : isCurrent(index) }"
                    @click="setCurrentImage(index)"/>
             </div>
           </div>
@@ -95,6 +96,10 @@ const setCurrentImage = (index: number) => {
   currentImageIndex.value = index
 }
 
+const isCurrent = (index: number) => {
+  return currentImageIndex.value === index
+}
+
 const track: VNodeRef = ref<VNodeRef| undefined>()
 const trackTranslate = ref(0)
 const translateLimit = -(product.value.images.length - 3) * 140
@@ -173,14 +178,19 @@ const moveToDown = () => {
             object-fit: cover
             border: 2px solid var(--middle-grey)
 
+          .current
+            border: 3px solid var(--yellow)
+
       .current-photo
-        border: 2px solid var(--middle-grey)
         width: 400px
         height: 400px
         display: flex
         align-items: center
+        border: 2px solid var(--middle-grey)
 
         img
+          width: 100%
+          height: 100%
           object-fit: contain
 
       .buttons
