@@ -62,8 +62,15 @@
     <div class="additional-information">
       <div class="characteristics">
         <h2>Характеристики:</h2>
-        <p v-for="(characteristic, index) in product.characteristics"
-           :key="index"> {{ characteristic[0] }}: {{ characteristic[1] }}</p>
+        <ul v-for="(characteristic, index) in product.characteristics"
+           :key="index">
+          <li>
+            <p class="left">
+              <span class="label">{{ characteristic[0] }}</span>
+            </p>
+            <span class="value">{{ characteristic[1] }}</span>
+          </li>
+        </ul>
       </div>
       <div class="description">
         <h2>Описание:</h2>
@@ -131,15 +138,16 @@ const moveToDown = () => {
 
 <style scoped lang="sass">
 .product-card
-  margin-top: 70px
+  width: 90%
+  margin: 70px auto
 
   .main-information
     display: flex
-    margin-bottom: 50px
+    margin-bottom: 70px
 
     .product-images
       gap: 20px
-      width: 50%
+      width: 60%
       height: 400px
       display: flex
 
@@ -201,6 +209,7 @@ const moveToDown = () => {
           object-fit: contain
 
     .name-price
+      margin-left: 50px
       .name
         gap: 5px
         display: flex
@@ -235,7 +244,29 @@ const moveToDown = () => {
     display: flex
     flex-direction: column
 
-    .characteristics p,
-    .description p
+    .characteristics,
+    .description
       font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+
+      ul
+        position: relative
+
+        .left
+          width: 40%
+          float: left
+          overflow: hidden
+          position: relative
+
+          span.label
+            font-weight: bold
+            position: relative
+            display: inline-block
+
+            &:after
+              content: ''
+              position: absolute
+              left: 100%
+              right: -500px
+              bottom: 0
+              border-bottom: 1px dotted #888
 </style>
