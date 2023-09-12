@@ -2,10 +2,27 @@
   <div class="product-card">
     <div class="main-information">
       <div class="product-images">
-        <div class="images-gallery">
-          <img v-for="(img, index) in product.images"
-               :key="index"
-               :src="img" :alt="product.name" @click="setCurrentImage(index)"/>
+        <div class="gallery-wrapper">
+          <button v-if="product.images.length > 3" :class="[{ active : isUpButtonActive },  'up-button']" @click="moveToTop">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+              <path d="m12 10.8l-4.6 4.6L6 14l6-6l6 6l-1.4 1.4l-4.6-4.6Z"/>
+            </svg>
+          </button>
+          <div class="slider-gallery">
+            <div class="slider-track"
+                 ref="track">
+              <img v-for="(img, index) in product.images"
+                   :key="index"
+                   :src="img"
+                   :alt="product.name"
+                   @click="setCurrentImage(index)"/>
+            </div>
+          </div>
+          <button v-if="product.images.length > 3" :class="[{ active : isDownButtonActive }, 'down-button']" @click="moveToDown">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+              <path d="m12 15.4l-6-6L7.4 8l4.6 4.6L16.6 8L18 9.4l-6 6Z"/>
+            </svg>
+          </button>
         </div>
         <div class="current-photo">
           <img :src="currentImage" :alt="product.name"/>
@@ -31,7 +48,8 @@
             product.stock === 1 ? 'В наличии' : 'Под заказ'
           }}</p>
         <div class="price">
-          <p v-if="product.discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{ countDiscount }} руб/шт.
+          <p v-if="product.discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{ countDiscount }}
+            руб/шт.
           </p>
           <p style="color: var(--yellow); font-weight: bold">{{ 500 }} руб/шт.</p>
         </div>
@@ -39,11 +57,12 @@
     </div>
     <div class="additional-information">
       <div class="characteristics">
-        <h2>Характеристики</h2>
-        <p v-for="characteristic in product.characteristics">{{ characteristic }}</p>
+        <h2>Характеристики:</h2>
+        <p v-for="(characteristic, index) in product.characteristics"
+           :key="index"> {{ characteristic[0] }}: {{ characteristic[1] }}</p>
       </div>
       <div class="description">
-        <h2>Описание</h2>
+        <h2>Описание:</h2>
         <p>{{ product.description }}</p>
       </div>
     </div>
@@ -53,8 +72,7 @@
 <script setup lang="ts">
 import { IProduct } from "~/types/Product";
 import { useProductsStore } from "~/store/products";
-
-
+import { VNodeRef } from "@vue/runtime-core";
 
 const route = useRoute()
 const store = useProductsStore()
@@ -76,11 +94,32 @@ const setCurrentImage = (index: number) => {
   if (index < 0 || index >= product.value.images.length) return
   currentImageIndex.value = index
 }
+
+const track: VNodeRef = ref<VNodeRef| undefined>()
+const trackTranslate = ref(0)
+const translateLimit = -(product.value.images.length - 3) * 140
+
+const isUpButtonActive = computed(() => {return trackTranslate.value !== 0})
+const isDownButtonActive = computed(() => {return trackTranslate.value > translateLimit})
+
+const moveToTop = () => {
+  if (trackTranslate.value < 0) {
+    trackTranslate.value += 140
+    track.value.style.transform = `translateY(${ trackTranslate.value }px)`
+  }
+}
+
+const moveToDown = () => {
+  if (trackTranslate.value > translateLimit) {
+    trackTranslate.value -= 140
+    track.value.style.transform = `translateY(${ trackTranslate.value }px)`
+  }
+}
 </script>
 
 <style scoped lang="sass">
 .product-card
-  margin-top: 50px
+  margin-top: 70px
 
   .main-information
     display: flex
@@ -89,25 +128,60 @@ const setCurrentImage = (index: number) => {
     .product-images
       gap: 20px
       width: 60%
+      height: 400px
       display: flex
 
-      .images-gallery
-        gap: 20px
+      .gallery-wrapper
         width: 20%
         display: flex
-        flex-direction: column
+        height: 400px
+        position: relative
 
-        img
-          height: 120px
-          object-fit: cover
+        .up-button,
+        .down-button
+          left: 50%
+          border: none
+          position: absolute
+          background-color: transparent
+          transform: translate(-50%, -50%)
+
+          svg > path
+            fill: #dadada
+
+        .active
+          svg > path
+            fill: #808080
+
+        .up-button
+          top: -12px
+
+        .down-button
+          bottom: -60px
+
+        .slider-gallery
+          height: 400px
+          align-self: center
+          overflow: hidden
+
+          .slider-track
+            transition: all 0.2s ease
+
+          img
+            margin-bottom: 20px
+            width: 100%
+            height: 120px
+            object-fit: cover
+            border: 2px solid var(--middle-grey)
 
       .current-photo
+        border: 2px solid var(--middle-grey)
+        width: 400px
+        height: 400px
+        display: flex
+        align-items: center
+
         img
-          top: 0
-          width: 500px
-          height: 500px
           object-fit: contain
-          object-position: top
 
       .buttons
         gap: 20px
@@ -132,9 +206,15 @@ const setCurrentImage = (index: number) => {
     .name-price
       margin: 0 auto
 
+      .price p
+        font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px)
+
   .additional-information
     gap: 30px
     display: flex
     flex-direction: column
 
+    .characteristics p,
+    .description p
+      font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 </style>
