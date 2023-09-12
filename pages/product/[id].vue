@@ -32,15 +32,14 @@
         </div>
       </div>
       <div class="name-price">
-        <div class="name">
-          <h1>{{ product.name }}</h1>
+        <h1>{{ product.name }}
           <button class="fav-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
               <path fill="#808080"
                     d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82Zm-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"/>
             </svg>
           </button>
-        </div>
+        </h1>
         <p :class="`${product.stock === 1 ? 'in-stock' : 'on-order'}`">{{
             product.stock === 1 ? 'В наличии' : 'Под заказ'
           }}</p>
@@ -63,7 +62,7 @@
       <div class="characteristics">
         <h2>Характеристики:</h2>
         <ul v-for="(characteristic, index) in product.characteristics"
-           :key="index">
+            :key="index">
           <li>
             <p class="left">
               <span class="label">{{ characteristic[0] }}</span>
@@ -180,17 +179,17 @@ const moveToDown = () => {
 
         .slider-gallery
           height: 400px
-          align-self: center
           overflow: hidden
+          align-self: center
 
           .slider-track
             transition: all 0.2s ease
 
           img
-            margin-bottom: 20px
             width: 100%
             height: 120px
             object-fit: cover
+            margin-bottom: 20px
             border: 2px solid var(--middle-grey)
 
           .current
@@ -209,20 +208,25 @@ const moveToDown = () => {
           object-fit: contain
 
     .name-price
+      gap: 20px
+      display: flex
       margin-left: 50px
-      .name
-        gap: 5px
-        display: flex
-        align-items: center
+      flex-direction: column
+
+      h1
+        margin-bottom: 0
+        position: relative
 
         .fav-btn
           border: none
-          display: flex
-          width: 45px
-          height: 45px
-          border-radius: 2px
-          align-items: center
+          height: 32px
+          padding: 0 10px
+          position: absolute
           background-color: transparent
+
+      p.in-stock
+        font-weight: bold
+        color: var(--green)
 
       .price p
         font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px)
@@ -232,10 +236,9 @@ const moveToDown = () => {
         border: none
         display: flex
         padding: 5px 10px
-        align-items: center
-        margin-top: 20px
         border-radius: 5px
-
+        width: fit-content
+        align-items: center
         background-color: var(--yellow)
         font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px)
 
@@ -264,9 +267,9 @@ const moveToDown = () => {
 
             &:after
               content: ''
-              position: absolute
+              bottom: 0
               left: 100%
               right: -500px
-              bottom: 0
+              position: absolute
               border-bottom: 1px dotted #888
 </style>
