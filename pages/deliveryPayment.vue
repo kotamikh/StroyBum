@@ -76,10 +76,10 @@ import delivery from '@/assets/доставка.png'
           position: absolute
 
         @media screen and (max-width: 484px)
-          right: 0
+          left: 2px
           top: -15px
           width: 50px
-          left: 120px
+
     h2
       font-weight: bold
       text-align: center
@@ -87,6 +87,8 @@ import delivery from '@/assets/доставка.png'
 
       @media screen and (max-width: 709px)
         text-align: left
+        margin-left: 60px
+
     p
       color: var(--grey)
       margin-bottom: 10px
