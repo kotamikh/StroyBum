@@ -30,7 +30,7 @@ export const useProductsStore = defineStore('cardsStore', () => {
                 products.value.set(p.id, p)
             }
         }
-
+        console.log(products.value)
         return true
     }
 

@@ -1,7 +1,6 @@
 <template>
   <h1>Скидки</h1>
-  <button @click="useProductsStore().loadAll(0, 10)" style="width: max-content; margin-bottom: 30px">Get All</button>
-  <button @click="useProductsStore().addCard" style="width: max-content; margin-bottom: 30px">Add</button>
+  <button @click="useProductsStore().loadAll(0, 20)" style="width: max-content; margin-bottom: 30px">Get All</button>
   <div class="discount">
 
     <product-card v-for="[id, product] in useProductsStore().products"

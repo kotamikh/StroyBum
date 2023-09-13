@@ -44,7 +44,7 @@
             product.stock === 1 ? 'В наличии' : 'Под заказ'
           }}</p>
         <div class="price">
-          <p v-if="product.discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{ countDiscount }}
+          <p v-if="product.discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{ withoutDiscount }}
             руб/шт.
           </p>
           <p style="color: var(--yellow); font-weight: bold">{{ 500 }} руб/шт.</p>
@@ -95,7 +95,7 @@ if (result.ok) {
   product.value = result.data
 }
 
-const countDiscount = computed(() => Math.ceil(500 / (100 - product.value.discount) * 100))
+const withoutDiscount = computed(() => Math.ceil(500 / (100 - product.value.discount) * 100))
 
 const currentImageIndex = ref<number>(0)
 const currentImage = computed<string>(() => product.value.images[currentImageIndex.value] || store.getDefaultImage())

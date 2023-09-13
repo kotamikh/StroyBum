@@ -87,6 +87,7 @@ import delivery from '@/assets/доставка.png'
 
       @media screen and (max-width: 709px)
         text-align: left
+      @media screen and (max-width: 484px)
         margin-left: 60px
 
     p

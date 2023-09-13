@@ -48,7 +48,6 @@
 
   @media screen and (max-width: 599px)
     gap: 20px
-    margin: 0 30px
     flex-direction: column
 
   .contacts-text
@@ -61,6 +60,8 @@
     @media screen and (max-width: 799px)
       gap: 10px
       margin-right: 10px
+    @media screen and (max-width: 599px)
+      margin-left: 20px
 
     span
       font-weight: bold
