@@ -11,24 +11,34 @@
                   :discount="product.discount"
     />
   </div>
-  <the-pagination :page="page" @update:page(data)="updatePage"/>
+  <div class="pages">
+    <the-pagination v-for="p in pages"
+                    :key="p"
+                    :page="p"
+                    :current-page="currentPage"
+                    @update:current-page="updatePage"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useProductsStore } from "~/store/products";
+import { ref } from "@vue/reactivity";
 
-const page = ref(1)
+const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const currentPage = ref(pages[0])
 
 const updatePage = (data: number) => {
-  page.value = data
+  currentPage.value = data
 }
 
-watch(page, () => {
-      useProductsStore().loadAll(page.value - 1, 2)
+watch(currentPage, () => {
+      useProductsStore().loadAll(currentPage.value - 1, 2)
     }
 )
 
 useProductsStore().loadAll(0, 2)
+
 </script>
 
 
@@ -36,4 +46,8 @@ useProductsStore().loadAll(0, 2)
 .catalog
   display: flex
   flex-wrap: wrap
+
+.pages
+  display: flex
+  margin: 30px auto
 </style>

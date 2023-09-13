@@ -1,55 +1,31 @@
 <template>
-  <div class="pages">
-    <NuxtLink :class="[ isCurrent(p) ? 'current' : 'page-number']"
-            v-for="p in pages"
-            v-model="page"
-            @click="changeCurrent(p)"
-    >{{ p }}</NuxtLink>
-  </div>
-
+    <NuxtLink :class="[ isCurrent(props.page) ? 'current' : 'page-number']"
+              @click="changeCurrent(props.page)"
+    >{{ props.page }}</NuxtLink>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "@vue/reactivity";
-
-const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-const currentPage = ref(pages[0])
+// import { ref, computed } from "@vue/reactivity";
 
 const isCurrent = (p: number) => {
-  return currentPage.value === p
+  return props.currentPage === p
 }
 
-const props = defineProps(['page'])
-const emit = defineEmits(['update:page'])
+const props = defineProps(['currentPage', 'page'])
+const emit = defineEmits(['update:currentPage'])
 
-const page = computed({
-  get() {
-    return props.page
-  },
-  set(page) {
-    emit('update:page', page)
-  }
-})
-
-const changeCurrent = (p: number) => {
-  currentPage.value = pages[p - 1]
-  emit('update:page', p)
+const changeCurrent = (page: number) => {
+  console.log(page)
+  emit('update:currentPage', page)
 }
-
 </script>
 
 <style scoped lang="sass">
-.pages
-  gap: 10px
-  display: flex
-  font-size: 18px
-  margin: 30px auto
+.page-number
+  padding: 10px
+  cursor: pointer
 
-  .page-number
-    border: none
-    cursor: pointer
-    padding: 10px
-  .current
-    padding: 10px
-    background-color: var(--yellow)
+.current
+  padding: 10px
+  background-color: var(--yellow)
 </style>
