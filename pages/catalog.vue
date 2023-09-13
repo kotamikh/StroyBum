@@ -5,7 +5,7 @@
           :key="id"
           class="category"
       >
-        <NuxtLink :to="category.path">
+        <NuxtLink to="productsList">
         <img :src="category.image" alt="img" style="width: 3rem"/>
         <h3>{{ category.text }}</h3>
         </NuxtLink>

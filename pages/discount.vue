@@ -2,7 +2,6 @@
   <h1>Скидки</h1>
   <button @click="useProductsStore().loadAll(0, 20)" style="width: max-content; margin-bottom: 30px">Get All</button>
   <div class="discount">
-
     <product-card v-for="[id, product] in useProductsStore().products"
                   :key="id"
                   :id="id"
@@ -12,7 +11,6 @@
                   :stock="product.stock"
                   :discount="product.discount"
     />
-
   </div>
 </template>
 
