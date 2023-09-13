@@ -3,15 +3,21 @@
   <div class="contacts">
     <div class="contacts-text">
       <div class="address">
-        <p>Адрес магазина: г. Киров, 2-й Кирпичный пер. 2/1<br/>(территория базы “Слон”).</p>
-        <p>Режим работы: пн-пт 8:30-17:30;<br/>сб 9:00-13:00.</p>
+        <p><span>Адрес магазина:</span> г. Киров, 2-й Кирпичный пер. 2/1<br/>(территория базы “Слон”).</p>
+      </div>
+      <div class="regime">
+        <span>Режим работы: </span>
+        <p>пн-пт 8:30-17:30;<br/>сб 9:00-13:00.</p>
       </div>
       <div class="telephone">
-        <p>Телефоны:</p>
+        <span>Телефоны:</span>
         <p>+7 (8332) 75-69-83<br/>+7 (8332) 79-69-00</p>
       </div>
       <button class="message-btn">Написать нам
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"><path fill="#555555" d="M128 24a104 104 0 0 0-91.82 152.88l-11.35 34.05a16 16 0 0 0 20.24 20.24l34.05-11.35A104 104 0 1 0 128 24Zm0 192a87.87 87.87 0 0 1-44.06-11.81a8 8 0 0 0-6.54-.67L40 216l12.47-37.4a8 8 0 0 0-.66-6.54A88 88 0 1 1 128 216Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
+          <path fill="#555555"
+                d="M128 24a104 104 0 0 0-91.82 152.88l-11.35 34.05a16 16 0 0 0 20.24 20.24l34.05-11.35A104 104 0 1 0 128 24Zm0 192a87.87 87.87 0 0 1-44.06-11.81a8 8 0 0 0-6.54-.67L40 216l12.47-37.4a8 8 0 0 0-.66-6.54A88 88 0 1 1 128 216Z"/>
+        </svg>
       </button>
       <div class="vk">
         <a href="https://vk.com/stroibum_kirov" target="_blank" rel="noopener">
@@ -23,7 +29,8 @@
       </div>
     </div>
     <div class="contacts-map">
-      <component :is="'script'" type="application/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0f5ae8f64d658ba78051cb8f2f83e9be1c18cc4a080af3742893da1b3fecd609&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></component>
+      <component class="yandex-map" :is="'script'" type="application/javascript" charset="utf-8" async
+                 src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0f5ae8f64d658ba78051cb8f2f83e9be1c18cc4a080af3742893da1b3fecd609&amp;height=350&amp;lang=ru_RU&amp;scroll=true"></component>
     </div>
   </div>
 </template>
@@ -35,37 +42,69 @@
 <style scoped lang="sass">
 .contacts
   display: flex
+  margin-bottom: 50px
+  justify-content: space-evenly
+  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
+
+  @media screen and (max-width: 599px)
+    gap: 20px
+    margin: 0 30px
+    flex-direction: column
 
   .contacts-text
     gap: 30px
-    width: 45%
+    height: 350px
     display: flex
     flex-direction: column
+    justify-content: space-between
 
-  p,
-  .message-btn
-    color: var(--grey)
-    font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
+    @media screen and (max-width: 799px)
+      gap: 10px
+      margin-right: 10px
 
-  .message-btn
-    gap: 8px
-    display: flex
-    cursor: pointer
-    align-items: center
+    span
+      font-weight: bold
 
-    border: none
-    padding: 4px 10px
-    border-radius: 5px
-    width: max-content
-    background-color: var(--yellow)
+    @media screen and (max-width: 799px)
+      .address p,
+      .regime
+        display: flex
+        flex-direction: column
 
-  .vk
-    a
-      gap: 5px
+    .regime
+      gap: 10px
       display: flex
+      @media screen and (max-width: 799px)
+        gap: 0
+
+    .message-btn
+      gap: 8px
+      display: flex
+      cursor: pointer
       align-items: center
 
-      &:hover,
-      &:focus
-        color: #0077ff
+      border: none
+      padding: 4px 10px
+      border-radius: 5px
+      width: max-content
+      background-color: var(--yellow)
+
+    .vk
+      a
+        gap: 5px
+        display: flex
+        align-items: center
+
+        &:hover,
+        &:focus
+          color: #0077ff
+
+  .contacts-map
+    width: 45%
+
+    @media screen and (max-width: 799px)
+      width: 55%
+    @media screen and (max-width: 599px)
+      width: 100%
+      align-self: center
 </style>
