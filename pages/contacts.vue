@@ -46,7 +46,7 @@
   justify-content: space-evenly
   font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
 
-  @media screen and (max-width: 599px)
+  @media screen and (max-width: 459px)
     gap: 20px
     flex-direction: column
 
@@ -60,7 +60,7 @@
     @media screen and (max-width: 799px)
       gap: 10px
       margin-right: 10px
-    @media screen and (max-width: 599px)
+    @media screen and (max-width: 459px)
       margin-left: 20px
 
     span
@@ -105,7 +105,9 @@
 
     @media screen and (max-width: 799px)
       width: 55%
-    @media screen and (max-width: 599px)
+    @media screen and (max-width: 569px)
+      width: 45%
+    @media screen and (max-width: 459px)
       width: 100%
       align-self: center
 </style>
