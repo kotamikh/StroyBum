@@ -26,6 +26,7 @@ export const useProductsStore = defineStore('cardsStore', () => {
         }
 
         if (data.value) {
+            products.value.clear()
             for (const p of data.value) {
                 products.value.set(p.id, p)
             }

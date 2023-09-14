@@ -12,10 +12,9 @@
     />
   </div>
   <div class="pages">
-    <the-pagination v-for="p in pages"
-                    :key="p"
-                    :page="p"
-                    :current-page="currentPage"
+    <the-pagination v-model="currentPage"
+                    :total-pages="10"
+                    :page="currentPage"
                     @update:current-page="updatePage"
     />
   </div>
@@ -25,19 +24,20 @@
 import { useProductsStore } from "~/store/products";
 import { ref } from "@vue/reactivity";
 
-const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-const currentPage = ref(pages[0])
+const currentPage = ref(1)
 
 const updatePage = (data: number) => {
   currentPage.value = data
 }
 
-watch(currentPage, () => {
-      useProductsStore().loadAll(currentPage.value - 1, 2)
-    }
-)
+const limit = 3
 
-useProductsStore().loadAll(0, 2)
+const loadProducts = () => {
+  useProductsStore().loadAll((currentPage.value - 1) * limit, limit)
+}
+
+watch(currentPage, loadProducts)
+loadProducts()
 
 </script>
 

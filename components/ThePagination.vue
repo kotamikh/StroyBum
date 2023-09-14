@@ -1,21 +1,21 @@
 <template>
-    <NuxtLink :class="[ isCurrent(props.page) ? 'current' : 'page-number']"
-              @click="changeCurrent(props.page)"
-    >{{ props.page }}</NuxtLink>
+  <div v-for="p in totalPages"
+       :key="p"
+       :class="[ isCurrent(p) ? 'current' : 'page-number']"
+       @click="changeCurrent(p)"
+  >{{ p }}</div>
 </template>
 
 <script setup lang="ts">
-// import { ref, computed } from "@vue/reactivity";
 
 const isCurrent = (p: number) => {
-  return props.currentPage === p
+  return props.page === p
 }
 
-const props = defineProps(['currentPage', 'page'])
+const props = defineProps(['page', 'totalPages'])
 const emit = defineEmits(['update:currentPage'])
 
 const changeCurrent = (page: number) => {
-  console.log(page)
   emit('update:currentPage', page)
 }
 </script>
