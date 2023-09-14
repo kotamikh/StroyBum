@@ -38,7 +38,7 @@ export default {
   width: inherit
   color: var(--grey)
   background-color: white
-  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+  font-size: calc((100vw - 320px) / (1440 - 320) * (16 - 14) + 14px)
 
   .footer-item
     margin-right: 20px

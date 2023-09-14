@@ -36,7 +36,7 @@ import delivery from '@/assets/доставка.png'
 <style scoped lang="sass">
 .wrapper
   display: flex
-  margin: 60px 0 40px
+  margin: 60px 0 10px
   flex-direction: column
 
   .delivery-methods
