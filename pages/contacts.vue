@@ -44,7 +44,6 @@
   display: flex
   margin-bottom: 50px
   justify-content: space-evenly
-  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
 
   @media screen and (max-width: 459px)
     gap: 20px
