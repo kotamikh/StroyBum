@@ -23,7 +23,7 @@ import roof from '@/assets/catalog-images/кровля.png'
 import batteryScreens from '@/assets/catalog-images/радиатор.png'
 import insulation from '@/assets/catalog-images/утеплители.png'
 import ceilings from '@/assets/catalog-images/потолки.png'
-import foamSealant from 'assets/catalog-images/пена герметик.png'
+import foamSealant from '@/assets/catalog-images/пена герметик.png'
 import waterDisposal from '@/assets/catalog-images/водоотведение.png'
 import other from '@/assets/catalog-images/прочее.png'
 

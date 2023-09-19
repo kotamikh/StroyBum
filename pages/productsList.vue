@@ -30,7 +30,7 @@ const updatePage = (data: number) => {
   currentPage.value = data
 }
 
-const limit = 2
+const limit = 5
 
 const loadProducts = () => {
   useProductsStore().loadAll((currentPage.value - 1) * limit, limit)
