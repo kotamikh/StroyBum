@@ -31,7 +31,7 @@
           <img :src="currentImage" :alt="product.name"/>
         </div>
       </div>
-      <div class="name-price">
+      <div class="product-information">
         <h1>{{ product.name }}
           <button class="fav-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
@@ -151,7 +151,6 @@ const moveToDown = () => {
       display: flex
 
       .gallery-wrapper
-        width: 20%
         display: flex
         height: 400px
         position: relative
@@ -190,24 +189,24 @@ const moveToDown = () => {
             height: 120px
             object-fit: cover
             margin-bottom: 20px
-            border: 2px solid var(--middle-grey)
 
           .current
-            border: 3px solid var(--yellow)
+            transform: scale(0.9)
+            border: 1.5px solid var(--middle-grey)
 
       .current-photo
         width: 400px
         height: 400px
         display: flex
         align-items: center
-        border: 2px solid var(--middle-grey)
+        border:  2px solid var(--middle-grey)
 
         img
           width: 100%
           height: 100%
           object-fit: contain
 
-    .name-price
+    .product-information
       gap: 20px
       display: flex
       margin-left: 50px
