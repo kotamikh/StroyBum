@@ -137,7 +137,7 @@ const moveToDown = () => {
 
 <style scoped lang="sass">
 .product-card
-  width: 90%
+  width: 100%
   margin: 70px auto
 
   .main-information
@@ -146,13 +146,12 @@ const moveToDown = () => {
 
     .product-images
       gap: 20px
-      width: 60%
-      height: 400px
+      height: 450px
       display: flex
 
       .gallery-wrapper
         display: flex
-        height: 400px
+        height: 450px
         position: relative
 
         .up-button,
@@ -177,7 +176,9 @@ const moveToDown = () => {
           bottom: -60px
 
         .slider-gallery
-          height: 400px
+          width: 150px
+          height: 450px
+          padding: 15px
           overflow: hidden
           align-self: center
 
@@ -186,25 +187,31 @@ const moveToDown = () => {
 
           img
             width: 100%
-            height: 120px
+            height: 130px
+            padding: 2%
             object-fit: cover
-            margin-bottom: 20px
+            border-radius: 5px
+            margin-bottom: 15px
+            transition: scale 0.2s ease
 
           .current
-            transform: scale(0.9)
-            border: 1.5px solid var(--middle-grey)
+            padding: 2%
+            transform: scale(1.15)
+            border: 1.5px solid rgba(128, 128, 128, 0.4)
 
       .current-photo
-        width: 400px
-        height: 400px
+        width: 450px
+        height: 450px
         display: flex
         align-items: center
-        border:  2px solid var(--middle-grey)
 
         img
+          padding: 3%
           width: 100%
           height: 100%
           object-fit: contain
+          border-radius: 10px
+          border: 2px solid rgba(128, 128, 128, 0.4)
 
     .product-information
       gap: 20px
