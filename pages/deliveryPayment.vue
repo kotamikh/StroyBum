@@ -21,6 +21,8 @@
       </div>
     </div>
     <div class="payment">
+        <h2>Оплата
+          <img :src="coin" alt="оплата"/></h2>
       <p>Товары оплачиваются перед получением, наличными или банковской картой.</p>
     </div>
   </div>
@@ -28,16 +30,21 @@
 </template>
 
 <script setup>
-import pickup from '@/assets/самовывоз.png'
-import delivery from '@/assets/доставка.png'
+import pickup from 'assets/delivery-payment-images/самовывоз.png'
+import delivery from 'assets/delivery-payment-images/доставка.png'
+import coin from 'assets/delivery-payment-images/монета.png'
 
 </script>
 
 <style scoped lang="sass">
 .wrapper
+  width: 80%
   display: flex
-  margin: 60px 0 10px
+  margin: 60px auto 10px
   flex-direction: column
+
+  @media screen and (max-width: 1079px)
+    width: 100%
 
   .delivery-methods
     grid-column-gap: 4%
@@ -64,6 +71,7 @@ import delivery from '@/assets/доставка.png'
 
     .method
       position: relative
+
       img
         margin: auto
         @media screen and (max-width: 709px)
@@ -80,15 +88,12 @@ import delivery from '@/assets/доставка.png'
 
       .box-img
         max-width: 140px
+
       .delivery-img
         max-width: 145px
 
-      .text-center
-        margin: 0 auto
-
     h2
       font-weight: bold
-      text-align: center
       margin-bottom: 10px
 
       @media screen and (max-width: 709px)
@@ -108,10 +113,22 @@ import delivery from '@/assets/доставка.png'
         font-weight: bold
 
   .payment
-    margin-top: 30px
-    color: var(--grey)
-    text-align: center
+    h2
+      margin: 40px 0 10px
+      font-weight: bold
+      vertical-align: middle
+      img
+        width: 30px
+        height: 30px
+        display: inline-block
+        vertical-align: middle
+
+    p
+      color: #555555
 
     @media screen and (max-width: 709px)
       margin-top: 20px
+
+      h2
+        margin-top: 0
 </style>
