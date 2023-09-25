@@ -59,10 +59,10 @@
     </div>
     <div class="additional-information">
       <div class="characteristics">
-        <h2>Характеристики:</h2>
-        <ul v-for="(characteristic, index) in product.characteristics"
-            :key="index">
-          <li>
+        <h2>Характеристики</h2>
+        <ul>
+          <li v-for="(characteristic, index) in product.characteristics"
+              :key="index">
             <p class="left">
               <span class="label">{{ characteristic[0] }}</span>
             </p>
@@ -71,7 +71,7 @@
         </ul>
       </div>
       <div class="description">
-        <h2>Описание:</h2>
+        <h2>Описание</h2>
         <p>{{ product.description }}</p>
       </div>
     </div>
@@ -260,27 +260,34 @@ const moveToDown = () => {
 
     .characteristics,
     .description
-      font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+      font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
+
+      h2
+        font-weight: bold
+        margin-bottom: 20px
 
       ul
+        margin: 0
         position: relative
 
-        .left
-          width: 40%
-          float: left
-          overflow: hidden
-          position: relative
+        li
+          margin-bottom: 10px
 
-          span.label
-            font-weight: bold
+          .left
+            width: 40%
+            float: left
+            overflow: hidden
             position: relative
-            display: inline-block
 
-            &:after
-              content: ''
-              bottom: 0
-              left: 100%
-              right: -500px
-              position: absolute
-              border-bottom: 1px dotted #888
+            span.label
+              position: relative
+              display: inline-block
+
+              &:after
+                content: ''
+                bottom: 0
+                left: 100%
+                right: -600px
+                position: absolute
+                border-bottom: 1px dashed #888
 </style>
