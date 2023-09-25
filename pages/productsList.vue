@@ -44,6 +44,7 @@ loadProducts()
 
 <style scoped lang="sass">
 .catalog
+  gap: 1rem
   display: flex
   flex-wrap: wrap
 

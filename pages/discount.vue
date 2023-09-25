@@ -20,7 +20,8 @@ import { useProductsStore } from "~/store/products";
 
 <style scoped lang="sass">
 .discount
-  gap: 2rem
+  gap: 2rem 1rem
   display: flex
   flex-wrap: wrap
+  justify-content: center
 </style>
