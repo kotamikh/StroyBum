@@ -2,12 +2,28 @@ import { defineStore } from "pinia";
 import { IProduct } from "~/types/Product";
 
 export const useMock = defineStore('mockData', () => {
+    const allProducts = ref<IProduct[]>([])
+    const filteredProducts =  ref<IProduct[]>([])
     const getAllProducts = (offset: number, limit: number, category?: string, brand?: string): IProduct[] => {
+        allProducts.value = products
+
+        if (category) {
+            filteredProducts.value = allProducts.value.filter(p => p.category === category).splice(offset, limit)
+            return filteredProducts.value
+        }
+
+        if (brand) {
+            filteredProducts.value = allProducts.value.filter(p => p.brand === brand)
+            return filteredProducts.value
+        }
         // получила продукты
         // если указана категория, фильтруешь по категории
         // если указан бренд фильтруешь по бренду
 
-        return []
+        else {
+            return allProducts.value
+        }
+        // return []
     }
 
     const getCategories = (): Category[] => {
@@ -23,6 +39,8 @@ export const useMock = defineStore('mockData', () => {
     }
 
     return {
+        allProducts,
+        filteredProducts,
         getAllProducts,
         getCategories,
         getBrandsByCategory

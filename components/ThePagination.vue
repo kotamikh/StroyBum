@@ -17,6 +17,7 @@ const emit = defineEmits(['update:currentPage'])
 
 const changeCurrent = (page: number) => {
   emit('update:currentPage', page)
+  console.log(page)
 }
 </script>
 

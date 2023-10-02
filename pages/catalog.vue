@@ -1,13 +1,15 @@
 <template>
   <h1>Каталог</h1>
-  <div class="categories">
-    <category v-for="category in categories"
-              class="category"
-              :key="category.id"
-              :name="category.name"
-              :image="category.image"
-    />
-  </div>
+  <ul class="categories">
+    <li v-for="category in categories"
+        :key="category.id">
+      <a @click="router.push('productsList/'+ category.name)"
+         class="category">
+        <img :src="category.image" alt="img" style="width: 3rem"/>
+        <h3>{{ category.name }}</h3>
+      </a>
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
@@ -17,7 +19,7 @@ const categories = useMock().getCategories()
 
 const router = useRouter()
 
-import siding from '@/assets/catalog-images/сайдинг.png'
+// import siding from '@/assets/catalog-images/сайдинг.png'
 // import additionalElements from '@/assets/catalog-images/доборные элементы.png'
 // import decking from '@/assets/catalog-images/террасная доска.png'
 // import facadePanels from '@/assets/catalog-images/фасадные панели.png'
@@ -110,11 +112,10 @@ import siding from '@/assets/catalog-images/сайдинг.png'
     max-height: max-content
     justify-content: space-evenly
 
-    .category
+    li
       width: 200px
       height: 80px
       display: flex
-      flex-direction: column
       justify-content: center
       border: 2px solid transparent
 
@@ -125,23 +126,23 @@ import siding from '@/assets/catalog-images/сайдинг.png'
   @media screen and (max-width: 445px)
     gap: 10px
 
-    .category
+    li
       width: 300px
       align-items: flex-start
 
   @media screen and (min-width: 750px)
-    .category
+    li
       &:hover
-        color: #4d4d4d
-        text-decoration: underline
-        text-underline-position: under
-        text-decoration-thickness: 2px
-        text-decoration-color: var(--yellow)
+        h3
+          color: #4d4d4d
+          text-decoration: underline
+          text-underline-position: under
+          text-decoration-thickness: 2px
+          text-decoration-color: var(--yellow)
 
   .category
     gap: 10px
     display: flex
-    cursor: pointer
     align-items: center
     font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
 </style>
