@@ -7,18 +7,15 @@ export const useMock = defineStore('mockData', () => {
     const getAllProducts = (offset: number, limit: number, category?: string, brand?: string): IProduct[] => {
         allProducts.value = products
 
-        if (category) {
+        if (category && !brand) {
             filteredProducts.value = allProducts.value.filter(p => p.category === category).splice(offset, limit)
             return filteredProducts.value
         }
 
-        if (brand) {
-            filteredProducts.value = allProducts.value.filter(p => p.brand === brand)
+        if (category && brand) {
+            filteredProducts.value = allProducts.value.filter(p => p.brand === brand).filter(p => p.category === category).splice(offset, limit)
             return filteredProducts.value
         }
-        // получила продукты
-        // если указана категория, фильтруешь по категории
-        // если указан бренд фильтруешь по бренду
 
         else {
             return allProducts.value
@@ -34,7 +31,24 @@ export const useMock = defineStore('mockData', () => {
         return allCategories
     }
 
-    const getBrandsByCategory = (categoryId: number): Brand[] => {
+    const getBrandsByCategory = (name: string): Brand[] => {
+        const category = getCategories().find(cat => cat.name === name)
+        if (category) {
+            const stringId = category.id.toString()
+            if (categoriesBrands.hasOwnProperty(stringId)) {
+                let indexesArray = categoriesBrands[stringId]
+                let brandsArray = []
+                for (let id = 0; id < indexesArray.length; id++) {
+                  let brand = brands.find(br => br.id === indexesArray[id])
+                  if (brand) {
+                      brandsArray.push(brand)
+                    }
+                }
+                return brandsArray
+            }
+        }
+
+
         return []
     }
 
@@ -409,7 +423,7 @@ const products: IProduct[] = [
 export interface Category {
     id: number,
     name: string,
-    image: string,
+    image: string
 }
 
 const categories: Category[] = [
@@ -470,18 +484,40 @@ const categories: Category[] = [
     }
 ]
 
-interface Brand {
+export interface Brand {
     id: number,
     name: string,
 }
 
-// const brands: Brand[] = [
-//     {
-//         id: ...
-//     }
-// ]
+const brands: Brand[] = [
+    {
+        id: 0,
+        name: "NordSide"
+    },
+    {
+        id: 1,
+        name: "Blockhouse"
+    },
+    {
+        id: 2,
+        name: "Hokla"
+    },
+    {
+        id: 3,
+        name: "Wood Grand"
+    },
+    {
+        id: 4,
+        name: "Т-сайдинг"
+    },
+    {
+        id: 5,
+        name: "Доломит"
+    }
+]
 
 const categoriesBrands = {
-    0: [72, 12, 14, 15],
-    1: [0, 2, 3, 4]
+    0: [0, 1, 2],
+    1: [3],
+    2: [0, 4, 5]
 }

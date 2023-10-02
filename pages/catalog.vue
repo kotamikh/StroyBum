@@ -3,7 +3,7 @@
   <ul class="categories">
     <li v-for="category in categories"
         :key="category.id">
-      <a @click="router.push('productsList/'+ category.name)"
+      <a @click="router.push('productsList/' + category.name)"
          class="category">
         <img :src="category.image" alt="img" style="width: 3rem"/>
         <h3>{{ category.name }}</h3>
