@@ -5,7 +5,9 @@ export interface IProductDto {
   stock: StockType,
   discount: number,
   description: string,
-  characteristics: Array<Array<string>>
+  characteristics: Array<Array<string>>,
+  category: string,
+  brand: string
 }
 
 export interface IProduct extends IProductDto {

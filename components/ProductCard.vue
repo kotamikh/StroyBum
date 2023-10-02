@@ -6,7 +6,7 @@
       <div class="discount-mark" v-if="discount !== 0">скидка {{ discount }}%</div>
     </div>
     <div class="img-holder">
-      <img :src="images[0]" class="product-img" alt="product-img"/>
+      <img :src="mainImage" class="product-img" alt="product-img"/>
     </div>
     <div class="name-stock">
       <p class="product-name">{{ name }}</p>
@@ -27,6 +27,7 @@
 
 <script setup lang="ts">
 import { IProduct, StockType } from "~/types/Product";
+import defaultImg from '@/assets/default-image.jpeg'
 
 export interface Props extends IProduct {
   id: number,
@@ -40,12 +41,13 @@ export interface Props extends IProduct {
 const props = withDefaults(defineProps<Props>(), {
   id: 0,
   name: 'unknown',
-  images: () => ['unknown'],
+  images: () => [],
   price: 0,
   stock: StockType.OnOrder,
   discount: 0
 });
 
+const mainImage = computed(() => props.images.length === 0 ? defaultImg : props.images[0])
 const countDiscount = computed(() => Math.ceil(props.price / (100 - props.discount) * 100))
 
 const router = useRouter()
@@ -96,14 +98,14 @@ const goToProductPage = () => {
 
   .img-holder
     width: 100%
-    max-height: 200px
+    height: 200px
     display: flex
     padding: 0 30px
     align-items: center
     justify-content: center
 
     img
-      height: 200px
+      max-height: 200px
       object-fit: contain
 
   .name-stock

@@ -78,7 +78,9 @@ export const useProductsStore = defineStore('cardsStore', () => {
             stock: 0,
             discount: 0,
             description: "",
-            characteristics: []
+            characteristics: [],
+            category: "",
+            brand: ""
         }
     }
 

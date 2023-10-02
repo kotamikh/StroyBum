@@ -106,7 +106,7 @@ watch(() => route.name, () => {
         gap: 20px
         display: flex
         align-items: center
-        font-size: calc((100vw - 320px) / (1440 - 320) * (18 - 16) + 16px)
+        x
 
         li
           &:hover
