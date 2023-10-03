@@ -1,5 +1,9 @@
 <template>
-  <h1>{{ name }}</h1>
+  <div class="bread-crumbs">
+    <a  @click="router.push('/catalog')">Каталог</a>
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#808080" d="M8.59 16.58L13.17 12L8.59 7.41L10 6l6 6l-6 6l-1.41-1.42Z"/></svg>
+    <h1>{{ name }}</h1>
+  </div>
   <div class="filter">
     <button @click="openFilter(name)">
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -42,6 +46,7 @@ import { ref } from "@vue/reactivity";
 import { Brand, useMock } from "~/store/mock";
 import { useRoute } from "#app";
 
+const router = useRouter()
 const route = useRoute()
 
 const name = route.params.name.toString()
@@ -65,8 +70,7 @@ const limit = 5
 const loadProducts = () => {
   if (currentBrand.value) {
     useMock().getAllProducts((currentPage.value - 1) * limit, limit, name, currentBrand.value)
-  }
-  else {
+  } else {
     useMock().getAllProducts((currentPage.value - 1) * limit, limit, name,)
   }
 }
@@ -83,6 +87,14 @@ loadProducts()
 
 
 <style scoped lang="sass">
+.bread-crumbs
+  display: flex
+  margin: 30px 0
+  align-items: center
+  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+  h1
+    margin: 0
+
 .filter
   width: fit-content
   position: absolute

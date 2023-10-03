@@ -16,9 +16,9 @@ body {
 
 h1 {
   margin: 30px 0;
-  font-size: calc((100vw - 320px) / (1280 - 320) * (26 - 24) + 24px);
 }
 
+h1,
 h2 {
   font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px);
 }

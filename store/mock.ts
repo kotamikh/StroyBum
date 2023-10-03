@@ -418,6 +418,388 @@ const products: IProduct[] = [
         category: "Фасадные панели",
         brand: "Доломит"
     },
+    {
+        id: 19,
+        name: "Панель стеновая 220х1850мм (0,4м2) Кирпич",
+        images: ["https://st16.stpulscen.ru/images/product/438/105/313_medium3.jpg"],
+        price: 400,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [
+            ["Страна-производитель", "Россия"],
+            ["Производитель", "Доломит"],
+            ["Длина","1850мм"]
+        ],
+        category: "Фасадные панели",
+        brand: "Доломит"
+    },
+    {
+        id: 20,
+        name: 'Цокольный Сайдинг "Альпийский" 220х3000мм',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/774_medium3.jpg"],
+        price: 530,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [
+            ["Страна-производитель", "Россия"],
+            ["Производитель", "Доломит"],
+            ["Длина","3000мм"]
+        ],
+        category: "Фасадные панели",
+        brand: "Доломит"
+    },
+    {
+        id: 21,
+        name: 'Цокольный Сайдинг "Альпийский" 220х3000мм',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/776_medium3.jpg"],
+        price: 530,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [
+            ["Страна-производитель", "Россия"],
+            ["Производитель", "Доломит"],
+            ["Длина","3000мм"]
+        ],
+        category: "Фасадные панели",
+        brand: "Доломит"
+    },
+    {
+        id: 22,
+        name: 'Подоконник Danke Комфорт 450мм',
+        images: ["https://www.sorton.ru/image/cache/catalog/Danke/PodokonnikDankeKomfortbezhevii%CC%86-800x600.jpg"],
+        price: 1800,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [
+            ["Производитель", "Danke"]
+        ],
+        category: "Подоконники, всё для установки окон",
+        brand: "Danke"
+    },
+    {
+        id: 23,
+        name: 'Подоконник Danke Комфорт 150мм',
+        images: ["https://www.sorton.ru/image/cache/catalog/Danke/PodokonnikDankeKomfortserii%CC%86-800x600.jpg"],
+        price: 600,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [
+            ["Производитель", "Danke"]
+        ],
+        category: "Подоконники, всё для установки окон",
+        brand: "Danke"
+    },
+    {
+        id: 24,
+        name: 'Подоконник Danke Комфорт 400мм',
+        images: ["https://yut-store.ru/upload/iblock/185/18567c786e9d4ea3ffc42658eb80b016.jpg"],
+        price: 1600,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [
+            ["Производитель", "Danke"]
+        ],
+        category: "Подоконники, всё для установки окон",
+        brand: "Danke"
+    },
+    {
+        id: 25,
+        name: 'Профлист С20 в ассортименте',
+        images: ["https://st30.stpulscen.ru/images/product/453/667/804_medium3.png"],
+        price: 0,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Кровля",
+        brand: "С20"
+    },
+    {
+        id: 26,
+        name: 'Лист перфорированный ХДФ 1200х600мм Эфес Венге',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/265_medium3.jpg"],
+        price: 420,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [
+            ["Ширина, мм", "1200"],
+            ["Высота, мм", "600"],
+            ["Материал", "ХДФ"]
+        ],
+        category: "Декоративные экраны для батарей",
+        brand: "NoBrand"
+    },
+    {
+        id: 27,
+        name: 'Экран КОРОБ Антик Орех МДФ 600х700х200мм',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/782_medium3.jpg"],
+        price: 2750,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [
+            ["Ширина, мм", "700"],
+            ["Высота, мм", "600"],
+            ["Материал", "ХДФ"]
+        ],
+        category: "Декоративные экраны для батарей",
+        brand: "NoBrand"
+    },
+    {
+        id: 28,
+        name: 'Экран КОРОБ Белый Глория МДФ 600х700х200мм',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/783_original.jpg"],
+        price: 2900,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [
+            ["Ширина, мм", "700"],
+            ["Высота, мм", "600"],
+            ["Материал", "ХДФ"]
+        ],
+        category: "Декоративные экраны для батарей",
+        brand: "NoBrand"
+    },
+    {
+        id: 29,
+        name: 'Ветро-влагозащитная 2-слойная мембрана Изобонд АМ 60м2',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/188_medium3.jpg"],
+        price: 13,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Утеплители",
+        brand: "Изобонд"
+    },
+    {
+        id: 30,
+        name: 'Минплита базальтовая Baswool 80 кг/м3 1,2х0,6х0,05 (0,216м3, 4,32м2)',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/264_medium2.jpg"],
+        price: 820,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [
+            ["Плотность,кг/м3", "80"]
+        ],
+        category: "Утеплители",
+        brand: "Baswool"
+    },
+    {
+        id: 31,
+        name: 'Минплита базальтовая Baswool 45 кг/м3 1,2х0,6х0,05 (0,216м3, 4,32м2)',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/264_medium2.jpg"],
+        price: 530,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [
+            ["Плотность,кг/м3", "45"]
+        ],
+        category: "Утеплители",
+        brand: "Baswool"
+    },
+    {
+        id: 32,
+        name: 'Утеплитель Пеноплэкс 50мм 1200Х600 мм',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/666_medium2.jpg"],
+        price: 240,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Утеплители",
+        brand: "Пеноплэкс"
+    },
+    {
+        id: 33,
+        name: 'Утеплитель Пеноплэкс 30мм 1200Х600 мм',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/666_medium2.jpg"],
+        price: 165,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Утеплители",
+        brand: "Пеноплэкс"
+    },
+    {
+        id: 34,
+        name: 'Утеплитель напыляемый Polynor высокой плотности',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/659_medium3.jpg"],
+        price: 500,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Утеплители",
+        brand: "Polynor"
+    },
+    {
+        id: 35,
+        name: 'Пенопласт 30мм 1Х0,5м',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/338_medium3.jpg"],
+        price: 60,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Утеплители",
+        brand: "NoBrand"
+    },
+    {
+        id: 36,
+        name: 'Подвесной потолок Армстронг',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/377_medium3.jpg", "https://st16.stpulscen.ru/images/product/438/105/378_original.jpg"],
+        price: 320,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Подвесные потолки",
+        brand: "Армстронг"
+    },
+    {
+        id: 37,
+        name: 'Потолок Грильято Белый',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/407_medium3.jpg"],
+        price: 500,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Подвесные потолки",
+        brand: "Албес"
+    },
+    {
+        id: 38,
+        name: 'Потолок Грильято Золотой',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/405_medium2.jpg"],
+        price: 600,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Подвесные потолки",
+        brand: "Албес"
+    },
+    {
+        id: 39,
+        name: 'Потолок Грильято Металлик',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/408_medium2.jpg"],
+        price: 600,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Подвесные потолки",
+        brand: "Албес"
+    },
+    {
+        id: 40,
+        name: 'Потолок Грильято Черный',
+        images: ["https://st16.stpulscen.ru/images/product/438/105/425_medium2.jpg"],
+        price: 800,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Подвесные потолки",
+        brand: "Албес"
+    },
+    {
+        id: 41,
+        name: 'Герметик Ultima силиконовый универсальный 310мл белый',
+        images: [],
+        price: 250,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Пена герметики, пистолеты",
+        brand: "Ultima"
+    },
+    {
+        id: 42,
+        name: 'Очиститель монтажной пены Ultima',
+        images: [],
+        price: 150,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Пена герметики, пистолеты",
+        brand: "Ultima"
+    },
+    {
+        id: 43,
+        name: "Пена герметик Kudo 65+ Лето",
+        images: ["https://cdn.vseinstrumenti.ru/images/goods/stroitelnye-materialy/stroitelnaya-himiya/1084184/1200x800/88772991.jpg"],
+        price: 400,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Пена герметики, пистолеты",
+        brand: "Kudo"
+    },
+    {
+        id: 44,
+        name: "Водосточная система Альта-Профиль пластиковая",
+        images: ["https://st16.stpulscen.ru/images/product/438/105/190_medium3.jpg", "https://st16.stpulscen.ru/images/product/438/105/192_original.jpg"],
+        price: 100,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Водосточные системы",
+        brand: "Альта-Профиль"
+    },
+    {
+        id: 44,
+        name: "Водосточная система кровли",
+        images: ["https://st16.stpulscen.ru/images/product/438/105/193_medium3.jpg", "https://st16.stpulscen.ru/images/product/438/105/195_original.jpg"],
+        price: 95,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Водосточные системы",
+        brand: "Альта-Профиль"
+    },
+    {
+        id: 45,
+        name: "Воронка водосточная Белая",
+        images: ["https://st16.stpulscen.ru/images/product/438/105/191_medium3.jpg"],
+        price: 155,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Водосточные системы",
+        brand: "Альта-Профиль"
+    },
+    {
+        id: 45,
+        name: "Воронка водосточная Коричневая",
+        images: ["https://st16.stpulscen.ru/images/product/438/105/194_medium3.jpg"],
+        price: 165,
+        stock: 0,
+        discount: 0,
+        description: "Стоимость уточняйте на текущий момент ввиду постоянных изменений цен поставщиков.",
+        characteristics: [],
+        category: "Водосточные системы",
+        brand: "Альта-Профиль"
+    },
 ]
 
 export interface Category {
@@ -426,11 +808,13 @@ export interface Category {
     image: string
 }
 
+import siding from '@/assets/catalog-images/сайдинг.png'
+
 const categories: Category[] = [
     {
         id: 0,
         name: "Сайдинг",
-        image: '@/assets/catalog-images/сайдинг.png',
+        image: siding,
     },
     {
         id: 1,
@@ -444,7 +828,7 @@ const categories: Category[] = [
     },
     {
         id: 3,
-        name: "Подоконники",
+        name: "Подоконники, всё для установки окон",
         image: '@/assets/catalog-images/подоконник.png',
     },
     {
@@ -513,11 +897,66 @@ const brands: Brand[] = [
     {
         id: 5,
         name: "Доломит"
+    },
+    {
+        id: 6,
+        name: "Danke"
+    },
+    {
+        id: 7,
+        name: "С20"
+    },
+    {
+        id: 8,
+        name: "NoBrand"
+    },
+    {
+        id: 9,
+        name: "Изобонд"
+    },
+    {
+        id: 10,
+        name: "Baswool"
+    },
+    {
+        id: 11,
+        name: "Пеноплэкс"
+    },
+    {
+        id: 12,
+        name: "Polynor"
+    },
+    {
+        id: 13,
+        name: "Армстронг"
+    },
+    {
+        id: 14,
+        name: "Албес"
+    },
+    {
+        id: 15,
+        name: "Ultima"
+    },
+    {
+        id: 16,
+        name: "Kudo"
+    },
+    {
+        id: 17,
+        name: "Альта-Профиль"
     }
 ]
 
 const categoriesBrands = {
     0: [0, 1, 2],
     1: [3],
-    2: [0, 4, 5]
+    2: [0, 4, 5],
+    3: [6],
+    4: [7],
+    5: [8],
+    6: [8, 9, 10, 11, 12],
+    7: [13, 14],
+    8: [15, 16],
+    9: [17]
 }
