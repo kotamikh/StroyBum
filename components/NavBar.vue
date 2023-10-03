@@ -40,7 +40,10 @@
       >
         <Icon name="ph:magnifying-glass-light" size="20px" color="var(--middle-grey)"/>
         Поиск
-        <input type="text" v-if="isActive" @click.stop>
+        <input type="text"
+               v-if="isActive"
+               v-focus
+               @click.stop>
       </button>
     </div>
   </div>
@@ -69,6 +72,9 @@ watch(() => route.name, () => {
   currentLink.value = route.name
 }, { immediate: true })
 
+const vFocus = {
+  mounted: (el) => el.focus()
+}
 </script>
 
 <style scoped lang="sass">
@@ -150,7 +156,5 @@ watch(() => route.name, () => {
         border: 0
         outline: 0
         height: 80%
-
-        &:focus
-          outline: 2px solid var(--yellow)
+        background-color: inherit
 </style>
