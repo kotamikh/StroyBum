@@ -106,7 +106,6 @@ watch(() => route.name, () => {
         gap: 20px
         display: flex
         align-items: center
-        x
 
         li
           &:hover
@@ -132,8 +131,7 @@ watch(() => route.name, () => {
           .current
             svg > path,
             p
-              color: var(--yellow)
-              fill: var(--yellow)
+              fill: var(--grey)
 
   .line-2
     .search-btn
