@@ -20,7 +20,6 @@ export const useMock = defineStore('mockData', () => {
         else {
             return allProducts.value
         }
-        // return []
     }
 
     const getCategories = (): Category[] => {
@@ -47,9 +46,19 @@ export const useMock = defineStore('mockData', () => {
                 return brandsArray
             }
         }
-
-
         return []
+    }
+
+    const showRequestedProducts = (fetchedString: string): IProduct[] => {
+        allProducts.value = products
+        let stringLowerCase = fetchedString.toLowerCase()
+        filteredProducts.value = allProducts.value.filter(p => p.name.toLowerCase().includes(stringLowerCase) || p.brand.toLowerCase().includes(stringLowerCase) || p.category.toLowerCase().includes(stringLowerCase))
+        if (filteredProducts) {
+            return filteredProducts.value
+        }
+        else {
+           return []
+        }
     }
 
     return {
@@ -57,7 +66,8 @@ export const useMock = defineStore('mockData', () => {
         filteredProducts,
         getAllProducts,
         getCategories,
-        getBrandsByCategory
+        getBrandsByCategory,
+        showRequestedProducts
     }
 })
 

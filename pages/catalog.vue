@@ -1,8 +1,8 @@
 <template>
   <h1>Каталог</h1>
   <ul class="categories">
-    <li v-for="category in categories"
-        :key="category.id">
+    <li v-for="[id, category] in categories"
+        :key="id">
       <a @click="router.push('productsList/' + category.name)"
          class="category">
         <img :src="category.image" alt="img" style="width: 3rem"/>
@@ -14,8 +14,9 @@
 
 <script setup lang="ts">
 import { useMock } from "~/store/mock";
+import { useCategoriesBrandsStore } from "~/store/categories-brands";
 
-const categories = useMock().getCategories()
+const categories = useCategoriesBrandsStore().getAllCategories()
 
 const router = useRouter()
 

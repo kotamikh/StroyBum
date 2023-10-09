@@ -35,16 +35,7 @@
       </div>
     </div>
     <div class="line-2">
-      <button class="search-btn"
-              @click="isActive = !isActive"
-      >
-        <Icon name="ph:magnifying-glass-light" size="20px" color="var(--middle-grey)"/>
-        Поиск
-        <input type="text"
-               v-if="isActive"
-               v-focus
-               @click.stop>
-      </button>
+      <search-produts/>
     </div>
   </div>
 </template>
@@ -60,7 +51,6 @@ const links = {
 }
 
 const currentLink = ref(null)
-const isActive = ref(false)
 
 const isCurrent = (link) => {
   return link === currentLink.value
@@ -71,10 +61,6 @@ const route = useRoute()
 watch(() => route.name, () => {
   currentLink.value = route.name
 }, { immediate: true })
-
-const vFocus = {
-  mounted: (el) => el.focus()
-}
 </script>
 
 <style scoped lang="sass">
@@ -138,23 +124,4 @@ const vFocus = {
             svg > path,
             p
               fill: var(--grey)
-
-  .line-2
-    .search-btn
-      gap: 10px
-      display: flex
-      align-items: center
-
-      border: 0
-      height: 40px
-      cursor: pointer
-      padding: 5px 20px
-      border-radius: 5px
-      font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
-
-      input
-        border: 0
-        outline: 0
-        height: 80%
-        background-color: inherit
 </style>
