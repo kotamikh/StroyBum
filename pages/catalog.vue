@@ -106,12 +106,10 @@ const router = useRouter()
   flex-wrap: wrap
   max-height: 400px
   flex-direction: column
-  align-content: space-evenly
 
   @media screen and (max-width: 750px)
     flex-direction: row
     max-height: max-content
-    justify-content: space-evenly
 
     li
       width: 200px

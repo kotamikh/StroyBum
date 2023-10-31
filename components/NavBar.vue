@@ -45,7 +45,6 @@ import { useRoute } from "#app";
 
 const links = {
   'Каталог': 'catalog',
-  'Скидки': 'discount',
   'Доставка и оплата': 'deliveryPayment',
   'Контакты': 'contacts'
 }
@@ -118,10 +117,16 @@ watch(() => route.name, () => {
           align-items: center
           flex-direction: column
 
-          &:hover,
+          &:hover
+            svg > path,
+            p
+              color: var(--grey)
+              fill: var(--grey)
           &:focus,
           .current
             svg > path,
             p
-              fill: var(--grey)
+              color: var(--yellow)
+              fill: var(--yellow)
+
 </style>

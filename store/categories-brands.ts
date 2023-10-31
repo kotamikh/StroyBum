@@ -3,12 +3,21 @@ import { IBrand, ICategory, ICategoryDto } from "types/categoriesBrands"
 import { ref } from "vue"
 import { Ref } from "vue/dist/vue"
 
+const BASE_URL = "http://localhost:8000"
+
+const ROUTES = {
+    subjects: BASE_URL + "/api/v1/subjects",
+    brands: BASE_URL + "/api/v1/brands",
+    brandsbysubject: BASE_URL + '/api/v1/brands-by-subject'
+}
+
 export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
     const categories: Ref<Map<number, ICategory>> = ref(new Map<number, ICategory>());
     const brands = ref<Array<IBrand>>([])
+    const brandsBySubject = ref<Array<IBrand>>([])
 
     const getAllCategories = (): Map<number, ICategory> => {
-        fetch("http://192.168.0.2:8000/api/v1/subjects", {
+        fetch(ROUTES.subjects, {
             method: "GET",
         }).then((response) => {
             response.json().then((res) => {
@@ -25,7 +34,7 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
     }
 
     const insertCategory = (category: ICategoryDto) => {
-        fetch("http://192.168.0.2:8000/api/v1/subjects", {
+        fetch(ROUTES.subjects, {
             method: "POST",
             body: JSON.stringify(category)
         }).then(() => {
@@ -38,14 +47,13 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
         let categories = getAllCategories()
         for (let [key, value] of categories.entries()) {
             if (value.name === categoryName) {
-                console.log(key)
                 return key
             }
         }
     }
 
     const deleteCategory = (id: number) => {
-        fetch("http://192.168.0.2:8000/api/v1/subjects" + `?id=${id}`, {
+        fetch(ROUTES.subjects + `?id=${id}`, {
             method: "DELETE"
         }).then(() =>  getAllCategories())
             .catch((e) => {
@@ -54,8 +62,8 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
             })
     };
 
-    const getAllBrands = () => {
-        fetch("http://192.168.0.2:8000/api/v1/brands", {
+    const getAllBrands = (): IBrand[] => {
+        fetch(ROUTES.brands, {
             method: "GET",
         }).then((response) => {
             response.json().then((res) => {
@@ -63,10 +71,15 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
                 return brands.value
             })
         })
+        return []
+    }
+
+    const getBrand = (brandId: number): IBrand => {
+        return brands.value.find(b => b.id === brandId)!
     }
 
     const insertBrand = (name: string) => {
-        fetch("http://192.168.0.2:8000/api/v1/brands", {
+        fetch(ROUTES.brands, {
             method: "POST",
             body: name
         }).then(() => {
@@ -74,38 +87,42 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
         })
     }
 
-    // const getBrandsBySubject = (category: string): IBrand[] => {
-    //   const categories = getAllCategories()
-    //   console.log(category, categories)
-    //   let currentCategory = categories.filter(cat => cat.name === category)
-    //   console.log(currentCategory)
-    //   if (currentCategory) {
-    //     fetch(
-    //       "http://192.168.0.2:8000/api/v1/brands-by-subject" +
-    //       `?subject_id=${currentCategory.id}`,
-    //       {
-    //         method: "GET",
-    //       }
-    //     ).then((response) => {
-    //       console.log(response)
-    //       response.json().then((res) => {
-    //        let brandsArray = addBrand.concat(res)
-    //         console.log(brandsArray)
-    //       })
-    //     })
-    //   }
-    //   return brands.value = addBrand
-    // }
+    const getBrandsBySubject = (category: string, brands: IBrand[]): IBrand[] => {
+        let categories = getAllCategories()
+        for (let [key, value] of categories.entries()) {
+            if (value.name === category) {
+                fetch(
+                    ROUTES.brandsbysubject +
+                    `?subject_id=${ key }`,
+                    {
+                        method: "GET",
+                    }).then((response) => {
+                    response.json().then(async (res) => {
+                        brandsBySubject.value = []
+                        for (let r = 0; r < res.length; r++) {
+                            if (!brands.find(b => b.id === res[r])) {
+                              brandsBySubject.value.push(getBrand(res[r]))
+                            }
+                        }
+                        return brandsBySubject.value
+                    })
+                })
+            }
+        }
+        return []
+    }
 
 
     return {
         categories,
         brands,
+        brandsBySubject,
         getAllCategories,
         insertCategory,
         findCategoryId,
         deleteCategory,
         getAllBrands,
-        insertBrand
+        insertBrand,
+        getBrandsBySubject
     };
 });

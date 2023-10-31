@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { IProduct, IProductDto } from "~/types/Product";
 import { ReturnWithStatus } from "~/types/Utils";
 
-const BASE_URL = "http://192.168.0.2:8000"
+const BASE_URL = "http://localhost:8000"
 
 const ROUTES = {
     products: BASE_URL + "/api/v1/products",
@@ -10,17 +10,19 @@ const ROUTES = {
 export const useProductsStore = defineStore('cardsStore', () => {
     const products: Ref<Map<number, IProduct>> = ref(new Map<number, IProduct>())
 
-    const loadAll = async (offset: number, limit: number): Promise<boolean> => {
-        const { data, error} = await useFetch<IProduct[]>(ROUTES.products, {
-            method: "GET",
-            params: {
-                offset: offset,
-                limit: limit,
-            }
+    const loadAll = async (offset: number, limit: number, subject?: number, brand?: number): Promise<boolean> => {
+        const params = new URLSearchParams({ offset: offset.toString(), limit: limit.toString() })
+        if (subject) {
+            params.append('subject', subject.toString())
+        }
+        if (brand) {
+            params.append('brand', brand.toString())
+        }
+        const { data, error } = await useFetch<IProduct[]>(ROUTES.products + '?' + params, {
+            method: "GET"
         })
 
         if (error.value) {
-            //alert("Ошибка смотри в консоль")
             console.log(error.value)
             return false
         }

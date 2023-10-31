@@ -1,26 +1,28 @@
 <template>
   <div class="product-card"
        @click="goToProductPage">
-    <div class="marks">
-      <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path d="M240 98a57.63 57.63 0 0 1-17 41l-89.3 90.62a8 8 0 0 1-11.4 0L33 139a58 58 0 0 1 82-82.1l13 12.15l13.09-12.19A58 58 0 0 1 240 98Z"/></svg>
-      <div class="discount-mark" v-if="discount !== 0">скидка {{ discount }}%</div>
-    </div>
     <div class="img-holder">
+      <svg class="fav-mark"
+           @click.self.stop="toggleFavourite"
+           xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
+        <path
+            d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82Zm-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"/>
+      </svg>
+      <div class="discount-mark" v-if="discount !== 0">- {{ discount }}%</div>
       <img :src="mainImage" class="product-img" alt="product-img"/>
     </div>
-    <div class="name-stock">
-      <p class="product-name">{{ name }}</p>
-      <p :class="`${props.stock === 1 ? 'in-stock' : 'on-order'}`">{{
+    <div class="price">
+      <p style="font-size: 1.2rem">{{ price }} <span class="rub">Р</span></p>
+      <p v-if="discount !== 0" class="old-price">
+        {{ countDiscount }}
+        <span class="rub">Р</span></p>
+    </div>
+    <p class="product-name">{{ name }}</p>
+    <div class="cart-stock">
+      <button class="cart-btn">В корзину</button>
+      <p class="stock">{{
           props.stock === 1 ? 'В наличии' : 'Под заказ'
         }}</p>
-    </div>
-    <div class="price-cart">
-      <div class="price">
-        <p v-if="discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{ countDiscount }}
-          руб/шт.</p>
-        <p style="color: var(--yellow); font-weight: bold">{{ price }} руб/шт.</p>
-      </div>
-      <button class="cart-btn">В корзину</button>
     </div>
   </div>
 </template>
@@ -28,6 +30,7 @@
 <script setup lang="ts">
 import { IProduct, StockType } from "~/types/Product";
 import defaultImg from '@/assets/default-image.jpeg'
+import { useFavouritesStore } from "~/store/favourites";
 
 export interface Props extends IProduct {
   id: number,
@@ -56,82 +59,110 @@ const goToProductPage = () => {
     path: "product/" + props.id,
   })
 }
+
+const toggleFavourite = () => {
+
+  useFavouritesStore().toggleFavourite(props.id)
+}
 </script>
 
 <style scoped lang="sass">
+*
+  color: black
+
 .product-card
+  gap: 10px
   display: flex
   flex-direction: column
 
-  width: 18%
-  min-width: 220px
-  max-width: 280px
-  max-height: 380px
+  z-index: 5
+  height: 380px
+  cursor: pointer
+  width: 235px
   position: relative
-  padding-bottom: 10px
-
-  .marks
-    left: 0
-    padding: 2px
-    position: absolute
-
-    width: 100%
-    display: flex
-    align-items: center
-    box-sizing: border-box
-    flex-direction: row-reverse
-    justify-content: space-between
-
-    .discount-mark
-      padding: 0 5px
-      border-radius: 5%
-      font-size: 0.9rem
-      color: var(--grey)
-      height: fit-content
-      background-color: var(--yellow)
-
-    .fav-mark
-      fill: #d0d0d0
-
-      &:hover
-        fill:  var(--yellow)
+  background-color: white
 
   .img-holder
     width: 100%
-    height: 200px
+    min-height: 235px
     display: flex
-    margin-top: 25px
-    align-items: center
-    justify-content: center
+    position: relative
 
     img
-      max-height: 200px
+      width: 75%
+      margin: auto
+      object-fit: cover
 
-  .name-stock
-    margin: 10px
+    &::after
+      top: 0
+      content: ''
+      height: 100%
+      width: 100%
+      position: absolute
+      border-radius: 15px
+      background-color: rgba(0, 48, 120, 0.04)
 
-    .product-name
-      overflow: hidden
-      display: -webkit-box
-      -webkit-line-clamp: 2
-      -webkit-box-orient: vertical
+    .discount-mark
+      top: 5px
+      left: 5px
+      font-size: 14px
+      padding: 3px 10px
+      text-align: center
+      position: absolute
+      border-radius: 12px
+      background-color: var(--yellow)
 
-  p.in-stock
-    font-weight: bold
-    color: var(--green)
+    .fav-mark
+      top: 3px
+      right: 3px
+      cursor: pointer
+      position: absolute
+      fill: var(--middle-grey)
 
-  .price-cart
-    gap: 10%
+  &:hover,
+  .favourite
+    .fav-mark
+      fill: var(--yellow)
+
+  .price
+    gap: 10px
+    display: flex
+
+    .old-price
+      font-size: 0.9rem
+      color: var(--middle-grey)
+      text-decoration: line-through
+
+    p > .rub
+      width: 0.5em
+      color: inherit
+      line-height: 0.2em
+      display: inline-block
+      vertical-align: middle
+      text-decoration: inherit
+      border-bottom: 0.07em solid
+
+  .product-name
+    overflow: hidden
+    font-weight: lighter
+    display: -webkit-box
+    -webkit-line-clamp: 2
+    -webkit-box-orient: vertical
+
+  .cart-stock
     display: flex
     margin-top: auto
-    align-items: flex-end
-    justify-content: space-evenly
+    align-items: center
+    justify-content: space-between
+
+    .stock
+      font-weight: lighter
 
     .cart-btn
       border: none
       cursor: pointer
-      padding: 5px 10px
+      padding: 5px 20px
       color: var(--grey)
-      border-radius: 5px
+      border-radius: 12px
       background-color: var(--yellow)
 </style>
