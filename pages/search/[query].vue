@@ -15,7 +15,6 @@
 
 <script setup lang="ts">
 import { useRoute } from "#app";
-import { useMock } from "~/store/mock";
 
 const route = useRoute()
 const query = route.params.query.toString()

@@ -13,7 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import { useMock } from "~/store/mock";
 import { useCategoriesBrandsStore } from "~/store/categories-brands";
 
 const categories = useCategoriesBrandsStore().getAllCategories()
