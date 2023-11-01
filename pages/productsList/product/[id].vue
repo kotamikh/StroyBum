@@ -1,4 +1,9 @@
 <template>
+  <div class="bread-crumbs">
+    <a @click="router.push('/catalog')">Каталог</a>
+    <p>/</p>
+    <a @click="router.push('/')">{{ }}</a>
+  </div>
   <div class="product-card">
     <div class="main-information">
       <div class="product-images">
@@ -35,25 +40,24 @@
         <h1>{{ product.name }}
           <button class="fav-btn">
             <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
-              <path d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82Zm-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"/>
+              <path
+                  d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82Zm-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"/>
             </svg>
           </button>
         </h1>
-        <p :class="`${product.stock === 1 ? 'in-stock' : 'on-order'}`">{{
-            product.stock === 1 ? 'В наличии' : 'Под заказ'
-          }}</p>
-        <div class="price">
-          <p v-if="product.discount !== 0" style="text-decoration: line-through; font-size: 0.9rem">{{ withoutDiscount }}
-            руб/шт.
-          </p>
-          <p style="color: var(--yellow); font-weight: bold">{{ 500 }} руб/шт.</p>
+         <div class="price-stock">
+          <div class="price">
+            <p>{{ product.price }} <span class="rub">Р</span></p>
+            <p v-if="product.discount !== 0" class="old-price">{{ countDiscount }} <span class="rub">Р</span></p>
+          </div>
+          <p class="stock">{{ product.stock === 1 ? 'В наличии' : 'Под заказ' }}</p>
         </div>
         <button class="cart-btn">
-          В корзину
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
-            <path fill="#808080"
+            <path fill="#555555"
                   d="M96 216a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm88-16a16 16 0 1 0 16 16a16 16 0 0 0-16-16Zm47.65-125.65l-28.53 92.71A23.89 23.89 0 0 1 180.18 184H84.07A24.11 24.11 0 0 1 61 166.59L24.82 40H8a8 8 0 0 1 0-16h16.82a16.08 16.08 0 0 1 15.39 11.6L48.32 64H224a8 8 0 0 1 7.65 10.35ZM213.17 80H52.89l23.49 82.2a8 8 0 0 0 7.69 5.8h96.11a8 8 0 0 0 7.65-5.65Z"/>
           </svg>
+          В корзину
         </button>
       </div>
     </div>
@@ -79,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import { IProduct } from "types/Product";
+import { IProduct } from "~/types/Product";
 import { useProductsStore } from "~/store/products";
 import { VNodeRef } from "@vue/runtime-core";
 import { useRoute } from "#app";
@@ -87,17 +91,19 @@ import { ref } from "vue";
 import { computed } from "@vue/reactivity";
 
 const route = useRoute()
+const router = useRouter()
 const store = useProductsStore()
 
 const id = computed<number>(() => Number(route.params.id))
 const product = ref<IProduct>(store.getDefaultProduct())
 
 const result = await store.getProduct(id.value)
+
 if (result.ok) {
   product.value = result.data
 }
 
-const withoutDiscount = computed(() => Math.ceil(500 / (100 - product.value.discount) * 100))
+const countDiscount = computed(() => Math.ceil(product.value.price / (100 - product.value.discount) * 100))
 
 const currentImageIndex = ref<number>(0)
 const currentImage = computed<string>(() => product.value.images[currentImageIndex.value] || store.getDefaultImage())
@@ -138,6 +144,9 @@ const moveToDown = () => {
 </script>
 
 <style scoped lang="sass">
+*
+  color: var(--grey)
+
 .product-card
   width: 100%
   margin: 70px auto
@@ -216,6 +225,7 @@ const moveToDown = () => {
 
     .product-information
       gap: 20px
+      width: 40%
       display: flex
       margin-left: 50px
       flex-direction: column
@@ -223,36 +233,60 @@ const moveToDown = () => {
       h1
         margin-bottom: 0
         position: relative
+        color: var(--grey)
+        font-size: calc((100vw - 320px) / (1280 - 320) * (30 - 20) + 20px)
 
         .fav-btn
           border: none
-          height: 32px
+          height: inherit
           padding: 0 10px
           position: absolute
           background-color: transparent
 
           .fav-mark
-            fill: var(--middle-grey)
+            fill: var(--grey)
 
           &:hover
             .fav-mark
-               fill: var(--yellow)
+              fill: var(--yellow)
 
-      p.in-stock
-        font-weight: bold
-        color: var(--green)
+      .price-stock
+        color: black
+        display: flex
 
-      .price p
-        font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px)
+        flex-direction: column
+
+        .price
+          gap: 20px
+          display: flex
+          font-size: calc((100vw - 320px) / (1280 - 320) * (30 - 20) + 30px)
+
+          .old-price
+            font-size: 0.6em
+            color: var(--middle-grey)
+            text-decoration: line-through
+
+          p > .rub
+            width: 0.5em
+            color: inherit
+            line-height: 0.2em
+            display: inline-block
+            vertical-align: middle
+            text-decoration: inherit
+            border-bottom: 0.07em solid
+
+        .stock
+          font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
 
       .cart-btn
-        gap: 5px
+        gap: 10px
         border: none
         display: flex
-        padding: 5px 10px
-        border-radius: 5px
+        cursor: pointer
+        padding: 5px 20px
         width: fit-content
-        align-items: center
+        color: var(--grey)
+        border-radius: 12px
         background-color: var(--yellow)
         font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px)
 
@@ -263,11 +297,12 @@ const moveToDown = () => {
 
     .characteristics,
     .description
-      font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
+      font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
 
       h2
-        font-weight: bold
+        color: var(--grey)
         margin-bottom: 20px
+        font-size: calc((100vw - 320px) / (1280 - 320) * (22 - 18) + 18px)
 
       ul
         margin: 0

@@ -6,7 +6,7 @@ export interface IProductDto {
   discount: number,
   description: string,
   characteristics: Array<Array<string>>,
-  category: string,
+  category: number,
   brand: string
 }
 

@@ -29,6 +29,7 @@
                   :price="product.price"
                   :stock="product.stock"
                   :discount="product.discount"
+                  :category="product.category"
     />
   </div>
   <div class="pages">

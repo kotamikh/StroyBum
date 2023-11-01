@@ -40,7 +40,8 @@ export interface Props extends IProduct {
   images: Array<string>,
   price: number,
   stock: StockType,
-  discount: number
+  discount: number,
+  category: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -144,7 +145,7 @@ const toggleFavourite = () => {
     display: flex
 
     .old-price
-      font-size: 0.9rem
+      font-size: 0.9em
       color: var(--middle-grey)
       text-decoration: line-through
 

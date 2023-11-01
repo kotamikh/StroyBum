@@ -33,6 +33,10 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
         return categories.value
     }
 
+    const getCategory = (id: number) => {
+
+    }
+
     const insertCategory = (category: ICategoryDto) => {
         fetch(ROUTES.subjects, {
             method: "POST",
@@ -118,6 +122,7 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
         brands,
         brandsBySubject,
         getAllCategories,
+        getCategory,
         insertCategory,
         findCategoryId,
         deleteCategory,
