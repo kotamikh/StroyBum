@@ -109,12 +109,12 @@ const router = useRouter()
   @media screen and (max-width: 750px)
     flex-direction: row
     max-height: max-content
+    justify-content: center
 
     li
       width: 200px
       height: 80px
       display: flex
-      justify-content: center
       border: 2px solid transparent
 
       &:hover
@@ -126,7 +126,6 @@ const router = useRouter()
 
     li
       width: 300px
-      align-items: flex-start
 
   @media screen and (min-width: 750px)
     li
