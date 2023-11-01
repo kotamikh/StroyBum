@@ -1,7 +1,7 @@
 <template>
   <div class="bread-crumbs">
-    <a  @click="router.push('/catalog')">Каталог</a>
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#808080" d="M8.59 16.58L13.17 12L8.59 7.41L10 6l6 6l-6 6l-1.41-1.42Z"/></svg>
+    <a @click="router.push('/catalog')">Каталог</a>
+    <p>/</p>
     <h1>{{ name }}</h1>
   </div>
   <div class="filter">
@@ -65,7 +65,6 @@ const loadBrandProducts = (brand: number) => {
   loadProducts()
 }
 
-
 const currentPage = ref(1)
 const updatePage = (data: number) => {
   currentPage.value = data
@@ -83,28 +82,31 @@ const loadProducts = () => {
 }
 
 watch(currentPage, loadProducts)
+
 loadProducts()
 </script>
 
 
 <style scoped lang="sass">
 .bread-crumbs
+  gap: 10px
   display: flex
   margin: 30px 0
   align-items: center
   font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
   h1
     margin: 0
+    font-size: inherit
 
 .filter
-  width: fit-content
-  position: absolute
-  right: 180px
-  top: 145px
-  background-color: #eeeeee
   z-index: 2
+  top: 145px
+  right: 180px
   overflow: hidden
+  position: absolute
+  width: fit-content
   border-radius: 5px
+  background-color: #eeeeee
 
   button
     display: flex
@@ -124,7 +126,7 @@ loadProducts()
       background-color: #E3DD5F
 
 .catalog
-  gap: 1rem
+  gap: 2rem
   display: flex
   flex-wrap: wrap
   margin-top: 50px

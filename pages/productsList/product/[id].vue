@@ -70,7 +70,7 @@
           </li>
         </ul>
       </div>
-      <div class="description">
+      <div v-if="product.description" class="description">
         <h2>Описание</h2>
         <p>{{ product.description }}</p>
       </div>
@@ -79,9 +79,12 @@
 </template>
 
 <script setup lang="ts">
-import { IProduct } from "~/types/Product";
+import { IProduct } from "types/Product";
 import { useProductsStore } from "~/store/products";
 import { VNodeRef } from "@vue/runtime-core";
+import { useRoute } from "#app";
+import { ref } from "vue";
+import { computed } from "@vue/reactivity";
 
 const route = useRoute()
 const store = useProductsStore()

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { IProduct, IProductDto } from "~/types/Product";
 import { ReturnWithStatus } from "~/types/Utils";
+import { ref, Ref } from "vue";
 
 const BASE_URL = "http://localhost:8000"
 
@@ -45,7 +46,6 @@ export const useProductsStore = defineStore('cardsStore', () => {
         })
 
         if (error.value) {
-            //alert("Ошибка смотри в консоль")
             console.log(error.value)
             return false
         }
@@ -122,6 +122,26 @@ export const useProductsStore = defineStore('cardsStore', () => {
         return true
     }
 
+
+    const favourites: Ref<number[]> = typeof window !== 'undefined' ? ref(JSON.parse(localStorage.getItem("favourites") ?? '[]')) : null
+
+    const toggleFavourite = (productId: number) => {
+        console.log(productId)
+        if (!favourites.value.find(el => el === productId)) {
+            // let product = useProductsStore().products.get(productId)
+            console.log('no such number')
+            // if (product) {
+              localStorage.setItem("favourites", JSON.stringify(productId))
+            // }
+            // favourites.value.push(product)
+        }
+        console.log(favourites.value)
+
+        if (favourites.value.find(el => el === productId)) {
+            favourites.value.splice(favourites.value[productId], 1)
+        }
+    }
+
     return {
         products,
         loadAll,
@@ -130,5 +150,7 @@ export const useProductsStore = defineStore('cardsStore', () => {
         getDefaultImage,
         addCard,
         deleteCard,
+        favourites,
+        toggleFavourite
     }
 })
