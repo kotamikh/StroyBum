@@ -201,13 +201,13 @@ const moveToDown = () => {
             height: 130px
             padding: 2%
             object-fit: cover
-            border-radius: 5px
+            border-radius: 10px
             margin-bottom: 15px
             transition: scale 0.2s ease
 
           .current
             transform: scale(1.15)
-            border: 1.5px solid rgba(128, 128, 128, 0.4)
+            border: 1px solid rgba(128, 128, 128, 0.4)
 
       .current-photo
         width: 450px
@@ -220,8 +220,8 @@ const moveToDown = () => {
           width: 100%
           height: 100%
           object-fit: contain
-          border-radius: 10px
-          border: 2px solid rgba(128, 128, 128, 0.4)
+          border-radius: 15px
+          border: 1px solid rgba(128, 128, 128, 0.4)
 
     .product-information
       gap: 20px

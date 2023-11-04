@@ -1,7 +1,7 @@
 <template>
   <div :class="[{ favourite : isFavourite }, 'product-card']"
        @click="goToProductPage">
-    <div class="img-holder pointer-events-none">
+    <div class="img-holder">
       <button class="fav-btn"
               @click.stop="toggleFavourite">
       <svg class="fav-mark"
@@ -98,8 +98,8 @@ const toggleFavourite = () => {
 
   .img-holder
     width: 100%
-    min-height: 235px
     display: flex
+    min-height: 235px
     position: relative
 
     img

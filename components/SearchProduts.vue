@@ -49,6 +49,7 @@ const searchProducts = () => {
   input
     border: 0
     outline: 0
+    cursor: pointer
     max-width: 150px
     color: var(--grey)
 

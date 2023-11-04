@@ -1,23 +1,19 @@
 <template>
-  <div class="bread-crumbs">
-    <a @click="router.push('/catalog')">Каталог</a>
-    <p>/</p>
-    <h1>{{ name }}</h1>
-  </div>
-  <div class="filter">
-    <button @click="openFilter">
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-        <path fill="#808080"
-              d="M14 12v7.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0l-2.01-2.01a.989.989 0 0 1-.29-.83V12h-.03L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L14.03 12H14Z"/>
-      </svg>
-      Фильтровать
-    </button>
-    <div v-if="filterOpened">
-      <a v-for="brand in useCategoriesBrandsStore().brandsBySubject"
-         :key="brand.id"
-         class="brand"
-         @click="loadBrandProducts(brand.id)"
-      >{{ brand.name }}</a>
+  <div class="crumbs-filter">
+    <div class="bread-crumbs">
+      <a @click="router.push('/catalog')">Каталог</a>
+      <p>/</p>
+      <h1>{{ name }}</h1>
+    </div>
+    <div class="filter">
+      <button class="filter-btn" @click="showFilter = !showFilter">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32">
+          <path fill="#808080"
+                d="M18 28h-4a2 2 0 0 1-2-2v-7.59L4.59 11A2 2 0 0 1 4 9.59V6a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v3.59a2 2 0 0 1-.59 1.41L20 18.41V26a2 2 0 0 1-2 2ZM6 6v3.59l8 8V26h4v-8.41l8-8V6Z"/>
+        </svg>
+        Фильтровать товары
+      </button>
+      <the-filter v-model:show="showFilter"/>
     </div>
   </div>
   <div class="catalog">
@@ -46,25 +42,12 @@ import { useProductsStore } from "~/store/products";
 import { ref } from "@vue/reactivity";
 import { useRoute } from "#app";
 import { useCategoriesBrandsStore } from "~/store/categories-brands";
+import TheFilter from "~/components/TheFilter.vue";
 
-const router = useRouter()
 const route = useRoute()
+const router = useRouter()
+const showFilter = ref(false)
 const name = route.params.name.toString()
-
-const filterOpened = ref(false)
-const allBrands = useCategoriesBrandsStore().getAllBrands()
-const brands = useCategoriesBrandsStore().getBrandsBySubject(name, allBrands)
-const currentBrand = ref(0)
-useCategoriesBrandsStore().getBrandsBySubject(name, allBrands)
-
-const openFilter = () => {
-  filterOpened.value = !filterOpened.value
-}
-
-const loadBrandProducts = (brand: number) => {
-  currentBrand.value = brand
-  loadProducts()
-}
 
 const currentPage = ref(1)
 const updatePage = (data: number) => {
@@ -75,11 +58,12 @@ const limit = 5
 const categoryId = useCategoriesBrandsStore().findCategoryId(name)
 
 const loadProducts = () => {
-  if (currentBrand.value) {
-    useProductsStore().loadAll((currentPage.value - 1) * limit, limit, categoryId, currentBrand.value)
-  } else {
-    useProductsStore().loadAll((currentPage.value - 1) * limit, limit, categoryId)
-  }
+  useProductsStore().loadAll((currentPage.value - 1) * limit, limit, categoryId)
+  // if (currentBrand.value) {
+  //   useProductsStore().loadAll((currentPage.value - 1) * limit, limit, categoryId, currentBrand.value)
+  // } else {
+  //
+  // }
 }
 
 watch(currentPage, loadProducts)
@@ -89,42 +73,47 @@ loadProducts()
 
 
 <style scoped lang="sass">
-.bread-crumbs
-  gap: 10px
+.crumbs-filter
   display: flex
-  margin: 30px 0
   align-items: center
-  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
-  h1
-    margin: 0
-    font-size: inherit
+  justify-content: space-between
 
-.filter
-  z-index: 2
-  top: 145px
-  right: 180px
-  overflow: hidden
-  position: absolute
-  width: fit-content
-  border-radius: 5px
-  background-color: #eeeeee
-
-  button
+  .bread-crumbs
+    gap: 10px
     display: flex
-    justify-content: center
-    align-items: center
-    border: none
-    padding: 5px 20px
+    margin: 30px 0
+    font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 
-    &:hover
-      background-color: #E3DD5F
+    h1
+      margin: 0
+      font-size: inherit
 
-  .brand
-    display: block
-    padding: 10px 20px
+  .filter
+    width: fit-content
+    position: relative
+    flex-direction: column
 
-    &:hover
-      background-color: #E3DD5F
+    .filter-btn
+      gap: 5px
+      border: none
+      display: flex
+      padding: 5px 10px
+      align-items: center
+      justify-content: center
+      background-color: transparent
+
+      &:hover
+        color: var(--grey)
+
+        svg > path
+          fill: var(--grey)
+
+    .brand
+      display: block
+      padding: 10px 20px
+
+      &:hover
+        background-color: #E3DD5F
 
 .catalog
   gap: 2rem
