@@ -1,13 +1,13 @@
 export interface IProductDto {
   name: string,
-  images: Array<string>,
+  images: string[],
   price: number,
   stock: StockType,
   discount: number,
   description: string,
-  characteristics: Array<Array<string>>,
-  category: number,
-  brand: string
+  characteristics: string[][],
+  subject: number,
+  brand: number
 }
 
 export interface IProduct extends IProductDto {

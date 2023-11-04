@@ -1,24 +1,32 @@
 import { useFetch } from '#app';
 import { KeysOf, PickFrom } from "#app/composables/asyncData";
 import { HTTPMethod } from "h3";
-import { FetchError } from "ofetch";
+import { FetchError, SearchParameters } from "ofetch";
 import { AvailableRouterMethod, NitroFetchRequest } from "nitropack";
 
 const BASE_URL = "http://localhost:8000"
 
-type ResponseWithError<T> = {
-    response: null
+export type ResponseWithError<T> = {
+    data: null
     error: string,
 } | {
-    response: NonNullable<PickFrom<T extends void ? unknown : T, KeysOf<T extends void ? unknown : T>>>,
+    data: NonNullable<PickFrom<T extends void ? unknown : T, KeysOf<T extends void ? unknown : T>>>,
     error: null,
 }
 
-const useCustomFetch = async <T>(url: string, method: HTTPMethod, body?: any): Promise<ResponseWithError<T>> => {
-    const { data, error } = await useFetch<T, FetchError, NitroFetchRequest, AvailableRouterMethod<NitroFetchRequest>>(url, {
-        method: method,
+export type RequestParameters = {
+    url: string,
+    method: HTTPMethod,
+    params?: SearchParameters,
+    body?: any,
+}
+
+const useCustomFetch = async <T>(requestParams: RequestParameters): Promise<ResponseWithError<T>> => {
+    const { data, error } = await useFetch<T, FetchError, NitroFetchRequest, AvailableRouterMethod<NitroFetchRequest>>(requestParams.url, {
         baseURL: BASE_URL,
-        body: body,
+        method: requestParams.method,
+        params: requestParams.params,
+        body: requestParams.body,
     })
 
     if (error.value) {
@@ -26,32 +34,41 @@ const useCustomFetch = async <T>(url: string, method: HTTPMethod, body?: any): P
         const errorMessage = error.value?.message || "undefined message"
 
         return {
-            response: null,
+            data: null,
             error: `[${errorName}]${errorMessage}`
         }
     } else {
         if (data.value) {
             return {
-                response: data.value,
+                data: data.value,
                 error: null,
             }
         }
     }
 
     return {
-        response: null,
-        error: `Falsy error and data when executing ${method} request to '${url}'`
+        data: null,
+        error: `Falsy error and data when executing ${requestParams.method} request to '${requestParams.url}'`
     }
 }
 
-export const useHttpGet = async <T>(url: string): Promise<ResponseWithError<T>> => {
-    return useCustomFetch(url, "GET")
+export const useHttpGet = async <T>(requestParams: Omit<RequestParameters, "method">): Promise<ResponseWithError<T>> => {
+    return useCustomFetch<T>({
+        method: "GET",
+        ...requestParams
+    })
 }
 
-export const useHttpPost = async <T>(url: string): Promise<ResponseWithError<T>> => {
-    return useCustomFetch(url, "POST")
+export const useHttpPost = async <T>(requestParams: Omit<RequestParameters, "method">): Promise<ResponseWithError<T>> => {
+    return useCustomFetch<T>({
+        method: "POST",
+        ...requestParams
+    })
 }
 
-export const useHttpDelete = async <T>(url: string): Promise<ResponseWithError<T>> => {
-    return useCustomFetch(url, "DELETE")
+export const useHttpDelete = async <T>(requestParams: Omit<RequestParameters, "method">): Promise<ResponseWithError<T>> => {
+    return useCustomFetch<T>({
+        method: "DELETE",
+        ...requestParams
+    })
 }
