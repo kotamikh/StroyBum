@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
-import { IProduct, IProductDto } from "~/types/Product";
+import { IProduct } from "~/types/Product";
 import { ReturnWithStatus } from "~/types/Utils";
 import { ref, Ref } from "vue";
 import { useProductsApi } from "~/api/products";
+import { useLocalStorage } from "@vueuse/core";
 
 const BASE_URL = "http://localhost:8000"
 
@@ -12,6 +13,7 @@ const ROUTES = {
 export const useProductsStore = defineStore('cardsStore', () => {
     const productsMap: Ref<Map<number, IProduct>> = ref(new Map<number, IProduct>())
     const api = useProductsApi()
+    const favourites = useLocalStorage<Set<number>>("favourites", new Set<number>())
 
     const loadAll = async (offset: number, limit: number, subject?: number, brand?: number): Promise<boolean> => {
         const products = await api.getAll({ offset, limit, subject, brand })
@@ -46,9 +48,24 @@ export const useProductsStore = defineStore('cardsStore', () => {
         return { ok: true, data: p }
     }
 
+    const toggleFavourite = (id: number) => {
+        if (isFavourite(id)) {
+            favourites.value.delete(id)
+        } else {
+            favourites.value.add(id)
+        }
+    }
+
+    const isFavourite = (id: number): boolean => {
+        return favourites.value.has(id)
+    }
+
     return {
         productsMap,
-        loadAll: loadAll,
+        loadAll,
         getProduct,
+        toggleFavourite,
+        isFavourite,
+        favourites,
     }
 })

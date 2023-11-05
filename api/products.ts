@@ -32,15 +32,7 @@ const getDefaultImage = (): string => {
 }
 
 const getAll = async (request: GetAllRequest): Promise<IProduct[]> => {
-    const params = new URLSearchParams({ offset: request.offset.toString(), limit: request.limit.toString() })
-    if (request.subject) {
-        params.append('subject', request.subject.toString())
-    }
-    if (request.brand) {
-        params.append('brand', request.brand.toString())
-    }
-
-    const { data, error } = await useHttpGet<IProduct[]>({ url: ROUTES.products })
+    const { data, error } = await useHttpGet<IProduct[]>({ url: ROUTES.products, params: request })
     if (data) {
         return data
     } else {

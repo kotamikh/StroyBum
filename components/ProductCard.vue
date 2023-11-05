@@ -1,8 +1,8 @@
 <template>
-  <div :class="['product-card']"
+  <div :class="[{ favourite : isFavourite }, 'product-card']"
        @click="goToProductPage">
-    <div class="img-holder pointer-events-none">
-      <button class="fav-btn">
+    <div class="img-holder">
+      <button class="fav-btn" @click.stop="store.toggleFavourite(props.id)">
       <svg class="fav-mark"
            xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
         <path
@@ -61,6 +61,11 @@ const goToProductPage = () => {
     path: "product/" + props.id,
   })
 }
+
+const store = useProductsStore()
+const isFavourite = computed<boolean>(() => {
+  return store.isFavourite(props.id)
+})
 </script>
 
 <style scoped lang="sass">
