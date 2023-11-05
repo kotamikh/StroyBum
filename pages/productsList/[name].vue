@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="catalog">
-    <product-card v-for="[id, product] in useProductsStore().products"
+    <product-card v-for="[id, product] in useProductsStore().productsMap"
                   :key="id"
                   :id="id"
                   :name="product.name"
@@ -25,7 +25,7 @@
                   :price="product.price"
                   :stock="product.stock"
                   :discount="product.discount"
-                  :category="product.category"
+                  :category="product.subject"
     />
   </div>
   <div class="pages">
