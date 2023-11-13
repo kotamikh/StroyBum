@@ -3,28 +3,28 @@
        @click="goToProductPage">
     <div class="img-holder">
       <button class="fav-btn" @click.stop="store.toggleFavourite(props.id)">
-      <svg class="fav-mark"
-           xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
-        <path
-            d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82Zm-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"/>
-      </svg>
+        <svg class="fav-mark"
+             xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
+          <path
+              d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82Zm-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"/>
+        </svg>
       </button>
       <div class="discount-mark" v-if="discount !== 0">- {{ discount }}%</div>
       <img :src="mainImage" class="product-img" alt="product-img"/>
     </div>
-    <div class="price">
-      <p style="font-size: 1.2rem">{{ price }} <span class="rub">Р</span></p>
-      <p v-if="discount !== 0" class="old-price">
-        {{ countDiscount }}
-        <span class="rub">Р</span></p>
-    </div>
-    <p class="product-name">{{ name }}</p>
-    <div class="cart-stock">
-      <button class="cart-btn">В корзину</button>
+    <div class="price-stock">
+      <div class="price">
+        <p style="font-size: 1.2rem">{{ price }} <span class="rub">Р</span></p>
+        <p v-if="discount !== 0" class="old-price">
+          {{ countDiscount }}
+          <span class="rub">Р</span></p>
+      </div>
       <p class="stock">{{
           props.stock === 1 ? 'В наличии' : 'Под заказ'
         }}</p>
     </div>
+    <p class="product-name">{{ name }}</p>
+    <button class="cart-btn">В корзину</button>
   </div>
 </template>
 
@@ -77,11 +77,11 @@ const isFavourite = computed<boolean>(() => {
   display: flex
   flex-direction: column
 
-  z-index: 5
+  width: 235px
   height: 380px
   cursor: pointer
-  width: 235px
   position: relative
+  border-radius: 15px
   background-color: white
 
   &:not(.favourite)
@@ -92,14 +92,15 @@ const isFavourite = computed<boolean>(() => {
 
   .img-holder
     width: 100%
-    min-height: 235px
     display: flex
+    min-height: 235px
     position: relative
 
     img
       width: 75%
       margin: auto
-      object-fit: cover
+      max-height: 80%
+      object-fit: contain
 
     &::after
       top: 0
@@ -134,9 +135,14 @@ const isFavourite = computed<boolean>(() => {
       .fav-mark
         fill: var(--middle-grey)
 
-  .price
+  .price-stock
     gap: 10px
     display: flex
+    align-items: end
+
+    .price
+      gap: 10px
+      display: flex
 
     .old-price
       font-size: 0.9em
@@ -152,6 +158,10 @@ const isFavourite = computed<boolean>(() => {
       text-decoration: inherit
       border-bottom: 0.07em solid
 
+    .stock
+      font-size: 0.85rem
+      font-weight: lighter
+
   .product-name
     overflow: hidden
     font-weight: lighter
@@ -159,22 +169,16 @@ const isFavourite = computed<boolean>(() => {
     -webkit-line-clamp: 2
     -webkit-box-orient: vertical
 
-  .cart-stock
-    display: flex
+  .cart-btn
+    border: none
+    cursor: pointer
+    margin-left: auto
     margin-top: auto
-    align-items: center
-    justify-content: space-between
-
-    .stock
-      font-weight: lighter
-
-    .cart-btn
-      border: none
-      cursor: pointer
-      padding: 5px 20px
-      color: var(--grey)
-      border-radius: 12px
-      background-color: var(--yellow)
+    padding: 5px 20px
+    color: var(--grey)
+    width: fit-content
+    border-radius: 12px
+    background-color: var(--yellow)
 
 .product-card.favourite
   .fav-btn > .fav-mark

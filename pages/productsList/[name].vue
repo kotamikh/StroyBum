@@ -66,7 +66,7 @@ const loadProducts = () => {
   // }
 }
 
-watch(currentPage, loadProducts)
+watch(currentPage, loadProducts, {immediate: true})
 
 loadProducts()
 </script>
@@ -116,7 +116,7 @@ loadProducts()
         background-color: #E3DD5F
 
 .catalog
-  gap: 2rem
+  gap: 1rem
   display: flex
   flex-wrap: wrap
   margin-top: 50px

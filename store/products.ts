@@ -5,25 +5,20 @@ import { ref, Ref } from "vue";
 import { useProductsApi } from "~/api/products";
 import { useLocalStorage } from "@vueuse/core";
 
-const BASE_URL = "http://localhost:8000"
-
-const ROUTES = {
-    products: BASE_URL + "/api/v1/products",
-}
 export const useProductsStore = defineStore('cardsStore', () => {
     const productsMap: Ref<Map<number, IProduct>> = ref(new Map<number, IProduct>())
     const api = useProductsApi()
     const favourites = useLocalStorage<Set<number>>("favourites", new Set<number>())
 
-    const loadAll = async (offset: number, limit: number, subject?: number, brand?: number): Promise<boolean> => {
+    const loadAll = async (offset: number, limit: number, subject?: number, brand?: number)=> {
         const products = await api.getAll({ offset, limit, subject, brand })
         if (products.length > 0) {
+            productsMap.value.clear()
             for (const p of products) {
                 productsMap.value.set(p.id, p)
             }
         }
-
-        return true
+        return productsMap.value
     }
 
     const loadProduct = async (id: number): Promise<boolean> => {
@@ -31,7 +26,6 @@ export const useProductsStore = defineStore('cardsStore', () => {
         if (product.id) {
             productsMap.value.set(product.id, product)
         }
-
         return !!product.id
     }
 

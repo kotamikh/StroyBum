@@ -83,19 +83,19 @@
 </template>
 
 <script setup lang="ts">
-import { IProduct } from "~/types/Product";
 import { useProductsStore } from "~/store/products";
 import { VNodeRef } from "@vue/runtime-core";
 import { useRoute } from "#app";
 import { ref } from "vue";
 import { computed } from "@vue/reactivity";
+import { useProductsApi } from "~/api/products";
 
 const route = useRoute()
 const router = useRouter()
 const store = useProductsStore()
 
 const id = computed<number>(() => Number(route.params.id))
-const product = ref<IProduct>(store.getDefaultProduct())
+const product = ref(useProductsApi().getDefaultProduct())
 
 const result = await store.getProduct(id.value)
 
@@ -106,7 +106,7 @@ if (result.ok) {
 const countDiscount = computed(() => Math.ceil(product.value.price / (100 - product.value.discount) * 100))
 
 const currentImageIndex = ref<number>(0)
-const currentImage = computed<string>(() => product.value.images[currentImageIndex.value] || store.getDefaultImage())
+const currentImage = computed<string>(() => product.value.images[currentImageIndex.value] || useProductsApi().getDefaultImage())
 
 const setCurrentImage = (index: number) => {
   if (index < 0 || index >= product.value.images.length) return
@@ -253,7 +253,6 @@ const moveToDown = () => {
       .price-stock
         color: black
         display: flex
-
         flex-direction: column
 
         .price
