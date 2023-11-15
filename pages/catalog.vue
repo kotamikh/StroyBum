@@ -30,7 +30,7 @@ useCategoriesBrandsStore().loadAllSubjects()
   @media screen and (max-width: 750px)
     flex-direction: row
     max-height: max-content
-    justify-content: center
+    justify-content: space-evenly
 
     li
       width: 200px
@@ -46,7 +46,7 @@ useCategoriesBrandsStore().loadAllSubjects()
     gap: 10px
 
     li
-      width: 300px
+      width: 310px
 
   @media screen and (min-width: 750px)
     li

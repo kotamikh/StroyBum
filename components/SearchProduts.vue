@@ -33,7 +33,7 @@ const searchProducts = () => {
 
 <style scoped lang="sass">
 .search-block
-  gap: 10px
+  gap: 0.5rem
   display: flex
   align-items: center
 
@@ -50,7 +50,7 @@ const searchProducts = () => {
     border: 0
     outline: 0
     cursor: pointer
-    max-width: 150px
+    max-width: 135px
     color: var(--grey)
 
   .enter

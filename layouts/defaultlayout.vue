@@ -19,10 +19,20 @@
   box-sizing: border-box
 
   @media screen and (max-width: 1000px)
-    width: 95vw
+    width: 97vw
+
+  @media screen and (max-width: 849px)
+    display: flex
+    flex-direction: column
 
   .content
     display: flex
     padding-bottom: 70px
     flex-direction: column
+
+    @media screen and (max-width: 849px)
+      padding-bottom: 160px
+
+    @media screen and (max-width: 344px)
+      padding-bottom: 220px
 </style>
