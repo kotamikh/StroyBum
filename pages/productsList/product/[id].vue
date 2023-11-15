@@ -4,7 +4,7 @@
     <p>/</p>
     <a @click="router.push('/')">{{ }}</a>
   </div>
-  <div class="product-card">
+  <div :class="[{ favourite : isFavourite }, 'product-card']">
     <div class="main-information">
       <div class="product-images">
         <div class="gallery-wrapper">
@@ -38,7 +38,7 @@
       </div>
       <div class="product-information">
         <h1>{{ product.name }}
-          <button class="fav-btn">
+          <button class="fav-btn" @click="useProductsStore().toggleFavourite(product.id)">
             <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
               <path
                   d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82Zm-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"/>
@@ -94,6 +94,8 @@ const route = useRoute()
 const router = useRouter()
 const store = useProductsStore()
 
+
+
 const id = computed<number>(() => Number(route.params.id))
 const product = ref(useProductsApi().getDefaultProduct())
 
@@ -102,6 +104,10 @@ const result = await store.getProduct(id.value)
 if (result.ok) {
   product.value = result.data
 }
+
+const isFavourite = computed<boolean>(() => {
+  return store.isFavourite(product.value.id)
+})
 
 const countDiscount = computed(() => Math.ceil(product.value.price / (100 - product.value.discount) * 100))
 
@@ -233,22 +239,20 @@ const moveToDown = () => {
       h1
         margin-bottom: 0
         position: relative
-        color: var(--grey)
         font-size: calc((100vw - 320px) / (1280 - 320) * (30 - 20) + 20px)
 
-        .fav-btn
-          border: none
-          height: inherit
-          padding: 0 10px
-          position: absolute
-          background-color: transparent
+      .fav-btn
+       border: none
+       height: inherit
+       padding: 0 10px
+       position: absolute
+       background-color: transparent
 
-          .fav-mark
-            fill: var(--grey)
+      .fav-mark
+        fill: var(--grey)
 
-          &:hover
-            .fav-mark
-              fill: var(--yellow)
+        &:active
+          fill: var(--yellow)
 
       .price-stock
         color: black
@@ -327,4 +331,11 @@ const moveToDown = () => {
                 right: -600px
                 position: absolute
                 border-bottom: 1px dashed #888
+
+.product-card.favourite
+  .fav-btn > .fav-mark
+    fill: var(--yellow)
+
+    &:active
+      fill: var(--grey)
 </style>

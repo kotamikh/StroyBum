@@ -85,10 +85,9 @@ const isFavourite = computed<boolean>(() => {
   background-color: white
 
   &:not(.favourite)
-    .fav-btn
-      &:hover
-        .fav-mark
-          fill: var(--yellow)
+    .fav-mark
+      &:active
+        fill: var(--yellow)
 
   .img-holder
     width: 100%
@@ -184,8 +183,6 @@ const isFavourite = computed<boolean>(() => {
   .fav-btn > .fav-mark
     fill: var(--yellow)
 
-  .fav-btn
-    &:hover
-      .fav-mark
-        fill: var(--middle-grey)
+    &:active
+      fill: var(--middle-grey)
 </style>

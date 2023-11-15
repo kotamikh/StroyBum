@@ -43,13 +43,17 @@ const loadBrandProducts = (brand: number) => {
 <style scoped lang="sass">
 .filter-window
   top: 100%
-  width: 130%
+  left: 50%
+  transform: translate(-50%, 0%)
+  width: 155%
   display: flex
   z-index: 3
   padding: 20px
   position: absolute
   height: fit-content
-  background-color: #eeeeee
+  background-color: #F5F7FA
+  border-radius: 8px
+  border: 3px solid var(--yellow)
   flex-direction: column
 
 </style>
