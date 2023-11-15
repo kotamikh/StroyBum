@@ -13,7 +13,9 @@
         </svg>
         Фильтровать товары
       </button>
-      <the-filter v-model:show="showFilter"/>
+      <the-filter v-model:show="showFilter"
+                  @close-filter="showFilter = false"
+      />
     </div>
   </div>
   <div class="catalog">
