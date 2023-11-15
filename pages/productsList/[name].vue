@@ -56,7 +56,7 @@ const updatePage = (data: number) => {
   currentPage.value = data
 }
 
-const limit = 5
+const limit = 10
 const categoryId = useCategoriesBrandsStore().findCategoryId(name)
 
 const loadProducts = () => {
@@ -119,9 +119,13 @@ loadProducts()
 
 .catalog
   gap: 1rem
-  display: flex
+  display: grid
   flex-wrap: wrap
   margin-top: 50px
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+
+  @media screen and (max-width: 469px)
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr))
 
 .pages
   display: flex

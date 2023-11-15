@@ -75,14 +75,18 @@ const isFavourite = computed<boolean>(() => {
 .product-card
   gap: 10px
   display: flex
+  justify-self: center
   flex-direction: column
 
-  width: 235px
   height: 380px
   cursor: pointer
+  max-width: 235px
   position: relative
   border-radius: 15px
   background-color: white
+
+  @media screen and (max-width: 425px)
+    gap: 5px
 
   &:not(.favourite)
     .fav-mark
@@ -135,9 +139,10 @@ const isFavourite = computed<boolean>(() => {
         fill: var(--middle-grey)
 
   .price-stock
-    gap: 10px
     display: flex
+    flex-wrap: wrap
     align-items: end
+    column-gap: 10px
 
     .price
       gap: 10px
@@ -158,8 +163,8 @@ const isFavourite = computed<boolean>(() => {
       border-bottom: 0.07em solid
 
     .stock
-      font-size: 0.85rem
       font-weight: lighter
+      font-size: calc((100vw - 320px) / (1280 - 320) * (14 - 12) + 12px)
 
   .product-name
     overflow: hidden
@@ -167,6 +172,7 @@ const isFavourite = computed<boolean>(() => {
     display: -webkit-box
     -webkit-line-clamp: 2
     -webkit-box-orient: vertical
+    font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
 
   .cart-btn
     border: none
@@ -178,6 +184,10 @@ const isFavourite = computed<boolean>(() => {
     width: fit-content
     border-radius: 12px
     background-color: var(--yellow)
+
+    @media screen and (max-width: 425px)
+      width: 90%
+      margin: auto
 
 .product-card.favourite
   .fav-btn > .fav-mark
