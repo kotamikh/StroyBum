@@ -30,13 +30,6 @@
                   :category="product.subject"
     />
   </div>
-<!--  <div class="pages">-->
-<!--    <the-pagination v-model="currentPage"-->
-<!--                    :total-pages="10"-->
-<!--                    :page="currentPage"-->
-<!--                    @update:current-page="updatePage"-->
-<!--    />-->
-<!--  </div>-->
 </template>
 
 <script setup lang="ts">
@@ -147,16 +140,11 @@ function throttle(fn: Function, timeout: number) {
         background-color: #E3DD5F
 
 .catalog
-  gap: 1rem
   display: grid
-  flex-wrap: wrap
+  grid-gap: 1rem
   margin-top: 50px
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
 
   @media screen and (max-width: 469px)
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr))
-
-.pages
-  display: flex
-  margin: 30px auto
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr))
 </style>
