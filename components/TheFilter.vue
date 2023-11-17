@@ -57,7 +57,6 @@ const subject = useCategoriesBrandsStore().findCategoryId(name)
 
 // const brands = await useCategoriesBrandsStore().loadAllBrands()
 const brands = await useCategoriesBrandsStore().getBrandsBySubject(subject)
-console.log(brands)
 const currentBrand = ref(0)
 
 const loadBrandProducts = (brand: number) => {

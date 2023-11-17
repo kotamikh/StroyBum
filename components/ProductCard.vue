@@ -75,17 +75,15 @@ const isFavourite = computed<boolean>(() => {
 .product-card
   gap: 10px
   display: flex
-  justify-self: center
   flex-direction: column
 
   height: 380px
   cursor: pointer
   max-width: 235px
-  position: relative
   border-radius: 15px
   background-color: white
 
-  @media screen and (max-width: 425px)
+  @media screen and (max-width: 469px)
     gap: 5px
 
   &:not(.favourite)
@@ -144,6 +142,10 @@ const isFavourite = computed<boolean>(() => {
     align-items: end
     column-gap: 10px
 
+    @media screen and (max-width: 469px)
+      flex-direction: column
+      align-items: flex-start
+
     .price
       gap: 10px
       display: flex
@@ -185,9 +187,9 @@ const isFavourite = computed<boolean>(() => {
     border-radius: 12px
     background-color: var(--yellow)
 
-    @media screen and (max-width: 425px)
+    @media screen and (max-width: 469px)
       width: 90%
-      margin: auto
+      margin: auto auto 0
 
 .product-card.favourite
   .fav-btn > .fav-mark

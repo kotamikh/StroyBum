@@ -55,10 +55,8 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
     const getBrandsBySubject = async (subject_id: number): Promise<IBrand[]> => {
         const brandIds = await api.getBrandsBySubject(subject_id)
         if (brandIds.length > 0) {
-            console.log(brandIds)
             let brands: IBrand[] = []
             for (let b of brandIds) {
-                console.log(b)
                brands.push(await getBrand(b))
             }
             brandsBySubject.value = brands

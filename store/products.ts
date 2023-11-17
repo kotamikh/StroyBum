@@ -38,8 +38,12 @@ export const useProductsStore = defineStore('cardsStore', () => {
                 return { ok: false }
             }
         }
-
         return { ok: true, data: p }
+    }
+
+    const countProductNumber = async (offset: number, limit: number, subject?: number, brand?: number)=> {
+        const products = await api.getAll({ offset, limit, subject, brand })
+        return products.length
     }
 
     const toggleFavourite = (id: number) => {
@@ -58,6 +62,7 @@ export const useProductsStore = defineStore('cardsStore', () => {
         productsMap,
         loadAll,
         getProduct,
+        countProductNumber,
         toggleFavourite,
         isFavourite,
         favourites,

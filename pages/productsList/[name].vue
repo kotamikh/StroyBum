@@ -30,13 +30,13 @@
                   :category="product.subject"
     />
   </div>
-  <div class="pages">
-    <the-pagination v-model="currentPage"
-                    :total-pages="10"
-                    :page="currentPage"
-                    @update:current-page="updatePage"
-    />
-  </div>
+<!--  <div class="pages">-->
+<!--    <the-pagination v-model="currentPage"-->
+<!--                    :total-pages="10"-->
+<!--                    :page="currentPage"-->
+<!--                    @update:current-page="updatePage"-->
+<!--    />-->
+<!--  </div>-->
 </template>
 
 <script setup lang="ts">
@@ -51,26 +51,55 @@ const router = useRouter()
 const showFilter = ref(false)
 const name = route.params.name.toString()
 
-const currentPage = ref(1)
-const updatePage = (data: number) => {
-  currentPage.value = data
-}
-
-const limit = 10
+const limit = ref<number>(6)
 const categoryId = useCategoriesBrandsStore().findCategoryId(name)
+const productNumber = await useProductsStore().countProductNumber(0, 250, categoryId)
+console.log(productNumber)
 
-const loadProducts = () => {
-  useProductsStore().loadAll((currentPage.value - 1) * limit, limit, categoryId)
-  // if (currentBrand.value) {
-  //   useProductsStore().loadAll((currentPage.value - 1) * limit, limit, categoryId, currentBrand.value)
-  // } else {
-  //
-  // }
+await useProductsStore().loadAll(0, limit.value, categoryId)
+
+async function checkPosition() {
+  const height = document.body.offsetHeight
+  const screenHeight = window.innerHeight
+
+  const scrolled = window.scrollY
+
+  const threshold = height - screenHeight / 5
+
+  const position = scrolled + screenHeight
+
+  if (position >= threshold) {
+    console.log(limit.value, productNumber)
+    if (limit.value < productNumber) {
+      limit.value += 6
+      console.log(limit.value, categoryId)
+      await useProductsStore().loadAll(0, limit.value, categoryId)
+    }
+   else {
+      window.removeEventListener('scroll', throttle(checkPosition, 250))
+      window.removeEventListener('resize', throttle(checkPosition, 250))
+    }
+  }
 }
 
-watch(currentPage, loadProducts, {immediate: true})
+(function () {
+  window.addEventListener('scroll', throttle(checkPosition, 250))
+  window.addEventListener('resize', throttle(checkPosition, 250))
+}())
 
-loadProducts()
+function throttle(fn: Function, timeout: number) {
+  let timer: ReturnType<typeof setTimeout> | number = 0
+
+  return function perform(...args: Parameters<any>) {
+    if (timer) return
+
+    timer = setTimeout(() => {
+      fn(...args)
+      clearTimeout(timer)
+      timer = 0
+    }, timeout)
+  }
+}
 </script>
 
 
