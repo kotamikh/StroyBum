@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="catalog">
-    <product-card v-for="[id, product] in useProductsStore().productsMap"
+    <product-card v-for="[id, product] in products"
                   :key="id"
                   :id="id"
                   :name="product.name"
@@ -43,13 +43,13 @@ const route = useRoute()
 const router = useRouter()
 const showFilter = ref(false)
 const name = route.params.name.toString()
+console.log(name)
 
 const limit = ref<number>(6)
 const categoryId = useCategoriesBrandsStore().findCategoryId(name)
 const productNumber = await useProductsStore().countProductNumber(0, 250, categoryId)
-console.log(productNumber)
 
-await useProductsStore().loadAll(0, limit.value, categoryId)
+const products = await useProductsStore().loadAll(0, limit.value, categoryId)
 
 async function checkPosition() {
   const height = document.body.offsetHeight
@@ -75,7 +75,7 @@ async function checkPosition() {
   }
 }
 
-(function () {
+(async function () {
   window.addEventListener('scroll', throttle(checkPosition, 250))
   window.addEventListener('resize', throttle(checkPosition, 250))
 }())
