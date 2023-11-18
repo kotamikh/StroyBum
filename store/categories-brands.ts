@@ -48,7 +48,6 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
     }
 
     const getBrand = async (brandId: number): Promise<IBrand> => {
-        await loadAllBrands()
         return allBrands.value.find(b => b.id === brandId)!
     }
 

@@ -16,7 +16,6 @@
 import { useCategoriesBrandsStore } from "~/store/categories-brands";
 
 const router = useRouter()
-useCategoriesBrandsStore().loadAllSubjects()
 </script>
 
 <style scoped lang="sass">
