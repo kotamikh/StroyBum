@@ -6,7 +6,9 @@
   </div>
   <div :class="[{ favourite : isFavourite }, 'product-card']">
     <div class="main-information">
-        <div class="gallery-wrapper">
+        <div class="gallery-wrapper"
+             ref="galleryWrapper"
+        >
           <button v-if="product.images.length > 3" :class="[{ active : isUpButtonActive },  'up-button']"
                   @click="moveToTop">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -20,7 +22,7 @@
               <img v-for="(img, index) in product.images"
                    :key="index"
                    :src="img"
-                   :ref="image"
+                   ref="image"
                    :alt="product.name"
                    :class="{ current : isCurrent(index) }"
                    @click="setCurrentImage(index)"/>
@@ -89,12 +91,11 @@ import { useRoute } from "#app";
 import { ref } from "vue";
 import { computed } from "@vue/reactivity";
 import { useProductsApi } from "~/api/products";
+import { useElementSize } from "@vueuse/core";
 
 const route = useRoute()
 const router = useRouter()
 const store = useProductsStore()
-
-
 
 const id = computed<number>(() => Number(route.params.id))
 const product = ref(useProductsApi().getDefaultProduct())
@@ -125,8 +126,14 @@ const isCurrent = (index: number) => {
 
 const track: VNodeRef = ref<VNodeRef | undefined>()
 const trackTranslate = ref(0)
-const image = ref<VNodeRef | undefined>()
-const translateLimit = -(product.value.images.length - 3) * image
+const image = ref<VNodeRef | null>(null)
+const galleryWrapper = ref<VNodeRef | null>(null)
+// const { width: imageWidth, height: imageHeight } = useElementSize(image)
+// const { width: galleryWidth, height: galleryHeight } = useElementSize(galleryWrapper)
+if (image.value && galleryWrapper.value) {
+  const translateLimit = image.value.$el.clientHeight * product.value.images.length - galleryWrapper.value.$el.clientHeight
+  console.log(translateLimit)
+}
 
 const isUpButtonActive = computed(() => {
   return trackTranslate.value !== 0
@@ -137,14 +144,14 @@ const isDownButtonActive = computed(() => {
 
 const moveToTop = () => {
   if (trackTranslate.value < 0) {
-    trackTranslate.value += 145
+    trackTranslate.value += imageHeight.value
     track.value.style.transform = `translateY(${ trackTranslate.value }px)`
   }
 }
 
 const moveToDown = () => {
   if (trackTranslate.value > translateLimit) {
-    trackTranslate.value -= 145
+    trackTranslate.value -= imageHeight.value
     track.value.style.transform = `translateY(${ trackTranslate.value }px)`
   }
 }
