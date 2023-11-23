@@ -1,7 +1,6 @@
 <template>
   <Head>
     <Title>СтройБум | Сайдинг Киров</Title>
-    <Meta name="general page" content="this is the main page"/>
   </Head>
   <div class="main-page">
     <div class="banner">

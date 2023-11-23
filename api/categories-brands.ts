@@ -1,16 +1,14 @@
 import { useHttpGet } from "~/api/base";
 import { IBrand, ICategory } from "~/types/categoriesBrands";
 
-const BASE_URL = "http://localhost:8000"
-
 export type brandsBySubject = {
    category: string
 }
 
 const ROUTES = {
-    subjects: BASE_URL + "/api/v1/subjects",
-    brands: BASE_URL + "/api/v1/brands",
-    brandsbysubject: BASE_URL + '/api/v1/brands-by-subject'
+    subjects: "/api/v1/subjects",
+    brands: "/api/v1/brands",
+    brandsbysubject: '/api/v1/brands-by-subject'
 }
 
 const getAllSubjects = async (): Promise<ICategory[]>  => {

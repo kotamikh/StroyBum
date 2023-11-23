@@ -43,6 +43,23 @@
             </svg>
             <p>Избранное</p>
           </router-link>
+          <router-link to="/basket"
+                       class="nav-icon"
+                       :class="{ current : isCurrent('basket') }">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
+              <path fill="#808080"
+                    d="M96 216a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm88-16a16 16 0 1 0 16 16a16 16 0 0 0-16-16Zm47.65-125.65l-28.53 92.71A23.89 23.89 0 0 1 180.18 184H84.07A24.11 24.11 0 0 1 61 166.59L24.82 40H8a8 8 0 0 1 0-16h16.82a16.08 16.08 0 0 1 15.39 11.6L48.32 64H224a8 8 0 0 1 7.65 10.35ZM213.17 80H52.89l23.49 82.2a8 8 0 0 0 7.69 5.8h96.11a8 8 0 0 0 7.65-5.65Z"/>
+            </svg>
+            <p>Корзина</p>
+          </router-link>
+          <router-link to="/admin-page"
+                       class="nav-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
+              <path fill="#808080"
+                    d="M230.92 212c-15.23-26.33-38.7-45.21-66.09-54.16a72 72 0 1 0-73.66 0c-27.39 8.94-50.86 27.82-66.09 54.16a8 8 0 1 0 13.85 8c18.84-32.56 52.14-52 89.07-52s70.23 19.44 89.07 52a8 8 0 1 0 13.85-8ZM72 96a56 56 0 1 1 56 56a56.06 56.06 0 0 1-56-56Z"/>
+            </svg>
+            <p>Войти</p>
+          </router-link>
         </div>
       </div>
     </div>
@@ -96,7 +113,7 @@ watch(() => route.name, () => {
       align-self: center
 
       .header
-        color: #9B9B9B
+        color: #9E9E9E
         margin-right: 40px
         font-family: 'Russo One', sans-serif
         font-size: calc((100vw - 320px) / (1280 - 320) * (34 - 30) + 30px)
@@ -104,6 +121,7 @@ watch(() => route.name, () => {
         span
           color: var(--yellow)
           font-family: 'Russo One', sans-serif
+          text-shadow: 1px 0 #9B9B9B, -1px 0 #9B9B9B, 0 1px #9B9B9B, 0 -1px #9B9B9B, 1px 1px #9B9B9B, -1px -1px #9B9B9B, 1px -1px #9B9B9B, -1px 1px #9B9B9B
 
     .nav-menu
       width: 100%
@@ -127,7 +145,6 @@ watch(() => route.name, () => {
           height: 45px
           position: fixed
           background-color: white
-          justify-content: space-evenly
 
           a.nav-icon
             &:not(:last-of-type)
@@ -165,20 +182,30 @@ watch(() => route.name, () => {
           &:hover
             svg > path,
             p
-              color: var(--grey)
               fill: var(--grey)
+              color: var(--grey)
 
           &:focus,
           .current
             svg > path,
             p
-              color: var(--yellow)
-              fill: var(--yellow)
+              fill: var(--grey)
+              color: var(--grey)
+              text-decoration: underline
+              text-underline-position: under
+              text-decoration-thickness: 2px
+              text-decoration-color: var(--yellow)
 
       .nav-menu-left
         gap: 20px
 
       .nav-menu-right
+        @media screen and (max-width: 849px)
+          .nav-icon
+            width: 20%
+          .current
+            background-color: rgba(255, 241, 118, 0.8)
+
         .extra-links
           display: none
 
