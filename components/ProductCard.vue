@@ -73,7 +73,7 @@ const isFavourite = computed<boolean>(() => {
   display: flex
   flex-direction: column
 
-  height: 380px
+  height: 360px
   cursor: pointer
   max-width: 235px
   border-radius: 15px
@@ -81,6 +81,7 @@ const isFavourite = computed<boolean>(() => {
 
   @media screen and (max-width: 469px)
     gap: 5px
+    height: 320px
 
   &:not(.favourite)
     .fav-mark
@@ -93,8 +94,11 @@ const isFavourite = computed<boolean>(() => {
   .img-holder
     width: 100%
     display: flex
-    min-height: 235px
+    height: 60%
     position: relative
+
+    @media screen and (max-width: 469px)
+      height: 50%
 
     img
       width: 75%
@@ -188,7 +192,7 @@ const isFavourite = computed<boolean>(() => {
 
     @media screen and (max-width: 469px)
       width: 90%
-      margin: auto auto 0
+      margin: auto
 
 .product-card.favourite
   .fav-btn > .fav-mark

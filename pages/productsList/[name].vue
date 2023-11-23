@@ -141,10 +141,19 @@ function throttle(fn: Function, timeout: number) {
 
 .catalog
   display: grid
-  grid-gap: 1rem
   margin-top: 50px
+  grid-row-gap: 2rem
+  grid-column-gap: 1rem
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
 
-  @media screen and (max-width: 469px)
+  @media screen and (max-width: 687px)
+    grid-row-gap: 1rem
+    grid-column-gap: 8px
+
+  @media screen and (max-width: 651px)
+    grid-column-gap: 15px
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr))
+
+  @media screen and (max-width: 459px)
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr))
 </style>
