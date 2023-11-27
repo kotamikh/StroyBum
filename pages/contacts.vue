@@ -86,12 +86,19 @@
       padding: 4px 10px
       border-radius: 5px
       width: max-content
+      transition: all 0.2s ease-in-out
       background-color: var(--yellow)
+
+      &:hover
+        -webkit-box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
+        -moz-box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
+        box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
 
     .vk
       a
         gap: 5px
         display: flex
+        width: fit-content
         align-items: center
 
         &:hover,

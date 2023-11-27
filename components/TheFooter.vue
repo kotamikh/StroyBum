@@ -71,6 +71,12 @@ export default {
       display: flex
       align-items: center
 
+      &:hover
+        text-decoration: underline
+        text-decoration-thickness: 2px
+        text-underline-position: under
+        text-decoration-color: var(--yellow)
+
     span
       font-weight: bolder
 
