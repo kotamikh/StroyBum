@@ -20,6 +20,8 @@ import { IProduct } from "~/types/Product";
 
 const store = useProductsStore()
 
+store.getFavourites()
+
 const favouriteProducts = computed<IProduct[]>(() => {
   const result: IProduct[] = []
 
@@ -29,7 +31,6 @@ const favouriteProducts = computed<IProduct[]>(() => {
       result.push(product)
     }
   }
-
   return result
 })
 </script>

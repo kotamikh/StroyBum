@@ -55,6 +55,17 @@ export const useProductsStore = defineStore('cardsStore', () => {
         }
     }
 
+    const getFavourites = async () => {
+      await loadAll(0, 100).then((res) => {
+          for (let r of res) {
+              if (isFavourite(r[0])) {
+                  favourites.value.add(r[0])
+              }
+          }
+      })
+      return favourites.value
+    }
+
     const isFavourite = (id: number): boolean => {
         return favourites.value.has(id)
     }
@@ -65,6 +76,7 @@ export const useProductsStore = defineStore('cardsStore', () => {
         getProduct,
         countProductNumber,
         toggleFavourite,
+        getFavourites,
         isFavourite,
         favourites,
     }
