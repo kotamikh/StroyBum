@@ -53,8 +53,8 @@ const countDiscount = computed(() => Math.ceil(props.price / (100 - props.discou
 
 const router = useRouter()
 const goToProductPage = () => {
-  router.push({
-    path: "product/" + props.id,
+  router.replace({
+    path: "product/" + props.id
   })
 }
 

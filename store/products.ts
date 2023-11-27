@@ -30,6 +30,7 @@ export const useProductsStore = defineStore('cardsStore', () => {
     }
 
     const getProduct = async (id: number): Promise<ReturnWithStatus<IProduct>> => {
+        await loadAll(0, 100)
         let p = productsMap.value.get(id)
         if (!p) {
             await loadProduct(id)

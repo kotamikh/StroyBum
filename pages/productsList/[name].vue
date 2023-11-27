@@ -43,7 +43,6 @@ const route = useRoute()
 const router = useRouter()
 const showFilter = ref(false)
 const name = route.params.name.toString()
-console.log(name)
 
 const limit = ref<number>(6)
 const categoryId = useCategoriesBrandsStore().findCategoryId(name)
@@ -56,9 +55,7 @@ async function checkPosition() {
   const screenHeight = window.innerHeight
 
   const scrolled = window.scrollY
-
   const threshold = height - screenHeight / 5
-
   const position = scrolled + screenHeight
 
   if (position >= threshold) {
@@ -141,7 +138,7 @@ function throttle(fn: Function, timeout: number) {
 
 .catalog
   display: grid
-  margin-top: 50px
+  margin-top: 70px
   grid-row-gap: 2rem
   grid-column-gap: 1rem
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
