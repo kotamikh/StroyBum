@@ -105,9 +105,11 @@ watch(() => route.name, () => {
     flex-direction: row
     justify-content: space-between
 
+  @media screen and (max-width: 399px)
+    flex-direction: column
+
   .line-1
     display: flex
-    margin-bottom: 5px
 
     a
       align-self: center
@@ -117,6 +119,9 @@ watch(() => route.name, () => {
         margin-right: 40px
         font-family: 'Russo One', sans-serif
         font-size: calc((100vw - 320px) / (1280 - 320) * (34 - 30) + 30px)
+
+        @media screen and (max-width: 849px)
+          margin-right: 20px
 
         span
           color: var(--yellow)
@@ -211,4 +216,7 @@ watch(() => route.name, () => {
 
           @media screen and (max-width: 849px)
             display: contents
+
+  .line-2
+    margin-bottom: 20px
 </style>

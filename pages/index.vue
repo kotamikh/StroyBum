@@ -8,15 +8,15 @@
     </div>
     <ul class="advantages">
       <li>
-        <img src="@/assets/main-page-images/утп-склад.png" alt="удобство"/>
+        <img src="@/assets/main-page-images/склад.png" alt="удобство"/>
         <p>Удобное расположение офиса и склада</p>
       </li>
       <li>
-        <img src="@/assets/main-page-images/утп-качество.png" alt="качество"/>
+        <img src="@/assets/main-page-images/качество.png" alt="качество"/>
         <p>Работаем напрямую с производителем</p>
       </li>
       <li>
-        <img src="@/assets/main-page-images/утп-выбор.png" alt="ассортимент"/>
+        <img src="@/assets/main-page-images/выбор.png" alt="ассортимент"/>
         <p>Широкий выбор <br> Низкие цены</p>
       </li>
     </ul>
