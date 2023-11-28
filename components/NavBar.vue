@@ -78,14 +78,14 @@ const links = {
   'Контакты': 'contacts'
 }
 
-const currentLink = ref(null)
+const currentLink = ref('')
 
 const isCurrent = (link) => {
+  console.log(link === currentLink.value)
   return link === currentLink.value
 }
 
 const route = useRoute()
-const router = useRouter()
 
 watch(() => route.name, () => {
   currentLink.value = route.name
@@ -163,13 +163,19 @@ watch(() => route.name, () => {
         p
           font-size: calc((100vw - 320px) / (1280 - 320) * (15 - 12) + 12px)
 
-        li
+        a
           &:hover
-            a
+            color: var(--grey)
+            p,
+            svg > path
+              fill: var(--grey)
               color: var(--grey)
 
         .current
-          a
+          a,
+          p,
+          svg > path
+            fill: var(--grey)
             color: var(--grey)
             text-decoration: underline
             text-underline-position: under
@@ -183,23 +189,6 @@ watch(() => route.name, () => {
 
           &:not(:last-of-type)
             margin-right: 25px
-
-          &:hover
-            svg > path,
-            p
-              fill: var(--grey)
-              color: var(--grey)
-
-          &:focus,
-          .current
-            svg > path,
-            p
-              fill: var(--grey)
-              color: var(--grey)
-              text-decoration: underline
-              text-underline-position: under
-              text-decoration-thickness: 2px
-              text-decoration-color: var(--yellow)
 
       .nav-menu-left
         gap: 20px

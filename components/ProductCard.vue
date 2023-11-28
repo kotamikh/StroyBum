@@ -20,7 +20,7 @@
         }}</p>
     </div>
     <p class="product-name">{{ name }}</p>
-    <button class="cart-btn">В корзину</button>
+    <button class="cart-btn" @click.stop="store.addToCart(props.id)">В корзину</button>
   </div>
 </template>
 
@@ -46,7 +46,7 @@ const props = withDefaults(defineProps<Props>(), {
   price: 0,
   stock: StockType.OnOrder,
   discount: 0
-});
+})
 
 const mainImage = computed(() => props.images.length === 0 ? defaultImg : props.images[0])
 const countDiscount = computed(() => Math.ceil(props.price / (100 - props.discount) * 100))
@@ -93,8 +93,8 @@ const isFavourite = computed<boolean>(() => {
 
   .img-holder
     width: 100%
-    display: flex
     height: 60%
+    display: flex
     position: relative
 
     @media screen and (max-width: 469px)

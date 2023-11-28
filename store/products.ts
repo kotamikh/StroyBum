@@ -9,6 +9,8 @@ export const useProductsStore = defineStore('cardsStore', () => {
     const productsMap: Ref<Map<number, IProduct>> = ref(new Map<number, IProduct>())
     const api = useProductsApi()
     const favourites = useLocalStorage<Set<number>>("favourites", new Set<number>())
+    const cart = useLocalStorage<Set<number>>("cart", new Set<number>())
+    const cartQuantity = useLocalStorage<Map<number, number>>("cartQuantity", new Map<number, number>())
 
     const loadAll = async (offset: number, limit: number, subject?: number, brand?: number)=> {
         const products = await api.getAll({ offset, limit, subject, brand })
@@ -70,6 +72,33 @@ export const useProductsStore = defineStore('cardsStore', () => {
         return favourites.value.has(id)
     }
 
+    const addToCart = (id: number) => {
+        cart.value.add(id)
+        cartQuantity.value.set(id, 1)
+        console.log(cart.value)
+    }
+
+    const getCart = async () => {
+        await loadAll(0, 100).then((res) => {
+            for (let r of res) {
+                if (isInCart(r[0])) {
+                    cart.value.add(r[0])
+                }
+            }
+        })
+        return cart.value
+    }
+
+    const deleteFromCart = async (id: number) => {
+        cart.value.delete(id)
+        cartQuantity.value.delete(id)
+        console.log(cart.value)
+    }
+
+    const isInCart = (id: number): boolean => {
+        return cart.value.has(id)
+    }
+
     return {
         productsMap,
         loadAll,
@@ -78,6 +107,12 @@ export const useProductsStore = defineStore('cardsStore', () => {
         toggleFavourite,
         getFavourites,
         isFavourite,
+        addToCart,
+        getCart,
+        isInCart,
+        deleteFromCart,
         favourites,
+        cart,
+        cartQuantity
     }
 })
