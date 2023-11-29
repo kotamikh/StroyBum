@@ -69,13 +69,7 @@
             </div>
             <p class="stock">{{ product.stock === 1 ? 'В наличии' : 'Под заказ' }}</p>
           </div>
-          <button class="cart-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-              <path fill="#555555"
-                    d="M96 216a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm88-16a16 16 0 1 0 16 16a16 16 0 0 0-16-16Zm47.65-125.65l-28.53 92.71A23.89 23.89 0 0 1 180.18 184H84.07A24.11 24.11 0 0 1 61 166.59L24.82 40H8a8 8 0 0 1 0-16h16.82a16.08 16.08 0 0 1 15.39 11.6L48.32 64H224a8 8 0 0 1 7.65 10.35ZM213.17 80H52.89l23.49 82.2a8 8 0 0 0 7.69 5.8h96.11a8 8 0 0 0 7.65-5.65Z"/>
-            </svg>
-            В корзину
-          </button>
+          <cart-button :id="product.id" class="cart-btn" />
         </div>
       </div>
     </div>
@@ -145,7 +139,7 @@ const imageHeight = computed(() => track.value.clientHeight / product.value.imag
 const trackTranslate = ref(0)
 const translateLimit = ref(0)
 
-onMounted(() =>  translateLimit.value = track.value.clientHeight - galleryWrapper.value.clientHeight)
+onMounted(() => translateLimit.value = track.value.clientHeight - galleryWrapper.value.clientHeight)
 
 const isUpButtonActive = computed(() => {
   return trackTranslate.value > 0
@@ -320,7 +314,7 @@ const moveToDown = () => {
     .product-information
       gap: 5%
       display: flex
-      margin: 0 8%
+      margin-left: 8%
       flex-direction: column
       justify-content: center
 
@@ -369,6 +363,14 @@ const moveToDown = () => {
           align-items: center
           justify-content: space-between
 
+        .cart-btn
+          padding: 2% 5%
+          width: fit-content
+          font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+
+          @media screen and (max-width: 469px)
+            margin: 0
+
       .price-stock
         color: black
         display: flex
@@ -395,23 +397,6 @@ const moveToDown = () => {
 
         .stock
           font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
-
-      .cart-btn
-        gap: 8px
-        border: none
-        display: flex
-        cursor: pointer
-        padding: 5px 1rem
-        width: fit-content
-        height: fit-content
-        color: var(--grey)
-        align-items: center
-        border-radius: 12px
-        background-color: var(--yellow)
-        font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 14) + 14px)
-
-        svg
-          width: calc((100vw - 320px) / (1280 - 320) * (28 - 22) + 22px)
 
   .additional-information
     gap: 30px

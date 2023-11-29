@@ -3,7 +3,10 @@
        @click="goToProductPage">
     <div class="img-holder">
       <button class="fav-btn" @click.stop="store.toggleFavourite(props.id)">
-        <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path d="M240 98a57.63 57.63 0 0 1-17 41l-89.3 90.62a8 8 0 0 1-11.4 0L33 139a58 58 0 0 1 82-82.1l13 12.15l13.09-12.19A58 58 0 0 1 240 98Z"/></svg>
+        <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
+          <path
+              d="M240 98a57.63 57.63 0 0 1-17 41l-89.3 90.62a8 8 0 0 1-11.4 0L33 139a58 58 0 0 1 82-82.1l13 12.15l13.09-12.19A58 58 0 0 1 240 98Z"/>
+        </svg>
       </button>
       <div class="discount-mark" v-if="discount !== 0">- {{ discount }}%</div>
       <img :src="mainImage" class="product-img" alt="product-img"/>
@@ -20,7 +23,9 @@
         }}</p>
     </div>
     <p class="product-name">{{ name }}</p>
-    <cart-button :id="props.id"/>
+    <div class="cart">
+      <cart-button :id="props.id"/>
+    </div>
   </div>
 </template>
 
@@ -179,6 +184,14 @@ const isFavourite = computed<boolean>(() => {
     -webkit-line-clamp: 2
     -webkit-box-orient: vertical
     font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
+
+  .cart
+    margin-top: auto
+    margin-left: auto
+
+    @media screen and (max-width: 469px)
+      width: 90%
+      margin: auto
 
 .product-card.favourite
   .fav-btn > .fav-mark
