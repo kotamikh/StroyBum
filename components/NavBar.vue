@@ -147,7 +147,7 @@ watch(() => route.name, () => {
           margin: 0
           z-index: 3
           width: 100%
-          height: 45px
+          height: 50px
           position: fixed
           background-color: white
 
@@ -164,6 +164,7 @@ watch(() => route.name, () => {
           font-size: calc((100vw - 320px) / (1280 - 320) * (15 - 12) + 12px)
 
         a
+          padding-top: 5px
           &:hover
             color: var(--grey)
             p,

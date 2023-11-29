@@ -1,9 +1,11 @@
 <template>
   <div class="cart-product">
-    <div class="img-holder">
-      <img :src="mainImage" class="product-img" alt="product-img"/>
+    <div class="image-name">
+      <div class="img-holder">
+        <img :src="mainImage" class="product-img" alt="product-img"/>
+      </div>
+      <p class="product-name">{{ name }}</p>
     </div>
-    <p class="product-name">{{ name }}</p>
     <div class="price-quantity">
       <div class="price">
         <p>Цена:</p>
@@ -24,7 +26,7 @@
     <button class="delete-btn" @click="store.deleteFromCart(id)">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
         <path
-            d="M216 48h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a8 8 0 0 0 0 16h8v144a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16V64h8a8 8 0 0 0 0-16ZM96 40a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm96 168H64V64h128Zm-80-104v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Zm48 0v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Z"/>
+            fill="#808080" d="M216 48h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a8 8 0 0 0 0 16h8v144a16 16 0 0 0 16 16h128a16 16 0 0 0 16-16V64h8a8 8 0 0 0 0-16ZM96 40a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm96 168H64V64h128Zm-80-104v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Zm48 0v64a8 8 0 0 1-16 0v-64a8 8 0 0 1 16 0Z"/>
       </svg>
     </button>
   </div>
@@ -76,28 +78,66 @@ const addProduct = (id: number) => {
 <style scoped lang="sass">
 .cart-product
   width: 100%
-  display: flex
+  display: grid
   height: 150px
   align-items: center
   border-radius: 15px
-  justify-content: space-between
+  justify-items: center
+  grid-template-columns: 2fr 3fr 3fr 1fr
   background-color: rgba(0, 48, 120, 0.04)
 
-  .img-holder
-    height: 90%
-    width: 20%
+  @media screen and (max-width: 559px)
+    grid-template-columns: 2fr 1.5fr 0.5fr
+
+  @media screen and (max-width: 459px)
+    height: 230px
     display: flex
-    padding: 0 5%
+    position: relative
+    flex-direction: column
+    justify-content: space-evenly
+
+  .image-name
+    height: inherit
+    display: contents
+    text-align: center
+
+    @media screen and (max-width: 559px)
+      display: flex
+      align-items: center
+      flex-direction: column
+      justify-content: center
+
+    @media screen and (max-width: 459px)
+      height: 60%
+
+  .img-holder
+    width: 80%
+    height: 85%
+    display: flex
+    overflow: hidden
     align-items: center
     justify-content: center
 
+    @media screen and (max-width: 559px)
+      height: 60%
+
+    @media screen and (max-width: 459px)
+      height: 70%
+
     .product-img
-      height: inherit
+      height: 100%
+      min-width: 110px
+      object-fit: contain
 
   .price-quantity
     gap: 5px
     display: flex
     flex-direction: column
+
+    @media screen and (max-width: 459px)
+      gap: 40px
+      flex-direction: row
+      align-items: center
 
   .price
     gap: 10px
@@ -119,9 +159,10 @@ const addProduct = (id: number) => {
 
   .quantity
     .quantity-changing
+      width: 115px
+      padding: 8px
       display: flex
       margin-top: 5px
-      padding: 8px
       background-color: white
       justify-content: space-between
 
@@ -136,10 +177,26 @@ const addProduct = (id: number) => {
 
   .delete-btn
     height: 100%
+    width: 100%
     border: none
     display: flex
-    padding: 0 3%
     align-items: center
+    justify-content: center
     background-color: transparent
     border-left: 2px solid rgba(128, 128, 128, 0.5)
+
+    &:hover
+      svg > path
+        fill: var(--grey)
+
+    @media screen and (max-width: 559px)
+      border: none
+
+    @media screen and (max-width: 459px)
+      top: 0
+      right: 0
+      padding: 10px
+      position: absolute
+      width: fit-content
+      height: fit-content
 </style>

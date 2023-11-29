@@ -20,17 +20,19 @@
       <p>Сумма заказа:</p>
       <p>{{ commonSum }} руб.</p>
     </div>
-    <form>
-      <label for="name">Ваше имя</label>
-      <input type="text" name="name" required/>
-      <label for="telephone">Номер телефона</label>
-      <input type="tel" name="telephone" required/>
-      <label for="city">Город доставки</label>
-      <input type="text" name="city" required/>
-    </form>
-    <div class="order-confirm">
-      <button>Подтвердить заказ</button>
-      <p class="order-info">После подтверждения заказа продавец перезвонит вам чтобы уточнить детали</p>
+    <div class="form-confirm">
+      <form>
+        <label for="name">Ваше имя</label>
+        <input type="text" name="name" required/>
+        <label for="telephone">Номер телефона</label>
+        <input type="tel" name="telephone" required/>
+        <label for="city">Город доставки</label>
+        <input type="text" name="city" required/>
+      </form>
+      <div class="order-confirm">
+        <button>Подтвердить заказ</button>
+        <p class="order-info">После подтверждения заказа продавец перезвонит вам чтобы уточнить детали</p>
+      </div>
     </div>
   </div>
 </template>
@@ -71,7 +73,7 @@ const commonSum = computed(() => {
   font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
 
 .cart-products
-  gap: 20px
+  gap: 10px
   display: flex
   flex-direction: column
 
@@ -89,6 +91,9 @@ h1
   flex-direction: column
   background-color: rgba(0, 48, 120, 0.04)
 
+  @media screen and (max-width: 559px)
+    margin-top: 20px
+
   .order-sum
     display: flex
     justify-content: space-between
@@ -96,38 +101,54 @@ h1
     p
       font-size: calc((100vw - 320px) / (1280 - 320) * (22 - 18) + 18px)
 
-  form
-    gap: 10px
-    width: 30%
+  .form-confirm
     display: flex
-    flex-direction: column
+    align-items: flex-end
 
-    input
-      border: none
-      height: 35px
+    @media screen and (max-width: 599px)
+      gap: 20px
+      align-items: center
+      flex-direction: column
 
-  .order-confirm
-    gap: 5px
-    width: 30%
-    display: flex
-    align-items: end
-    margin-left: auto
-    flex-direction: column
+    form
+      gap: 10px
+      width: 40%
+      display: flex
+      flex-direction: column
 
-    button
-      border: none
-      cursor: pointer
-      width: fit-content
-      padding: 10px 25px
-      border-radius: 8px
-      background-color: var(--yellow)
-      transition: all 0.2s ease-in-out
+      @media screen and (max-width: 599px)
+        width: 70%
 
-      &:hover
-        -webkit-box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
-        -moz-box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
-        box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
+      input
+        border: none
+        height: 35px
 
-    .order-info
-      text-align: end
+    .order-confirm
+      gap: 5px
+      width: 50%
+      display: flex
+      align-items: end
+      margin-left: auto
+      flex-direction: column
+
+      @media screen and (max-width: 599px)
+        width: 100%
+
+      button
+        border: none
+        cursor: pointer
+        width: fit-content
+        padding: 10px 25px
+        border-radius: 8px
+        background-color: var(--yellow)
+        transition: all 0.2s ease-in-out
+
+        &:hover
+          -webkit-box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
+          -moz-box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
+          box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
+
+      .order-info
+        text-align: end
+        font-size: 0.85rem
 </style>
