@@ -20,7 +20,7 @@
         }}</p>
     </div>
     <p class="product-name">{{ name }}</p>
-    <button class="cart-btn" @click.stop="store.addToCart(props.id)">В корзину</button>
+    <cart-button :id="props.id"/>
   </div>
 </template>
 
@@ -28,6 +28,7 @@
 import { IProduct, StockType } from "~/types/Product";
 import defaultImg from '@/assets/default-image.jpeg'
 import { useProductsStore } from "~/store/products";
+import CartButton from "~/components/CartButton.vue";
 
 export interface Props extends IProduct {
   id: number,
@@ -178,21 +179,6 @@ const isFavourite = computed<boolean>(() => {
     -webkit-line-clamp: 2
     -webkit-box-orient: vertical
     font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
-
-  .cart-btn
-    border: none
-    cursor: pointer
-    margin-left: auto
-    margin-top: auto
-    padding: 5px 20px
-    color: var(--grey)
-    width: fit-content
-    border-radius: 12px
-    background-color: var(--yellow)
-
-    @media screen and (max-width: 469px)
-      width: 90%
-      margin: auto
 
 .product-card.favourite
   .fav-btn > .fav-mark
