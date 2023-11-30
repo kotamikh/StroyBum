@@ -64,23 +64,25 @@ const commonSum = computed(() => {
     let product = cartProducts.value.find((product) => product.id === p)
     result += product?.price * id
   }
-  return result
+  if (result) {
+    return result
+  }
 })
 </script>
 
 <style scoped lang="sass">
-*
+*:not(h1)
   font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
-
-.cart-products
-  gap: 10px
-  display: flex
-  flex-direction: column
 
 h1
   gap: 10px
   display: flex
   align-items: center
+
+.cart-products
+  gap: 10px
+  display: flex
+  flex-direction: column
 
 .order-form
   gap: 20px
@@ -122,6 +124,14 @@ h1
       input
         border: none
         height: 35px
+        outline: none
+        transition: all 0.2s ease
+
+        &:hover,
+        &:focus
+          -webkit-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
+          -moz-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
+          box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
 
     .order-confirm
       gap: 5px

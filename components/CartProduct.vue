@@ -163,8 +163,15 @@ const addProduct = (id: number) => {
       padding: 8px
       display: flex
       margin-top: 5px
+      border-radius: 5px
       background-color: white
+      transition: all 0.2s ease
       justify-content: space-between
+
+      &:hover
+        -webkit-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
+        -moz-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
+        box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
 
     .quantity
       margin: 0 20px

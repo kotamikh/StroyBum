@@ -1,8 +1,10 @@
 <template>
-  <div class="bread-crumbs">
+  <div class="bread-crumbs" >
     <a @click="router.push('/catalog')">Каталог</a>
     <p>/</p>
-    <a @click="router.push('/')">{{ }}</a>
+    <a @click="router.push(`/catalog/productsList/${useCategoriesBrandsStore().findCategoryName(product.subject)}`)">{{ useCategoriesBrandsStore().findCategoryName(product.subject) }}</a>
+    <p>/</p>
+    <h1>{{ product.name }}</h1>
   </div>
   <div :class="[{ favourite : isFavourite }, 'product-card']">
     <div :class="[ product.images.length <= 1 ? 'two-cols' : '', 'main-information' ]">
@@ -97,10 +99,12 @@
 <script setup lang="ts">
 import { useProductsStore } from "~/store/products";
 import { VNodeRef } from "@vue/runtime-core";
-import { useRoute } from "#app";
+import { useRoute, useRouter } from "#app";
 import { ref } from "vue";
 import { computed } from "@vue/reactivity";
 import { useProductsApi } from "~/api/products";
+import { onMounted } from "#imports";
+import { useCategoriesBrandsStore } from "~/store/categories-brands";
 
 const route = useRoute()
 const router = useRouter()
@@ -177,6 +181,23 @@ const moveToDown = () => {
 <style scoped lang="sass">
 *
   color: var(--grey)
+
+.bread-crumbs
+  gap: 10px
+  display: flex
+  margin: 30px 0
+  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+
+  a,
+  p,
+  h1
+    color: var(--middle-grey)
+
+  a:hover
+    color: var(--grey)
+  h1
+    margin: 0
+    font-size: inherit
 
 .product-card
   width: 100%
@@ -364,7 +385,7 @@ const moveToDown = () => {
           justify-content: space-between
 
         .cart-btn
-          padding: 2% 5%
+          padding: 1% 5%
           width: fit-content
           font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 

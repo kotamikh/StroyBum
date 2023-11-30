@@ -1,6 +1,6 @@
 <template>
   <div :class="[{ favourite : isFavourite }, 'product-card']"
-       @click="goToProductPage">
+       @click="navigateTo(`/catalog/productsList/product/${props.id}`)">
     <div class="img-holder">
       <button class="fav-btn" @click.stop="store.toggleFavourite(props.id)">
         <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
@@ -42,7 +42,7 @@ export interface Props extends IProduct {
   price: number,
   stock: StockType,
   discount: number,
-  category: number
+  subject: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -56,13 +56,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 const mainImage = computed(() => props.images.length === 0 ? defaultImg : props.images[0])
 const countDiscount = computed(() => Math.ceil(props.price / (100 - props.discount) * 100))
-
-const router = useRouter()
-const goToProductPage = () => {
-  router.replace({
-    path: "product/" + props.id
-  })
-}
 
 const store = useProductsStore()
 const isFavourite = computed<boolean>(() => {

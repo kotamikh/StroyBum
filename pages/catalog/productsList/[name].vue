@@ -1,7 +1,7 @@
 <template>
   <div class="crumbs-filter">
     <div class="bread-crumbs">
-      <a @click="router.push('/catalog')">Каталог</a>
+      <a @click="navigateTo('/catalog')">Каталог</a>
       <p>/</p>
       <h1>{{ name }}</h1>
     </div>
@@ -27,7 +27,7 @@
                   :price="product.price"
                   :stock="product.stock"
                   :discount="product.discount"
-                  :category="product.subject"
+                  :subject="product.subject"
     />
   </div>
 </template>
@@ -35,12 +35,11 @@
 <script setup lang="ts">
 import { useProductsStore } from "~/store/products";
 import { ref } from "@vue/reactivity";
-import { useRoute } from "#app";
+import { navigateTo, useRoute } from "#app";
 import { useCategoriesBrandsStore } from "~/store/categories-brands";
 import TheFilter from "~/components/TheFilter.vue";
 
 const route = useRoute()
-const router = useRouter()
 const showFilter = ref(false)
 const name = route.params.name.toString()
 
@@ -104,6 +103,9 @@ function throttle(fn: Function, timeout: number) {
     display: flex
     margin: 30px 0
     font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+
+    a:hover
+      color: var(--grey)
 
     h1
       margin: 0

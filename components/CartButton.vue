@@ -1,5 +1,5 @@
 <template>
-  <button class="cart-btn" v-if="!store.isInCart(props.id)" @click.stop="addToCart">В корзину</button>
+  <button class="cart-btn" v-if="!store.isInCart(props.id)" @click.stop="addToCart(id)">В корзину</button>
   <div v-else class="in-cart">В корзине
     <div class="quantity-changing" @click.stop>
       <button class="quantity-btn" @click.stop="subtractProduct(id)">–</button>

@@ -3,19 +3,19 @@
   <ul class="categories">
     <li v-for="[id, category] in useCategoriesBrandsStore().categoriesMap"
         :key="id">
-      <a @click="router.push('productsList/' + useCategoriesBrandsStore().findCategoryName(category.id))"
+      <a @click="navigateTo(`/catalog/productsList/${useCategoriesBrandsStore().findCategoryName(id)}`)"
          class="category">
         <img :src="category.image" alt="img" style="width: 3rem"/>
         <h3>{{ category.name }}</h3>
       </a>
     </li>
   </ul>
+  <NuxtPage/>
 </template>
 
 <script setup lang="ts">
 import { useCategoriesBrandsStore } from "~/store/categories-brands";
-
-const router = useRouter()
+import { navigateTo } from "#app";
 </script>
 
 <style scoped lang="sass">

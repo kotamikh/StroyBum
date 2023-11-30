@@ -9,6 +9,7 @@
                   :images="product.images"
                   :price="product.price"
                   :stock="product.stock"
+                  :subject="product.subject"
                   :discount="product.discount"
     />
   </div>

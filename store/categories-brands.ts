@@ -21,11 +21,8 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
         return categoriesMap.value
     }
 
-    const getCategory = (id: number) => {
-
-    }
-
     const findCategoryName = (id: number) => {
+        console.log(categoriesMap.value.get(id)?.name)
         return categoriesMap.value.get(id)?.name
     }
 
@@ -69,7 +66,6 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
         allBrands,
         brandsBySubject,
         loadAllSubjects,
-        getCategory,
         findCategoryName,
         findCategoryId,
         loadAllBrands,

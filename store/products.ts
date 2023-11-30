@@ -75,7 +75,6 @@ export const useProductsStore = defineStore('cardsStore', () => {
     const addToCart = (id: number) => {
         cart.value.add(id)
         cartQuantity.value.set(id, 1)
-        console.log(cart.value)
     }
 
     const getCart = async () => {
@@ -92,7 +91,6 @@ export const useProductsStore = defineStore('cardsStore', () => {
     const deleteFromCart = async (id: number) => {
         cart.value.delete(id)
         cartQuantity.value.delete(id)
-        console.log(cart.value)
     }
 
     const isInCart = (id: number): boolean => {
