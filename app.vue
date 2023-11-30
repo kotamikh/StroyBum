@@ -13,8 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import 'assets/main.css'
-import 'assets/reset.css'
+import 'assets/styles/main.css'
+import 'assets/styles/reset.css'
 
 import { useCategoriesBrandsStore } from "~/store/categories-brands";
 
