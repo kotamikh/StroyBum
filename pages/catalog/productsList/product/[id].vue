@@ -286,17 +286,20 @@ const moveToDown = () => {
         top: -10px
 
       .down-button
-        bottom: -55px
+        bottom: -60px
 
       .slider-gallery
         width: 90%
-        height: 100%
         padding: 8%
-        align-self: center
+        height: 105%
         overflow: hidden
         position: absolute
+        justify-self: center
 
         .slider-track
+          gap: 10px
+          display: flex
+          flex-direction: column
           transition: all 0.2s ease
 
         img
@@ -304,7 +307,6 @@ const moveToDown = () => {
           padding: 2%
           aspect-ratio: 1
           object-fit: cover
-          margin-bottom: 5px
           border-radius: 10px
           transition: scale 0.2s ease
 
