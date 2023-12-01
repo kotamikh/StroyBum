@@ -183,9 +183,10 @@ const moveToDown = () => {
   color: var(--grey)
 
 .bread-crumbs
-  gap: 10px
   display: flex
   margin: 30px 0
+  flex-wrap: wrap
+  column-gap: 10px
   font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 
   a,
@@ -195,6 +196,7 @@ const moveToDown = () => {
 
   a:hover
     color: var(--grey)
+
   h1
     margin: 0
     font-size: inherit
@@ -291,13 +293,13 @@ const moveToDown = () => {
       .slider-gallery
         width: 90%
         padding: 8%
-        height: 105%
+        height: 100%
         overflow: hidden
         position: absolute
         justify-self: center
 
         .slider-track
-          gap: 10px
+          gap: 12px
           display: flex
           flex-direction: column
           transition: all 0.2s ease
@@ -312,7 +314,6 @@ const moveToDown = () => {
 
         .current
           transform: scale(1.15)
-          border: 1px solid rgba(128, 128, 128, 0.7)
 
     .current-photo
       display: flex
@@ -325,11 +326,10 @@ const moveToDown = () => {
         margin: auto
 
       img
-        padding: 3%
+        padding: 5%
         width: 100%
         object-fit: contain
         border-radius: 10px
-        border: 2px solid rgba(128, 128, 128, 0.7)
 
         @media screen and (max-width: 559px)
           border: 0
