@@ -137,13 +137,23 @@ const isCurrent = (index: number) => {
   return currentImageIndex.value === index
 }
 
-const track: VNodeRef = ref<VNodeRef | undefined>()
-const galleryWrapper: VNodeRef = ref<VNodeRef | undefined>()
-const imageHeight = computed(() => track.value.clientHeight / product.value.images.length)
+const track = ref<HTMLDivElement | null>()
+const galleryWrapper = ref<HTMLDivElement | null>()
+const imageHeight = computed(() => {
+  if (track.value) {
+    return track.value.clientHeight / product.value.images.length
+  }
+
+  return 0
+})
 const trackTranslate = ref(0)
 const translateLimit = ref(0)
 
-onMounted(() => translateLimit.value = track.value.clientHeight - galleryWrapper.value.clientHeight)
+onMounted(() => {
+  if (track.value && galleryWrapper.value) {
+    translateLimit.value = track.value.clientHeight - galleryWrapper.value.clientHeight
+  }
+})
 
 const isUpButtonActive = computed(() => {
   return trackTranslate.value > 0
