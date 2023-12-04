@@ -84,7 +84,9 @@ const addProduct = (id: number) => {
   border-radius: 15px
   justify-items: center
   grid-template-columns: 2fr 3fr 3fr 1fr
-  background-color: rgba(0, 48, 120, 0.04)
+  -webkit-box-shadow: 0 5px 10px 2px rgba(0, 48, 120, 0.15)
+  -moz-box-shadow: 0 5px 10px 2px rgba(0, 48, 120, 0.15)
+  box-shadow: 0 5px 10px 2px rgba(0, 48, 120, 0.15)
 
   @media screen and (max-width: 559px)
     grid-template-columns: 2fr 1.5fr 0.5fr
@@ -167,11 +169,10 @@ const addProduct = (id: number) => {
       background-color: white
       transition: all 0.2s ease
       justify-content: space-between
+      border: 2px solid rgba(0, 48, 120, 0.04)
 
       &:hover
-        -webkit-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
-        -moz-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
-        box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
+        border: 2px solid rgba(0, 48, 120, 0.15)
 
     .quantity
       margin: 0 20px
@@ -189,10 +190,11 @@ const addProduct = (id: number) => {
     display: flex
     align-items: center
     justify-content: center
+    transition: all 0.2s ease-in
     background-color: transparent
-    border-left: 2px solid rgba(128, 128, 128, 0.5)
 
     &:hover
+      background-color: rgba(0, 48, 120, 0.04)
       svg > path
         fill: var(--grey)
 

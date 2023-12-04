@@ -89,9 +89,7 @@
       background-color: var(--yellow)
 
       &:hover
-        -webkit-box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
-        -moz-box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
-        box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
+        background-color: rgb(255, 225, 8)
 
     .vk
       a

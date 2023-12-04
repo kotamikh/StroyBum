@@ -52,14 +52,12 @@ const addProduct = (id: number) => {
     width: 100%
     text-align: center
 
-  &:hover
-    -webkit-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
-    -moz-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
-    box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
-
 .cart-btn
   border: none
   background-color: var(--yellow)
+
+  &:hover
+    background-color: rgb(255, 225, 8)
 
 .in-cart
   position: relative
@@ -68,6 +66,7 @@ const addProduct = (id: number) => {
 
   &:hover
     color: transparent
+    border: 2px solid rgb(255, 225, 8)
 
     .quantity-changing
       visibility: visible

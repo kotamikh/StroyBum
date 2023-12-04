@@ -22,12 +22,18 @@
     </div>
     <div class="form-confirm">
       <form>
-        <label for="name">Ваше имя</label>
-        <input type="text" name="name" required/>
-        <label for="telephone">Номер телефона</label>
-        <input type="tel" name="telephone" required/>
-        <label for="city">Город доставки</label>
-        <input type="text" name="city" required/>
+        <div class="form-item">
+          <label for="name">Ваше имя</label>
+          <input type="text" name="name" required/>
+        </div>
+        <div class="form-item">
+          <label for="telephone">Номер телефона</label>
+          <input type="tel" name="telephone" required/>
+        </div>
+        <div class="form-item">
+          <label for="city">Город доставки</label>
+          <input type="text" name="city" required/>
+        </div>
       </form>
       <div class="order-confirm">
         <button>Подтвердить заказ</button>
@@ -62,11 +68,11 @@ const commonSum = computed(() => {
   let result = 0
   for (let [p, id] of store.cartQuantity) {
     let product = cartProducts.value.find((product) => product.id === p)
-    result += product?.price * id
+    if (product) {
+      result += product.price * id
+    }
   }
-  if (result) {
-    return result
-  }
+  return result
 })
 </script>
 
@@ -92,6 +98,9 @@ h1
   border-radius: 15px
   flex-direction: column
   background-color: rgba(0, 48, 120, 0.04)
+  -webkit-box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
+  -moz-box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
+  box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
 
   @media screen and (max-width: 559px)
     margin-top: 20px
@@ -113,7 +122,7 @@ h1
       flex-direction: column
 
     form
-      gap: 10px
+      gap: 20px
       width: 40%
       display: flex
       flex-direction: column
@@ -121,17 +130,21 @@ h1
       @media screen and (max-width: 599px)
         width: 70%
 
-      input
-        border: none
-        height: 35px
-        outline: none
-        transition: all 0.2s ease
+      .form-item
+        display: flex
+        flex-direction: column
 
-        &:hover,
-        &:focus
-          -webkit-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
-          -moz-box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
-          box-shadow: 0 0 10px 0 rgba(128, 128, 128, 0.5)
+        input
+          border: none
+          height: 35px
+          outline: none
+          transition: all 0.2s ease
+          background-color: transparent
+          border-bottom: 2px solid rgba(128, 128, 128, 0.3)
+
+          &:hover,
+          &:focus
+            border-bottom: 2px solid rgba(255, 241, 118, 0.8)
 
     .order-confirm
       gap: 5px
@@ -154,9 +167,7 @@ h1
         transition: all 0.2s ease-in-out
 
         &:hover
-          -webkit-box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
-          -moz-box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
-          box-shadow: 0 0 20px 0 rgba(128, 128, 128, 0.5)
+          background-color: rgb(255, 225, 8)
 
       .order-info
         text-align: end
