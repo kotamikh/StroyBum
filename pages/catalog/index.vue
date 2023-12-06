@@ -1,9 +1,9 @@
 <template>
   <h1>Каталог</h1>
   <ul class="categories">
-    <li v-for="[id, category] in useCategoriesBrandsStore().categoriesMap"
+    <li v-for="[id, category] in useSubjectsBrandsStore().subjectsMap"
         :key="id">
-      <a @click="navigateTo(`/catalog/productsList/${useCategoriesBrandsStore().findCategoryName(id)}`)"
+      <a @click="navigateTo(`/catalog/productsList/${useSubjectsBrandsStore().findSubjectName(id)}`)"
          class="category">
         <img :src="category.image" alt="img" style="width: 3rem"/>
         <h3>{{ category.name }}</h3>
@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import { useCategoriesBrandsStore } from "~/store/categories-brands";
 import { navigateTo } from "#app";
+import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 </script>
 
 <style scoped lang="sass">

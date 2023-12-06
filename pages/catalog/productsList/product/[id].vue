@@ -1,8 +1,10 @@
 <template>
-  <div class="bread-crumbs" >
+  <div class="bread-crumbs">
     <a @click="router.push('/catalog')">Каталог</a>
     <p>/</p>
-    <a @click="router.push(`/catalog/productsList/${useCategoriesBrandsStore().findCategoryName(product.subject)}`)">{{ useCategoriesBrandsStore().findCategoryName(product.subject) }}</a>
+    <a @click="router.push(`/catalog/productsList/${useSubjectsBrandsStore().findSubjectName(product.subject)}`)">{{
+        useSubjectsBrandsStore().findSubjectName(product.subject)
+      }}</a>
     <p>/</p>
     <h1>{{ product.name }}</h1>
   </div>
@@ -71,7 +73,7 @@
             </div>
             <p class="stock">{{ product.stock === 1 ? 'В наличии' : 'Под заказ' }}</p>
           </div>
-          <cart-button :id="product.id" class="cart-btn" />
+          <cart-button :id="product.id" class="cart-btn"/>
         </div>
       </div>
     </div>
@@ -97,13 +99,13 @@
 </template>
 
 <script setup lang="ts">
-import { useProductsStore } from "~/store/products";
-import { useRoute, useRouter } from "#app";
 import { ref } from "vue";
-import { computed } from "@vue/reactivity";
-import { useProductsApi } from "~/api/products";
 import { onMounted } from "#imports";
-import { useCategoriesBrandsStore } from "~/store/categories-brands";
+import { computed } from "@vue/reactivity";
+import { useRoute, useRouter } from "#app";
+import { useProductsApi } from "~/api/products";
+import { useProductsStore } from "~/store/products";
+import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 
 const route = useRoute()
 const router = useRouter()
@@ -112,7 +114,7 @@ const store = useProductsStore()
 const id = computed<number>(() => Number(route.params.id))
 const product = ref(useProductsApi().getDefaultProduct())
 
-const result = await store.getProduct(id.value)
+const result = store.getProduct(id.value)
 
 if (result.ok) {
   product.value = result.data
@@ -144,6 +146,7 @@ const imageHeight = computed(() => {
   }
   return 0
 })
+
 const trackTranslate = ref(0)
 const translateLimit = ref(0)
 
@@ -172,16 +175,18 @@ const isRightButtonActive = computed(() => {
 const moveToTop = () => {
   if (trackTranslate.value > 0) {
     trackTranslate.value -= imageHeight.value
-    console.log(trackTranslate.value)
-    track.value.style.transform = `translateY(-${ trackTranslate.value }px)`
+    if (track.value) {
+      track.value.style.transform = `translateY(-${ trackTranslate.value }px)`
+    }
   }
 }
 
 const moveToDown = () => {
   if (trackTranslate.value < translateLimit.value) {
     trackTranslate.value += imageHeight.value
-    console.log(trackTranslate.value)
-    track.value.style.transform = `translateY(-${ trackTranslate.value }px)`
+    if (track.value) {
+      track.value.style.transform = `translateY(-${ trackTranslate.value }px)`
+    }
   }
 }
 </script>

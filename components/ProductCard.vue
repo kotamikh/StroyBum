@@ -30,10 +30,10 @@
 </template>
 
 <script setup lang="ts">
-import { IProduct, StockType } from "~/types/Product";
-import defaultImg from '@/assets/default-image.jpeg'
 import { useProductsStore } from "~/store/products";
+import defaultImg from '@/assets/default-image.jpeg';
 import CartButton from "~/components/CartButton.vue";
+import { IProduct, StockType } from "~/types/Product";
 
 export interface Props extends IProduct {
   id: number,

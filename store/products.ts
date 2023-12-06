@@ -6,10 +6,9 @@ import { useProductsApi } from "~/api/products";
 import { useLocalStorage } from "@vueuse/core";
 
 export const useProductsStore = defineStore('cardsStore', () => {
-    const productsMap: Ref<Map<number, IProduct>> = ref(new Map<number, IProduct>())
     const api = useProductsApi()
+    const productsMap: Ref<Map<number, IProduct>> = ref(new Map<number, IProduct>())
     const favourites = useLocalStorage<Set<number>>("favourites", new Set<number>())
-    const cart = useLocalStorage<Set<number>>("cart", new Set<number>())
     const cartQuantity = useLocalStorage<Map<number, number>>("cartQuantity", new Map<number, number>())
 
     const loadAll = async (offset: number, limit: number, subject?: number, brand?: number)=> {
@@ -23,23 +22,10 @@ export const useProductsStore = defineStore('cardsStore', () => {
         return productsMap.value
     }
 
-    const loadProduct = async (id: number): Promise<boolean> => {
-        const product = await api.getById(id)
-        if (product.id) {
-            productsMap.value.set(product.id, product)
-        }
-        return !!product.id
-    }
-
-    const getProduct = async (id: number): Promise<ReturnWithStatus<IProduct>> => {
-        await loadAll(0, 100)
+    const getProduct = (id: number): ReturnWithStatus<IProduct> => {
         let p = productsMap.value.get(id)
         if (!p) {
-            await loadProduct(id)
-            p = productsMap.value.get(id)
-            if (!p) {
-                return { ok: false }
-            }
+          return { ok: false }
         }
         return { ok: true, data: p }
     }
@@ -57,60 +43,33 @@ export const useProductsStore = defineStore('cardsStore', () => {
         }
     }
 
-    const getFavourites = async () => {
-      await loadAll(0, 100).then((res) => {
-          for (let r of res) {
-              if (isFavourite(r[0])) {
-                  favourites.value.add(r[0])
-              }
-          }
-      })
-      return favourites.value
-    }
-
     const isFavourite = (id: number): boolean => {
         return favourites.value.has(id)
     }
 
     const addToCart = (id: number) => {
-        cart.value.add(id)
         cartQuantity.value.set(id, 1)
     }
 
-    const getCart = async () => {
-        await loadAll(0, 100).then((res) => {
-            for (let r of res) {
-                if (isInCart(r[0])) {
-                    cart.value.add(r[0])
-                }
-            }
-        })
-        return cart.value
-    }
-
     const deleteFromCart = async (id: number) => {
-        cart.value.delete(id)
         cartQuantity.value.delete(id)
     }
 
     const isInCart = (id: number): boolean => {
-        return cart.value.has(id)
+        return cartQuantity.value.has(id)
     }
 
     return {
-        productsMap,
         loadAll,
-        getProduct,
-        countProductNumber,
-        toggleFavourite,
-        getFavourites,
-        isFavourite,
-        addToCart,
-        getCart,
         isInCart,
-        deleteFromCart,
+        addToCart,
         favourites,
-        cart,
-        cartQuantity
+        getProduct,
+        isFavourite,
+        productsMap,
+        cartQuantity,
+        deleteFromCart,
+        toggleFavourite,
+        countProductNumber
     }
 })

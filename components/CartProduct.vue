@@ -33,9 +33,9 @@
 </template>
 
 <script setup lang="ts">
-import defaultImg from "assets/default-image.jpeg";
 import { computed } from "@vue/reactivity";
 import { IProduct } from "~/types/Product";
+import defaultImg from "assets/default-image.jpeg";
 import { useProductsStore } from "~/store/products";
 
 export interface Props extends IProduct {
@@ -61,16 +61,14 @@ const store = useProductsStore()
 const quantity = computed(() => store.cartQuantity.get(props.id))
 
 const subtractProduct = (id: number) => {
-  if (quantity.value > 1) {
+  if (quantity.value && quantity.value > 1) {
     store.cartQuantity.set(id, quantity.value - 1)
-    console.log(store.cartQuantity)
   }
 }
 
 const addProduct = (id: number) => {
-  if (quantity.value < 100) {
+  if (quantity.value && quantity.value < 100) {
     store.cartQuantity.set(id, quantity.value + 1)
-    console.log(store.cartQuantity)
   }
 }
 </script>

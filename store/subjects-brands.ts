@@ -1,35 +1,40 @@
-import { defineStore } from "pinia"
-import { IBrand, ICategory } from "types/categoriesBrands"
 import { ref } from "vue"
 import { Ref } from "vue/dist/vue"
-import { useCategoriesBrandsApi } from "~/api/categories-brands";
+import { defineStore } from "pinia"
+import { IBrand, ICategory } from "~/types/subjectsBrands"
+import { useSubjectsBrandsApi } from "~/api/subjects-brands";
 
-export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
-    const categoriesMap: Ref<Map<number, ICategory>> = ref(new Map<number, ICategory>());
+export const useSubjectsBrandsStore = defineStore("categoriesBrands", () => {
+    const api = useSubjectsBrandsApi()
     const allBrands = ref<Array<IBrand>>([])
     const brandsBySubject = ref<Array<IBrand>>([])
-    const api = useCategoriesBrandsApi()
-
+    const subjectsMap: Ref<Map<number, ICategory>> = ref(new Map<number, ICategory>())
+    
     const loadAllSubjects = async (): Promise<Map<number, ICategory>> => {
         const subjects = await api.getAllSubjects()
         if (subjects.length > 0) {
-            categoriesMap.value.clear()
+            subjectsMap.value.clear()
             for (const s of subjects) {
-                categoriesMap.value.set(s.id, s)
+                subjectsMap.value.set(s.id, s)
             }
         }
-        return categoriesMap.value
+        return subjectsMap.value
     }
 
-    const findCategoryName = (id: number) => {
-        console.log(categoriesMap.value.get(id)?.name)
-        return categoriesMap.value.get(id)?.name
+    const findSubjectName = (id: number) => {
+      const subjectName: string | undefined = subjectsMap.value.get(id)?.name
+      if (subjectName) {
+        return subjectName
+      }
+      else {
+          return 'unknown'
+      }
     }
 
-    const findCategoryId = (categoryName: string): number => {
-        for (let [key, value] of categoriesMap.value.entries()) {
-            if (value.name === categoryName) {
-                return key
+    const findSubjectId = (subjectName: string): number => {
+        for (let [subjectId, subject] of subjectsMap.value.entries()) {
+            if (subject.name === subjectName) {
+                return subjectId
             }
         }
         return 0
@@ -62,14 +67,14 @@ export const useCategoriesBrandsStore = defineStore("categoriesBrands", () => {
     }
 
     return {
-        categoriesMap,
+        getBrand,
         allBrands,
+        subjectsMap,
+        findSubjectId,
+        loadAllBrands,
         brandsBySubject,
         loadAllSubjects,
-        findCategoryName,
-        findCategoryId,
-        loadAllBrands,
-        getBrand,
+        findSubjectName,
         getBrandsBySubject
-    };
-});
+    }
+})

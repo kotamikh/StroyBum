@@ -39,9 +39,9 @@
 </template>
 
 <script setup lang="ts">
-import { useCategoriesBrandsStore } from "~/store/categories-brands";
-import { ref } from "@vue/reactivity";
 import { useRoute } from "#app";
+import { ref } from "@vue/reactivity";
+import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 
 const props = defineProps({
   show: {
@@ -52,16 +52,15 @@ const props = defineProps({
 const emit = defineEmits(['closeFilter'])
 
 const route = useRoute()
+const store = useSubjectsBrandsStore()
 const name = route.params.name.toString()
-const subject = useCategoriesBrandsStore().findCategoryId(name)
 
-// const brands = await useCategoriesBrandsStore().loadAllBrands()
-const brands = await useCategoriesBrandsStore().getBrandsBySubject(subject)
+const subject = store.findSubjectId(name)
+const brands = await store.getBrandsBySubject(subject)
 const currentBrand = ref(0)
 
 const loadBrandProducts = (brand: number) => {
   currentBrand.value = brand
-  // loadProducts()
 }
 </script>
 

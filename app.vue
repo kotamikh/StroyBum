@@ -15,19 +15,22 @@
 <script setup lang="ts">
 import 'assets/styles/main.css'
 import 'assets/styles/reset.css'
-
-import { useCategoriesBrandsStore } from "~/store/categories-brands";
+import { useProductsStore } from "~/store/products";
+import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 
 const loading = ref<boolean>(true)
 
 const init = async () => {
-  await useCategoriesBrandsStore().loadAllSubjects()
-  await useCategoriesBrandsStore().loadAllBrands()
+  await useSubjectsBrandsStore().loadAllBrands()
+  await useSubjectsBrandsStore().loadAllSubjects()
 }
 
 init().then(() => {
   loading.value = false
 })
+
+const productsCount = ref(100)
+useProductsStore().loadAll(0, productsCount.value)
 </script>
 
 <style lang="sass">

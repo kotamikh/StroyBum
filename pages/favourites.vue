@@ -16,12 +16,10 @@
 </template>
 
 <script setup lang="ts">
-import { useProductsStore } from "~/store/products";
 import { IProduct } from "~/types/Product";
+import { useProductsStore } from "~/store/products";
 
 const store = useProductsStore()
-
-store.getFavourites()
 
 const favouriteProducts = computed<IProduct[]>(() => {
   const result: IProduct[] = []

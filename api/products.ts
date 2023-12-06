@@ -55,7 +55,7 @@ export const useProductsApi = () => {
     return {
         getAll,
         getById,
-        getDefaultProduct,
-        getDefaultImage
+        getDefaultImage,
+        getDefaultProduct
     }
 }

@@ -44,18 +44,16 @@
 </template>
 
 <script setup lang="ts">
-import { useProductsStore } from "~/store/products";
 import { IProduct } from "~/types/Product";
 import { computed } from "@vue/reactivity";
+import { useProductsStore } from "~/store/products";
 
 const store = useProductsStore()
-
-store.getCart()
 
 const cartProducts = computed<IProduct[]>(() => {
   const result: IProduct[] = []
 
-  for (const id of store.cart) {
+  for (const [id, quantity] of store.cartQuantity) {
     const product = store.productsMap.get(id)
     if (product) {
       result.push(product)
@@ -66,10 +64,10 @@ const cartProducts = computed<IProduct[]>(() => {
 
 const commonSum = computed(() => {
   let result = 0
-  for (let [p, id] of store.cartQuantity) {
-    let product = cartProducts.value.find((product) => product.id === p)
+  for (let [id, quantity] of store.cartQuantity) {
+    let product = cartProducts.value.find((product) => product.id === id)
     if (product) {
-      result += product.price * id
+      result += product.price * quantity
     }
   }
   return result

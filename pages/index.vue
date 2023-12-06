@@ -23,10 +23,6 @@
   </div>
 </template>
 
-<script setup>
-
-</script>
-
 <style scoped lang="sass">
 .main-page
   gap: 50px

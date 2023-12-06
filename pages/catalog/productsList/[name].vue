@@ -33,18 +33,18 @@
 </template>
 
 <script setup lang="ts">
-import { useProductsStore } from "~/store/products";
 import { ref } from "@vue/reactivity";
 import { navigateTo, useRoute } from "#app";
-import { useCategoriesBrandsStore } from "~/store/categories-brands";
 import TheFilter from "~/components/TheFilter.vue";
+import { useProductsStore } from "~/store/products";
+import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 
 const route = useRoute()
 const showFilter = ref(false)
 const name = route.params.name.toString()
 
 const limit = ref<number>(6)
-const categoryId = useCategoriesBrandsStore().findCategoryId(name)
+const categoryId = useSubjectsBrandsStore().findSubjectId(name)
 const productNumber = await useProductsStore().countProductNumber(0, 250, categoryId)
 
 const products = await useProductsStore().loadAll(0, limit.value, categoryId)
@@ -88,7 +88,6 @@ function throttle(fn: Function, timeout: number) {
   }
 }
 </script>
-
 
 <style scoped lang="sass">
 .crumbs-filter

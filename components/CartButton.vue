@@ -1,5 +1,5 @@
 <template>
-  <button class="cart-btn" v-if="!store.isInCart(props.id)" @click.stop="addToCart(id)">В корзину</button>
+  <button class="cart-btn" v-if="!store.isInCart(props.id)" @click.stop="addToCart">В корзину</button>
   <div v-else class="in-cart">В корзине
     <div class="quantity-changing" @click.stop>
       <button class="quantity-btn" @click.stop="subtractProduct(id)">–</button>
@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import { useProductsStore } from "~/store/products";
 import { computed } from "@vue/reactivity";
+import { useProductsStore } from "~/store/products";
 
 const store = useProductsStore()
 const props = defineProps(['id'])
@@ -23,13 +23,13 @@ const addToCart = () => {
 const quantity = computed(() => store.cartQuantity.get(props.id))
 
 const subtractProduct = (id: number) => {
-  if (quantity.value > 1) {
+  if (quantity.value && quantity.value > 1) {
     store.cartQuantity.set(id, quantity.value - 1)
   }
 }
 
 const addProduct = (id: number) => {
-  if (quantity.value < 100) {
+  if (quantity.value && quantity.value < 100) {
     store.cartQuantity.set(id, quantity.value + 1)
   }
 }

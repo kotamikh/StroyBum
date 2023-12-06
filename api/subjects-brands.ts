@@ -1,5 +1,5 @@
 import { useHttpGet } from "~/api/base";
-import { IBrand, ICategory } from "~/types/categoriesBrands";
+import { IBrand, ICategory } from "~/types/subjectsBrands";
 
 export type brandsBySubject = {
    category: string
@@ -41,10 +41,10 @@ const getBrandsBySubject = async (subject_id: number): Promise<number[]> => {
     }
 }
 
-export const useCategoriesBrandsApi = () => {
+export const useSubjectsBrandsApi = () => {
     return {
-        getAllSubjects,
         getAllBrands,
+        getAllSubjects,
         getBrandsBySubject
     }
 }
