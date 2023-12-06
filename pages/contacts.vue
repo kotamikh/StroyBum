@@ -7,14 +7,14 @@
       </div>
       <div class="regime">
         <span>Режим работы: </span>
-        <p>пн-пт 8:30-17:30;<br/>сб 9:00-13:00.</p>
+        <p>Пн-Пт 8:30-17:30,<br/>Сб 9:00-13:00.</p>
       </div>
       <div class="telephone">
         <span>Телефоны:</span>
         <p>+7 (8332) 75-69-83<br/>+7 (8332) 79-69-00</p>
       </div>
       <button class="message-btn">Написать нам
-        <svg fill="#808080" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
+        <svg fill="#555555" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
           <path d="M128 24a104 104 0 0 0-91.82 152.88l-11.35 34.05a16 16 0 0 0 20.24 20.24l34.05-11.35A104 104 0 1 0 128 24Zm0 192a87.87 87.87 0 0 1-44.06-11.81a8 8 0 0 0-6.54-.67L40 216l12.47-37.4a8 8 0 0 0-.66-6.54A88 88 0 1 1 128 216Z"/>
         </svg>
       </button>
@@ -38,6 +38,10 @@
 </script>
 
 <style scoped lang="sass">
+*
+  color: var(--grey)
+  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+
 .contacts
   display: flex
   margin-bottom: 50px
@@ -61,7 +65,7 @@
       margin-left: 20px
 
     span
-      font-weight: bold
+      font-family: Fira, sans-serif
 
     @media screen and (max-width: 799px)
       .address p,

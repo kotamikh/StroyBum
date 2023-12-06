@@ -20,20 +20,16 @@ import { navigateTo } from "#app";
 
 <style scoped lang="sass">
 .categories
-  gap: 20px
-  display: flex
-  flex-wrap: wrap
-  max-height: 400px
+  display: grid
+  grid-gap: 20px
   flex-direction: column
+  max-height: max-content
+  grid-template-columns: repeat(2, 1fr)
 
-  @media screen and (max-width: 750px)
-    flex-direction: row
-    max-height: max-content
-    justify-content: space-evenly
-
+  @media screen and (max-width: 549px)
     li
-      width: 200px
-      height: 80px
+      padding: 2%
+      height: 70px
       display: flex
       border: 2px solid transparent
 
@@ -41,13 +37,15 @@ import { navigateTo } from "#app";
         border-radius: 5px
         border: 2px solid var(--yellow)
 
-  @media screen and (max-width: 445px)
+  @media screen and (max-width: 549px)
     gap: 10px
+    display: flex
+    flex-direction: column
 
     li
-      width: 310px
+      width: fit-content
 
-  @media screen and (min-width: 750px)
+  @media screen and (min-width: 549px)
     li
       &:hover
         h3

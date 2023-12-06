@@ -58,10 +58,8 @@ async function checkPosition() {
   const position = scrolled + screenHeight
 
   if (position >= threshold) {
-    console.log(limit.value, productNumber)
     if (limit.value < productNumber) {
       limit.value += 6
-      console.log(limit.value, categoryId)
       await useProductsStore().loadAll(0, limit.value, categoryId)
     }
    else {

@@ -98,7 +98,6 @@
 
 <script setup lang="ts">
 import { useProductsStore } from "~/store/products";
-import { VNodeRef } from "@vue/runtime-core";
 import { useRoute, useRouter } from "#app";
 import { ref } from "vue";
 import { computed } from "@vue/reactivity";
@@ -143,7 +142,6 @@ const imageHeight = computed(() => {
   if (track.value) {
     return track.value.clientHeight / product.value.images.length
   }
-
   return 0
 })
 const trackTranslate = ref(0)
