@@ -203,8 +203,7 @@ const moveToDown = () => {
   font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 
   a,
-  p,
-  h1
+  p
     color: var(--middle-grey)
 
   a:hover
