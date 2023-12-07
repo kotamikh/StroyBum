@@ -1,16 +1,18 @@
 <template>
-  <h1>Каталог</h1>
-  <ul class="categories">
-    <li v-for="[id, category] in useSubjectsBrandsStore().subjectsMap"
-        :key="id">
-      <a @click="navigateTo(`/catalog/productsList/${useSubjectsBrandsStore().findSubjectName(id)}`)"
-         class="category">
-        <img :src="category.image" alt="img" style="width: 3rem"/>
-        <h3>{{ category.name }}</h3>
-      </a>
-    </li>
-  </ul>
-  <NuxtPage/>
+  <div class="wrapper">
+    <h1>Каталог</h1>
+    <ul class="categories">
+      <li v-for="[id, category] in useSubjectsBrandsStore().subjectsMap"
+          :key="id">
+        <a @click="navigateTo(`/catalog/productsList/${useSubjectsBrandsStore().findSubjectName(id)}`)"
+           class="category">
+          <img :src="category.image" alt="img" style="width: 3rem"/>
+          <h3>{{ category.name }}</h3>
+        </a>
+      </li>
+    </ul>
+    <NuxtPage/>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -19,6 +21,11 @@ import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 </script>
 
 <style scoped lang="sass">
+.wrapper
+  @media screen and (max-width: 1000px)
+    width: 95%
+    margin: auto
+
 .categories
   display: grid
   grid-gap: 20px
@@ -43,7 +50,10 @@ import { useSubjectsBrandsStore } from "~/store/subjects-brands";
     flex-direction: column
 
     li
-      width: fit-content
+      width: 100%
+
+      a
+        width: inherit
 
   @media screen and (min-width: 549px)
     li

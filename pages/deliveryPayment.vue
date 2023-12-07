@@ -38,13 +38,14 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
   color: var(--grey)
 
 .wrapper
-  width: 80%
+  width: 85%
   display: flex
-  margin: 60px auto 10px
+  margin: 60px auto 0
   flex-direction: column
+  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 
   @media screen and (max-width: 1079px)
-    width: 100%
+    width: 98%
 
   @media screen and (max-width: 709px)
     width: 95%
@@ -99,7 +100,6 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
     h2
       width: fit-content
       margin-bottom: 10px
-      font-family: Fira, sans-serif
 
       @media screen and (max-width: 709px)
         text-align: left
@@ -117,7 +117,6 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
     h2
       margin: 40px 0 10px
       vertical-align: middle
-      font-family: Fira, sans-serif
 
     @media screen and (max-width: 709px)
       margin-top: 20px

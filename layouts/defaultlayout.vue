@@ -19,7 +19,7 @@
   box-sizing: border-box
 
   @media screen and (max-width: 1000px)
-    width: 97vw
+    width: 95vw
 
   @media screen and (max-width: 849px)
     display: flex
