@@ -137,7 +137,7 @@ function throttle(fn: Function, timeout: number) {
 
 .catalog
   display: grid
-  margin-top: 70px
+  margin-top: 90px
   grid-row-gap: 2rem
   grid-column-gap: 1rem
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))

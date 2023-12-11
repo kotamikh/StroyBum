@@ -1,5 +1,5 @@
-import { IProduct } from "~/types/Product";
 import { useHttpGet } from "~/api/base";
+import { IProduct } from "~/types/Product";
 
 export type GetAllRequest = {
     offset: number,

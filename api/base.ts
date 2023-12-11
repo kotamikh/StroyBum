@@ -1,7 +1,7 @@
 import { useFetch } from '#app';
-import { KeysOf, PickFrom } from "#app/composables/asyncData";
 import { HTTPMethod } from "h3";
 import { FetchError, SearchParameters } from "ofetch";
+import { KeysOf, PickFrom } from "#app/composables/asyncData";
 import { AvailableRouterMethod, NitroFetchRequest } from "nitropack";
 
 const BASE_URL = "http://localhost:8000"

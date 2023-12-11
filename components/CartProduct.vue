@@ -17,9 +17,9 @@
       <div class="quantity">
         <p>Количество:</p>
         <div class="quantity-changing">
-          <button class="quantity-btn" @click="subtractProduct(id)">–</button>
+          <button class="quantity-btn" @click="reduceTheAmount(id)">–</button>
           <div class="quantity">{{ quantity }}</div>
-          <button class="quantity-btn" @click="addProduct(id)">+</button>
+          <button class="quantity-btn" @click="increaseTheAmount(id)">+</button>
         </div>
       </div>
     </div>
@@ -37,7 +37,6 @@ import { computed } from "@vue/reactivity";
 import { IProduct } from "~/types/Product";
 import defaultImg from "assets/default-image.jpeg";
 import { useProductsStore } from "~/store/products";
-
 export interface Props extends IProduct {
   id: number,
   name: string,
@@ -60,13 +59,13 @@ const countDiscount = computed(() => Math.ceil(props.price / (100 - props.discou
 const store = useProductsStore()
 const quantity = computed(() => store.cartQuantity.get(props.id))
 
-const subtractProduct = (id: number) => {
+const reduceTheAmount = (id: number) => {
   if (quantity.value && quantity.value > 1) {
     store.cartQuantity.set(id, quantity.value - 1)
   }
 }
 
-const addProduct = (id: number) => {
+const increaseTheAmount = (id: number) => {
   if (quantity.value && quantity.value < 100) {
     store.cartQuantity.set(id, quantity.value + 1)
   }

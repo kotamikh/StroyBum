@@ -2,9 +2,9 @@
   <button class="cart-btn" v-if="!store.isInCart(props.id)" @click.stop="addToCart">В корзину</button>
   <div v-else class="in-cart">В корзине
     <div class="quantity-changing" @click.stop>
-      <button class="quantity-btn" @click.stop="subtractProduct(id)">–</button>
+      <button class="quantity-btn" @click.stop="reduceTheAmount(id)">–</button>
       <div class="quantity">{{ quantity }}</div>
-      <button class="quantity-btn" @click.stop="addProduct(id)">+</button>
+      <button class="quantity-btn" @click.stop="increaseTheAmount(id)">+</button>
     </div>
   </div>
 </template>
@@ -22,13 +22,13 @@ const addToCart = () => {
 
 const quantity = computed(() => store.cartQuantity.get(props.id))
 
-const subtractProduct = (id: number) => {
+const reduceTheAmount = (id: number) => {
   if (quantity.value && quantity.value > 1) {
     store.cartQuantity.set(id, quantity.value - 1)
   }
 }
 
-const addProduct = (id: number) => {
+const increaseTheAmount = (id: number) => {
   if (quantity.value && quantity.value < 100) {
     store.cartQuantity.set(id, quantity.value + 1)
   }
@@ -57,7 +57,7 @@ const addProduct = (id: number) => {
   background-color: var(--yellow)
 
   &:hover
-    background-color: rgb(255, 225, 8)
+    background-color: var(--dark-yellow)
 
 .in-cart
   position: relative
@@ -66,7 +66,7 @@ const addProduct = (id: number) => {
 
   &:hover
     color: transparent
-    border: 2px solid rgb(255, 225, 8)
+    border: 2px solid var(--dark-yellow)
 
     .quantity-changing
       visibility: visible

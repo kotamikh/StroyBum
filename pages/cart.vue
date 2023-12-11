@@ -165,7 +165,7 @@ h1
         transition: all 0.2s ease-in-out
 
         &:hover
-          background-color: rgb(255, 225, 8)
+          background-color: var(--dark-yellow)
 
       .order-info
         text-align: end

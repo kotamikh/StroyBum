@@ -114,7 +114,7 @@
         background-color: var(--yellow)
 
         &:hover
-          background-color: rgb(255, 225, 8)
+          background-color: var(--dark-yellow)
 
       a
         gap: 5px
