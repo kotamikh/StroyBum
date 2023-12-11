@@ -25,7 +25,7 @@ const favouriteProducts = computed<IProduct[]>(() => {
   const result: IProduct[] = []
 
   for (const id of store.favourites) {
-    const product = store.productsMap.get(id)
+    const product = store.allProducts.get(id)
     if (product) {
       result.push(product)
     }

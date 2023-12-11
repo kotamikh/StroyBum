@@ -47,7 +47,7 @@ const limit = ref<number>(6)
 const categoryId = useSubjectsBrandsStore().findSubjectId(name)
 const productNumber = await useProductsStore().countProductNumber(0, 250, categoryId)
 
-const products = await useProductsStore().loadAll(0, limit.value, categoryId)
+const products = await useProductsStore().loadWithConditions(0, limit.value, categoryId)
 
 async function checkPosition() {
   const height = document.body.offsetHeight
@@ -60,7 +60,7 @@ async function checkPosition() {
   if (position >= threshold) {
     if (limit.value < productNumber) {
       limit.value += 6
-      await useProductsStore().loadAll(0, limit.value, categoryId)
+      await useProductsStore().loadWithConditions(0, limit.value, categoryId)
     }
    else {
       window.removeEventListener('scroll', throttle(checkPosition, 250))

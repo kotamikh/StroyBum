@@ -49,12 +49,13 @@ import { computed } from "@vue/reactivity";
 import { useProductsStore } from "~/store/products";
 
 const store = useProductsStore()
+console.log(store.cartQuantity)
 
 const cartProducts = computed<IProduct[]>(() => {
   const result: IProduct[] = []
 
   for (const [id, quantity] of store.cartQuantity) {
-    const product = store.productsMap.get(id)
+    const product = store.allProducts.get(id)
     if (product) {
       result.push(product)
     }

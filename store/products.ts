@@ -1,29 +1,41 @@
+import { ref, Ref } from "vue";
 import { defineStore } from 'pinia'
 import { IProduct } from "~/types/Product";
-import { ReturnWithStatus } from "~/types/Utils";
-import { ref, Ref } from "vue";
-import { useProductsApi } from "~/api/products";
 import { useLocalStorage } from "@vueuse/core";
+import { useProductsApi } from "~/api/products";
+import { ReturnWithStatus } from "~/types/Utils";
 
 export const useProductsStore = defineStore('cardsStore', () => {
     const api = useProductsApi()
-    const productsMap: Ref<Map<number, IProduct>> = ref(new Map<number, IProduct>())
+    const allProducts: Ref<Map<number, IProduct>> = ref(new Map<number, IProduct>())
+    const currentProducts: Ref<Map<number, IProduct>> = ref(new Map<number, IProduct>())
     const favourites = useLocalStorage<Set<number>>("favourites", new Set<number>())
     const cartQuantity = useLocalStorage<Map<number, number>>("cartQuantity", new Map<number, number>())
 
-    const loadAll = async (offset: number, limit: number, subject?: number, brand?: number)=> {
-        const products = await api.getAll({ offset, limit, subject, brand })
+    const loadAll = async (offset: number, limit: number)=> {
+        const products = await api.getAll({ offset, limit })
         if (products.length > 0) {
-            productsMap.value.clear()
+            allProducts.value.clear()
             for (const p of products) {
-                productsMap.value.set(p.id, p)
+                allProducts.value.set(p.id, p)
             }
         }
-        return productsMap.value
+        return allProducts.value
+    }
+
+    const loadWithConditions = async (offset: number, limit: number, subject?: number, brand?: number)=> {
+        const products = await api.getAll({ offset, limit, subject, brand })
+        if (products.length > 0) {
+            currentProducts.value.clear()
+            for (const p of products) {
+                currentProducts.value.set(p.id, p)
+            }
+        }
+        return currentProducts.value
     }
 
     const getProduct = (id: number): ReturnWithStatus<IProduct> => {
-        let p = productsMap.value.get(id)
+        let p = currentProducts.value.get(id)
         if (!p) {
           return { ok: false }
         }
@@ -66,10 +78,12 @@ export const useProductsStore = defineStore('cardsStore', () => {
         favourites,
         getProduct,
         isFavourite,
-        productsMap,
+        allProducts,
         cartQuantity,
         deleteFromCart,
         toggleFavourite,
-        countProductNumber
+        currentProducts,
+        countProductNumber,
+        loadWithConditions
     }
 })
