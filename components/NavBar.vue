@@ -106,7 +106,7 @@ watch(() => route.name, () => {
     align-self: center
 
     .header
-      color: #ABABAB
+      color: #969696
       margin-right: 40px
       font-family: 'Russo One', sans-serif
       font-size: calc((100vw - 320px) / (1280 - 320) * (34 - 30) + 30px)

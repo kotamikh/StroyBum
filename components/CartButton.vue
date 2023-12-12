@@ -26,6 +26,9 @@ const reduceTheAmount = (id: number) => {
   if (quantity.value && quantity.value > 1) {
     store.cartQuantity.set(id, quantity.value - 1)
   }
+  if (quantity.value && quantity.value === 1) {
+    store.cartQuantity.delete(id)
+  }
 }
 
 const increaseTheAmount = (id: number) => {

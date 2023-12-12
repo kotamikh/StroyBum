@@ -84,11 +84,9 @@ const isFavourite = computed<boolean>(() => {
 
   &:not(.favourite)
     .fav-mark
-      &:hover,
-      &:active
-        stroke-width: 10px
-        fill: var(--yellow)
-        stroke: var(--middle-grey)
+      &:hover
+        path
+          fill: var(--middle-grey)
 
   .img-holder
     width: 100%
@@ -188,10 +186,8 @@ const isFavourite = computed<boolean>(() => {
 
 .product-card.favourite
   .fav-btn > .fav-mark
-    stroke-width: 10px
     fill: var(--yellow)
-    stroke: var(--middle-grey)
-
+    &:hover,
     &:active
-      fill: rgba(128, 128, 128, 0.4)
+      fill: #808080
 </style>
