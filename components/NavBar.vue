@@ -77,7 +77,7 @@ const links = {
 const currentLink = ref('')
 
 const isCurrent = (link) => {
-  return link === currentLink.value
+  return currentLink.value.includes(link)
 }
 
 const route = useRoute()
