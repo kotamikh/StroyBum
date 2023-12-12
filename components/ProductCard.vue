@@ -11,19 +11,17 @@
       <div class="discount-mark" v-if="discount !== 0">- {{ discount }}%</div>
       <img :src="mainImage" class="product-img" alt="product-img"/>
     </div>
-    <div class="price-stock">
-      <div class="price">
-        <p style="font-size: 1.2rem">{{ price }} <span class="rub">Р</span></p>
-        <p v-if="discount !== 0" class="old-price">
-          {{ countDiscount }}
-          <span class="rub">Р</span></p>
-      </div>
+    <div class="price">
+      <p class="current-price">{{ price }} <span class="rub">Р</span></p>
+      <p v-if="discount !== 0" class="old-price">
+        {{ countDiscount }}
+        <span class="rub">Р</span></p>
+    </div>
+    <p class="product-name">{{ name }}</p>
+    <div class="stock-cart">
       <p class="stock">{{
           props.stock === 1 ? 'В наличии' : 'Под заказ'
         }}</p>
-    </div>
-    <p class="product-name">{{ name }}</p>
-    <div class="cart">
       <cart-button :id="props.id"/>
     </div>
   </div>
@@ -72,9 +70,9 @@ const isFavourite = computed<boolean>(() => {
   display: flex
   flex-direction: column
 
-  height: 360px
+  height: 334px
   cursor: pointer
-  max-width: 235px
+  max-width: 230px
   border-radius: 15px
   background-color: white
 
@@ -136,24 +134,17 @@ const isFavourite = computed<boolean>(() => {
       .fav-mark
         fill: rgba(128, 128, 128, 0.4)
 
-  .price-stock
+  .price
+    gap: 10px
     display: flex
-    flex-wrap: wrap
-    align-items: end
-    column-gap: 10px
 
-    @media screen and (max-width: 469px)
-      flex-direction: column
-      align-items: flex-start
-
-    .price
-      gap: 10px
-      display: flex
+    .current-price
+      font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px)
 
     .old-price
-      font-size: 0.9em
       color: var(--middle-grey)
       text-decoration: line-through
+      font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
 
     p > .rub
       width: 0.5em
@@ -164,30 +155,41 @@ const isFavourite = computed<boolean>(() => {
       text-decoration: inherit
       border-bottom: 0.07em solid
 
-    .stock
-      font-weight: lighter
-      font-size: calc((100vw - 320px) / (1280 - 320) * (14 - 12) + 12px)
-
   .product-name
     overflow: hidden
     font-weight: lighter
     display: -webkit-box
     -webkit-line-clamp: 2
     -webkit-box-orient: vertical
-    font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
+    font-size: calc((100vw - 320px) / (1280 - 320) * (14 - 12) + 12px)
 
-  .cart
+  .stock-cart
+    display: flex
     margin-top: auto
-    margin-left: auto
+    justify-content: space-between
+    font-size: calc((100vw - 320px) / (1280 - 320) * (14 - 12) + 12px)
+
+    .stock
+      align-self: center
+      font-weight: lighter
 
     @media screen and (max-width: 469px)
+      gap: 10px
       width: 90%
       margin: auto
+      flex-direction: column
+      justify-content: space-between
+
+      .stock
+        align-self: flex-start
+      .cart
+        justify-self: flex-end
 
 .product-card.favourite
   .fav-btn > .fav-mark
     fill: var(--yellow)
+
     &:hover,
     &:active
-      fill: #808080
+      fill: var(--dark-yellow)
 </style>

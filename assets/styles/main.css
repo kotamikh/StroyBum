@@ -3,9 +3,8 @@
   font-weight: normal;
   --grey: #555555;
   --green: #49AE66;
-  /*--yellow: #FCEC60;*/
   --yellow: #ffdf3c;
-  --dark-yellow: #ffe12c;
+  --dark-yellow: #fcd111;
   --middle-grey: #808080;
   color: var(--middle-grey);
   box-sizing: border-box;

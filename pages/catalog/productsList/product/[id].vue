@@ -73,7 +73,7 @@
             </div>
             <p class="stock">{{ product.stock === 1 ? 'В наличии' : 'Под заказ' }}</p>
           </div>
-          <cart-button :id="product.id" class="cart-btn"/>
+          <cart-button :id="product.id" class="cart"/>
         </div>
       </div>
     </div>
@@ -382,13 +382,7 @@ const moveToDown = () => {
         fill: rgba(128, 128, 128, 0.4)
 
         &:hover
-          stroke-width: 10px
-          stroke: var(--middle-grey)
-
-        &:active
-          stroke-width: 10px
-          fill: var(--yellow)
-          stroke: var(--middle-grey)
+          fill: var(--middle-grey)
 
       .price-stock-cart
         display: contents
@@ -398,7 +392,7 @@ const moveToDown = () => {
           align-items: center
           justify-content: space-between
 
-        .cart-btn
+        .cart
           padding: 1% 5%
           width: fit-content
           font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
@@ -476,10 +470,8 @@ const moveToDown = () => {
 
 .product-card.favourite
   .fav-btn > .fav-mark
-    stroke-width: 10px
     fill: var(--yellow)
-    stroke: var(--middle-grey)
 
-    &:active
-      fill: rgba(128, 128, 128, 0.4)
+    &:hover
+      fill: var(--dark-yellow)
 </style>

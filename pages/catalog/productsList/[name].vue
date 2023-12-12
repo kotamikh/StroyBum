@@ -18,7 +18,7 @@
       />
     </div>
   </div>
-  <div class="catalog">
+  <div class="catalog" ref="root">
     <product-card v-for="[id, product] in products"
                   :key="id"
                   :id="id"
@@ -29,6 +29,7 @@
                   :discount="product.discount"
                   :subject="product.subject"
     />
+    <div class="control-block" v-intersection-observer="[onIntersectionObserver, { root }]"></div>
   </div>
 </template>
 
@@ -37,6 +38,7 @@ import { ref } from "@vue/reactivity";
 import { navigateTo, useRoute } from "#app";
 import TheFilter from "~/components/TheFilter.vue";
 import { useProductsStore } from "~/store/products";
+import { vIntersectionObserver } from '@vueuse/components';
 import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 
 const route = useRoute()
@@ -45,47 +47,19 @@ const name = route.params.name.toString()
 
 const limit = ref<number>(6)
 const categoryId = useSubjectsBrandsStore().findSubjectId(name)
-const productNumber = await useProductsStore().countProductNumber(0, 250, categoryId)
+const productNumber = await useProductsStore().countProductNumber(0, 250)
 
 const products = await useProductsStore().loadWithConditions(0, limit.value, categoryId)
 
-async function checkPosition() {
-  const height = document.body.offsetHeight
-  const screenHeight = window.innerHeight
+const root = ref(null)
+const isVisible = ref(false)
 
-  const scrolled = window.scrollY
-  const threshold = height - screenHeight / 5
-  const position = scrolled + screenHeight
-
-  if (position >= threshold) {
-    if (limit.value < productNumber) {
+function onIntersectionObserver([{ isIntersecting }]: IntersectionObserverEntry[]) {
+  isVisible.value = isIntersecting
+  if (limit.value < productNumber) {
       limit.value += 6
-      await useProductsStore().loadWithConditions(0, limit.value, categoryId)
+      useProductsStore().loadWithConditions(0, limit.value, categoryId)
     }
-   else {
-      window.removeEventListener('scroll', throttle(checkPosition, 250))
-      window.removeEventListener('resize', throttle(checkPosition, 250))
-    }
-  }
-}
-
-(async function () {
-  window.addEventListener('scroll', throttle(checkPosition, 250))
-  window.addEventListener('resize', throttle(checkPosition, 250))
-}())
-
-function throttle(fn: Function, timeout: number) {
-  let timer: ReturnType<typeof setTimeout> | number = 0
-
-  return function perform(...args: Parameters<any>) {
-    if (timer) return
-
-    timer = setTimeout(() => {
-      fn(...args)
-      clearTimeout(timer)
-      timer = 0
-    }, timeout)
-  }
 }
 </script>
 
@@ -137,7 +111,7 @@ function throttle(fn: Function, timeout: number) {
 
 .catalog
   display: grid
-  margin-top: 90px
+  margin-top: 150px
   grid-row-gap: 2rem
   grid-column-gap: 1rem
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
