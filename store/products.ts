@@ -10,6 +10,7 @@ export const useProductsStore = defineStore('cardsStore', () => {
     const allProducts: Ref<Map<number, IProduct>> = ref(new Map<number, IProduct>())
     const currentProducts: Ref<Map<number, IProduct>> = ref(new Map<number, IProduct>())
     const favourites = useLocalStorage<Set<number>>("favourites", new Set<number>())
+    const currentProductPage = useLocalStorage<IProduct>("currentProduct", api.getDefaultProduct)
     const cartQuantity = useLocalStorage<Map<number, number>>("cartQuantity", new Map<number, number>())
 
     const loadAll = async (offset: number, limit: number)=> {
@@ -36,6 +37,7 @@ export const useProductsStore = defineStore('cardsStore', () => {
 
     const getProduct = (id: number): ReturnWithStatus<IProduct> => {
         let p = currentProducts.value.get(id)
+        console.log(currentProducts.value)
         if (!p) {
           return { ok: false }
         }
@@ -84,6 +86,7 @@ export const useProductsStore = defineStore('cardsStore', () => {
         toggleFavourite,
         currentProducts,
         countProductNumber,
-        loadWithConditions
+        loadWithConditions,
+        currentProductPage
     }
 })

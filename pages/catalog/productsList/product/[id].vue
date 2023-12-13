@@ -102,23 +102,14 @@
 import { ref } from "vue";
 import { onMounted } from "#imports";
 import { computed } from "@vue/reactivity";
-import { useRoute, useRouter } from "#app";
+import { useRouter } from "#app";
 import { useProductsApi } from "~/api/products";
 import { useProductsStore } from "~/store/products";
 import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 
-const route = useRoute()
 const router = useRouter()
 const store = useProductsStore()
-
-const id = computed<number>(() => Number(route.params.id))
-const product = ref(useProductsApi().getDefaultProduct())
-
-const result = store.getProduct(id.value)
-
-if (result.ok) {
-  product.value = result.data
-}
+const product = ref(useProductsStore().currentProductPage)
 
 const isFavourite = computed<boolean>(() => {
   return store.isFavourite(product.value.id)

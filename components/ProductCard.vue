@@ -1,6 +1,6 @@
 <template>
   <div :class="[{ favourite : isFavourite }, 'product-card']"
-       @click="navigateTo(`/catalog/productsList/product/${props.id}`)">
+       @click="goToProductPage">
     <div class="img-holder">
       <button class="fav-btn" @click.stop="store.toggleFavourite(props.id)">
         <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
@@ -59,6 +59,14 @@ const store = useProductsStore()
 const isFavourite = computed<boolean>(() => {
   return store.isFavourite(props.id)
 })
+
+const goToProductPage = () => {
+  navigateTo(`/catalog/productsList/product/${props.id}`)
+  let currentProduct = store.getProduct(props.id)
+  if (currentProduct.ok) {
+    store.currentProductPage = currentProduct.data
+  }
+}
 </script>
 
 <style scoped lang="sass">
