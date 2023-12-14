@@ -24,7 +24,7 @@
             </ul>
           </div>
           <div><label for="sale">Товары со скидкой</label>
-            <input type="checkbox" name="sale" @click="discountCheck = !discountCheck">
+            <input type="checkbox" name="sale" v-model="discountCheck" @click="discountCheck = !discountCheck">
           </div>
           <div class="brands-list"><p>По бренду</p>
             <label v-for="brand in brands"

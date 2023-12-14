@@ -38,7 +38,7 @@ export default {
   background-color: white
   font-size: calc((100vw - 320px) / (1440 - 320) * (16 - 14) + 14px)
 
-  @media screen and (max-width: 849px)
+  @media screen and (max-width: 809px)
     row-gap: 15px
     column-gap: 35px
     padding: 10px 15px
@@ -63,7 +63,7 @@ export default {
   .footer-item
     margin-right: 20px
 
-    @media screen and (max-width: 849px)
+    @media screen and (max-width: 809px)
       margin: 0
 
     .vk-link
@@ -85,7 +85,7 @@ export default {
       margin-right: 0
       margin-left: auto
 
-      @media screen and (max-width: 849px)
+      @media screen and (max-width: 809px)
         margin: 0
 
   .column

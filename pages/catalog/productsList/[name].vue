@@ -67,9 +67,12 @@ function onIntersectionObserver([{ isIntersecting }]: IntersectionObserverEntry[
     }
 }
 
-const showFilteredProducts = (priceFilter: string, discountCheck: boolean, brandFilter: number) => {
+const showFilteredProducts = async (priceFilter: string, discountCheck: boolean, brandFilter: number) => {
   if (discountCheck) {
     products = new Map([...products].filter(el => el[1].discount > 0))
+  }
+  if (!discountCheck) {
+    products = await useProductsStore().loadWithConditions(0, limit.value, categoryId)
   }
   if (priceFilter === 'fromHigh') {
     products = new Map([...products].sort((el1, el2) => el2[1].price - el1[1].price))
@@ -80,6 +83,7 @@ const showFilteredProducts = (priceFilter: string, discountCheck: boolean, brand
   if (brandFilter) {
     products = new Map([...products].filter(el => el[1].brand === brandFilter))
   }
+
   showFilter.value = false
 }
 </script>

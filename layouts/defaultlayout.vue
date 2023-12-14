@@ -21,7 +21,7 @@
   @media screen and (max-width: 1000px)
     width: 95vw
 
-  @media screen and (max-width: 849px)
+  @media screen and (max-width: 809px)
     display: flex
     flex-direction: column
 
@@ -30,7 +30,8 @@
     padding: 20px 0 70px 0
     flex-direction: column
 
-    @media screen and (max-width: 849px)
+    @media screen and (max-width: 809px)
+      padding-top: 0
       padding-bottom: 160px
 
     @media screen and (max-width: 344px)

@@ -84,9 +84,9 @@ const goToProductPage = () => {
   border-radius: 15px
   background-color: white
 
-  @media screen and (max-width: 469px)
+  @media screen and (max-width: 809px)
     gap: 5px
-    height: 320px
+    height: 300px
 
   &:not(.favourite)
     .fav-mark
@@ -182,7 +182,7 @@ const goToProductPage = () => {
       font-weight: lighter
 
     @media screen and (max-width: 469px)
-      gap: 10px
+      gap: 5px
       width: 90%
       margin: auto
       flex-direction: column

@@ -112,7 +112,7 @@ watch(() => route.name, () => {
       font-size: calc((100vw - 320px) / (1280 - 320) * (34 - 30) + 30px)
 
       @media screen and (max-width: 809px)
-        margin-right: 20px
+        margin-right: 0
 
       span
         color: var(--yellow)
