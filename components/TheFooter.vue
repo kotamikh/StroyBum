@@ -42,8 +42,9 @@ export default {
     row-gap: 15px
     column-gap: 35px
     padding: 10px 15px
-    width: 100%
+
     left: 0
+    width: 100%
     flex-wrap: wrap
     height: fit-content
     margin-bottom: 45px

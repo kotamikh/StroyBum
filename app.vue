@@ -37,12 +37,12 @@ useProductsStore().loadAll(0, productsCount.value)
 .overlay
   top: 0
   left: 0
-  position: fixed
-  height: 100%
   width: 100%
+  height: 100%
   display: flex
-  justify-content: center
+  position: fixed
   align-items: center
+  justify-content: center
   background-color: rgba(255, 255, 255, 0.8)
 
 .v-enter-active,

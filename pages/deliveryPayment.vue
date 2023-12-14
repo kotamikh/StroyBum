@@ -2,22 +2,22 @@
   <div class="wrapper">
     <div class="delivery-methods">
       <div class="method">
-        <h2 style="grid-area: 1 / 1 / 2 / 2">Самовывоз</h2>
-        <div class="text-center" style="grid-area: 2 / 1 / 3 / 2">
+        <h2 class="header-1">Самовывоз</h2>
+        <div class="text-center">
           <p>г. Киров, 2-й Кирпичный пер. 2/1
             (территория базы “Слон”).</p>
           <p>Режим работы: Пн-Пт 8:30-17:30,
             Сб 9:00-13:00.</p>
         </div>
-        <img :src="pickup" alt="самовывоз" class="box-img" style="grid-area: 3 / 1 / 4 / 2"/>
+        <img :src="pickup" alt="самовывоз" class="box-img"/>
       </div>
       <div class="method">
-        <h2 style="grid-area: 1 / 2 / 2 / 3">Доставка</h2>
-        <div class="text" style="grid-area: 2 / 2 / 3 / 3">
+        <h2 class="header-2">Доставка</h2>
+        <div class="text">
           <p>В любой город России через транспортные компании СДЭК, БайкалСервис, ПЭК, Объём, Деловые линии.</p>
           <p><span>Внимание!</span> Стоимость доставки рассчитывается согласно тарифу транспортной компании.</p>
         </div>
-        <img :src="delivery" alt="доставка" class="delivery-img" style="grid-area: 3 / 2 / 4 / 3">
+        <img :src="delivery" alt="доставка" class="delivery-img">
       </div>
     </div>
     <div class="payment">
@@ -25,7 +25,6 @@
       <p>Товары оплачиваются перед получением, наличными или банковской картой.</p>
     </div>
   </div>
-
 </template>
 
 <script setup>
@@ -77,6 +76,18 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
     .method
       position: relative
 
+      h2.header-1
+        grid-area: 1 / 1 / 2 / 2
+
+      h2.header-2
+        grid-area: 1 / 2 / 2 / 3
+
+      .text-center
+        grid-area: 2 / 1 / 3 / 2
+
+      .text
+        grid-area: 2 / 2 / 3 / 3
+
       img
         margin: auto
         @media screen and (max-width: 709px)
@@ -93,9 +104,11 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
 
       .box-img
         max-width: 140px
+        grid-area: 3 / 1 / 4 / 2
 
       .delivery-img
-        max-width: 145px
+        max-width: 140px
+        grid-area: 3 / 2 / 4 / 3
 
     h2
       width: fit-content

@@ -30,8 +30,8 @@ dd {
 body,
 html {
     width: 100vw;
-    min-height: 100vh;
     line-height: 1.5;
+    min-height: 100vh;
     overflow-x: hidden;
     scroll-behavior: smooth;
     background-color: white;
@@ -46,8 +46,8 @@ ul[class],
 ol[class],
 ul,
 ol {
-    list-style: none;
     padding: 0;
+    list-style: none;
 }
 
 a:not([class]) {
@@ -55,8 +55,8 @@ a:not([class]) {
 }
 
 img {
-    max-width: 100%;
     display: block;
+    max-width: 100%;
 }
 
 article > * + * {

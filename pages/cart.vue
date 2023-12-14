@@ -97,9 +97,9 @@ h1
   border-radius: 15px
   flex-direction: column
   background-color: rgba(0, 48, 120, 0.04)
-  -webkit-box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
-  -moz-box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
   box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
+  -moz-box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
+  -webkit-box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
 
   @media screen and (max-width: 559px)
     margin-top: 20px

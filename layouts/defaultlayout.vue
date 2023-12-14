@@ -8,10 +8,6 @@
   </div>
 </template>
 
-<script setup>
-
-</script>
-
 <style scoped lang="sass">
 .layout
   width: 90vw

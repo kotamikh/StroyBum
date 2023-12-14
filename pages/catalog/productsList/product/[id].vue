@@ -100,9 +100,9 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRouter } from "#app";
 import { onMounted } from "#imports";
 import { computed } from "@vue/reactivity";
-import { useRouter } from "#app";
 import { useProductsApi } from "~/api/products";
 import { useProductsStore } from "~/store/products";
 import { useSubjectsBrandsStore } from "~/store/subjects-brands";
@@ -319,8 +319,8 @@ const moveToDown = () => {
           transform: scale(1.15)
 
     .current-photo
-      display: flex
       width: 100%
+      display: flex
       aspect-ratio: 1
       position: relative
 

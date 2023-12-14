@@ -35,8 +35,9 @@
 <script setup lang="ts">
 import { computed } from "@vue/reactivity";
 import { IProduct } from "~/types/Product";
-import defaultImg from "assets/common-images/default-image.jpeg";
 import { useProductsStore } from "~/store/products";
+import defaultImg from "assets/common-images/default-image.jpeg";
+
 export interface Props extends IProduct {
   id: number,
   name: string,
@@ -81,9 +82,9 @@ const increaseTheAmount = (id: number) => {
   border-radius: 15px
   justify-items: center
   grid-template-columns: 2fr 3fr 3fr 1fr
-  -webkit-box-shadow: 0 5px 10px 2px rgba(0, 48, 120, 0.15)
-  -moz-box-shadow: 0 5px 10px 2px rgba(0, 48, 120, 0.15)
   box-shadow: 0 5px 10px 2px rgba(0, 48, 120, 0.15)
+  -moz-box-shadow: 0 5px 10px 2px rgba(0, 48, 120, 0.15)
+  -webkit-box-shadow: 0 5px 10px 2px rgba(0, 48, 120, 0.15)
 
   @media screen and (max-width: 559px)
     grid-template-columns: 2fr 1.5fr 0.5fr
