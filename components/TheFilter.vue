@@ -4,35 +4,37 @@
       <div class="filter">
         <p class="title">Фильтры
           <button class="close-filter" @click="emit('closeFilter')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 15 15"><path fill-rule="evenodd" d="M11.782 4.032a.575.575 0 1 0-.813-.814L7.5 6.687L4.032 3.218a.575.575 0 0 0-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 0 0 .814.814L7.5 8.313l3.469 3.469a.575.575 0 0 0 .813-.814L8.313 7.5l3.469-3.468Z" clip-rule="evenodd"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 15 15">
+              <path fill-rule="evenodd"
+                    d="M11.782 4.032a.575.575 0 1 0-.813-.814L7.5 6.687L4.032 3.218a.575.575 0 0 0-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 0 0 .814.814L7.5 8.313l3.469 3.469a.575.575 0 0 0 .813-.814L8.313 7.5l3.469-3.468Z"
+                    clip-rule="evenodd"/>
+            </svg>
           </button>
         </p>
-        <ul class="filter-list">
-          <li><p>По цене</p>
+        <div class="filter-list">
+          <div>
+            <p>По цене</p>
             <ul>
-              <li><input type="checkbox" name="price">
-                <label for="price">Сначала дороже</label>
+              <li><input type="radio" id="fromHigh" value="fromHigh" v-model="priceFilter">
+                <label for="fromHigh">Сначала дороже</label>
               </li>
-              <li><input type="checkbox" name="price">
-                <label for="price">Сначала дешевле</label>
+              <li><input type="radio" id="fromLow" value="fromLow" v-model="priceFilter">
+                <label for="fromLow">Сначала дешевле</label>
               </li>
             </ul>
-          </li>
-          <li><label for="sale">Товары со скидкой</label>
-            <input type="checkbox" name="sale"></li>
-          <li><p>По бренду</p>
-            <ul>
-            <li v-for="brand in brands"
-                :key="brand.id"
-                class="brand"
-                @click="loadBrandProducts(brand.id)">
-              <input type="checkbox" name="brand">
-              <label for="brand">{{ brand.name }}</label>
-            </li>
-            </ul>
-          </li>
-        </ul>
-        <button class="filter-search" @click="emit('closeFilter')">Искать</button>
+          </div>
+          <div><label for="sale">Товары со скидкой</label>
+            <input type="checkbox" name="sale" @click="discountCheck = !discountCheck">
+          </div>
+          <div class="brands-list"><p>По бренду</p>
+            <label v-for="brand in brands"
+                   :key="brand.id">
+              <input type="radio" id="{{ brand.id }}" :value=brand.id v-model="brandFilter">
+              <span>{{ brand.name }}</span>
+            </label>
+          </div>
+        </div>
+        <button class="filter-search" @click="passInputsData">Искать</button>
       </div>
     </div>
   </teleport>
@@ -51,16 +53,19 @@ const props = defineProps({
 
 const emit = defineEmits(['closeFilter'])
 
+const priceFilter = ref('')
+const discountCheck = ref(false)
+const brandFilter = ref(0)
+
 const route = useRoute()
 const store = useSubjectsBrandsStore()
 const name = route.params.name.toString()
 
 const subject = store.findSubjectId(name)
 const brands = await store.getBrandsBySubject(subject)
-const currentBrand = ref(0)
 
-const loadBrandProducts = (brand: number) => {
-  currentBrand.value = brand
+const passInputsData = () => {
+  emit('closeFilter', priceFilter.value, discountCheck.value, brandFilter.value)
 }
 </script>
 
@@ -116,9 +121,20 @@ const loadBrandProducts = (brand: number) => {
       display: flex
       flex-direction: column
 
+      ul
+        margin: 0
+
+      .brands-list
+        display: flex
+        flex-direction: column
+
     .filter-search
       border: none
       padding: 5px 0
       border-radius: 10px
       background-color: var(--yellow)
+      transition: all 0.2s ease-in-out
+
+      &:hover
+        background-color: var(--dark-yellow)
 </style>

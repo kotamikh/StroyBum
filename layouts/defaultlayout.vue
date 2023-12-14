@@ -27,7 +27,7 @@
 
   .content
     display: flex
-    padding-bottom: 70px
+    padding: 20px 0 70px 0
     flex-direction: column
 
     @media screen and (max-width: 849px)

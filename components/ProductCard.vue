@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { useProductsStore } from "~/store/products";
-import defaultImg from '@/assets/default-image.jpeg';
+import defaultImg from 'assets/common-images/default-image.jpeg';
 import CartButton from "~/components/CartButton.vue";
 import { IProduct, StockType } from "~/types/Product";
 

@@ -3,7 +3,7 @@
     <div class="bread-crumbs">
       <a @click="navigateTo('/catalog')">Каталог</a>
       <p>/</p>
-      <h1>{{ name }}</h1>
+      <p>{{ name }}</p>
     </div>
     <div class="filter">
       <button class="filter-btn" @click="showFilter = !showFilter">
@@ -14,9 +14,14 @@
         Фильтровать товары
       </button>
       <the-filter v-model:show="showFilter"
-                  @close-filter="showFilter = false"
+                  @close-filter="showFilteredProducts"
       />
     </div>
+  </div>
+  <h1>{{ name }}</h1>
+  <div v-if="!products.size" class="empty-page">
+    <p>Здесь ничего нет...</p>
+    <img src="@/assets/common-images/смайлик.png" alt="sad-smile">
   </div>
   <div class="catalog" ref="root">
     <product-card v-for="[id, product] in products"
@@ -49,7 +54,7 @@ const limit = ref<number>(6)
 const categoryId = useSubjectsBrandsStore().findSubjectId(name)
 const productNumber = await useProductsStore().countProductNumber(0, 250)
 
-const products = await useProductsStore().loadWithConditions(0, limit.value, categoryId)
+let products = await useProductsStore().loadWithConditions(0, limit.value, categoryId)
 
 const root = ref(null)
 const isVisible = ref(false)
@@ -60,6 +65,22 @@ function onIntersectionObserver([{ isIntersecting }]: IntersectionObserverEntry[
       limit.value += 6
       useProductsStore().loadWithConditions(0, limit.value, categoryId)
     }
+}
+
+const showFilteredProducts = (priceFilter: string, discountCheck: boolean, brandFilter: number) => {
+  if (discountCheck) {
+    products = new Map([...products].filter(el => el[1].discount > 0))
+  }
+  if (priceFilter === 'fromHigh') {
+    products = new Map([...products].sort((el1, el2) => el2[1].price - el1[1].price))
+  }
+  if (priceFilter === 'fromLow') {
+    products = new Map([...products].sort((el1, el2) => el1[1].price - el2[1].price))
+  }
+  if (brandFilter) {
+    products = new Map([...products].filter(el => el[1].brand === brandFilter))
+  }
+  showFilter.value = false
 }
 </script>
 
@@ -77,10 +98,6 @@ function onIntersectionObserver([{ isIntersecting }]: IntersectionObserverEntry[
 
     a:hover
       color: var(--grey)
-
-    h1
-      margin: 0
-      font-size: inherit
 
   .filter
     width: fit-content
@@ -102,16 +119,18 @@ function onIntersectionObserver([{ isIntersecting }]: IntersectionObserverEntry[
         svg > path
           fill: var(--grey)
 
-    .brand
-      display: block
-      padding: 10px 20px
+h1
+  margin-top: 0
 
-      &:hover
-        background-color: #E3DD5F
+.empty-page
+  margin: auto
+  font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px)
+
+  img
+    margin: auto
 
 .catalog
   display: grid
-  margin-top: 150px
   grid-row-gap: 2rem
   grid-column-gap: 1rem
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))

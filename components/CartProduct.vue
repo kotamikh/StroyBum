@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { computed } from "@vue/reactivity";
 import { IProduct } from "~/types/Product";
-import defaultImg from "assets/default-image.jpeg";
+import defaultImg from "assets/common-images/default-image.jpeg";
 import { useProductsStore } from "~/store/products";
 export interface Props extends IProduct {
   id: number,
