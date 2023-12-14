@@ -95,12 +95,12 @@ watch(() => route.name, () => {
   display: flex
   margin: 0 auto
 
-  @media screen and (max-width: 849px)
-    flex-direction: row
+  @media screen and (max-width: 809px)
+    flex-direction: column
     justify-content: space-between
 
-  @media screen and (max-width: 399px)
-    flex-direction: column
+    .nav-menu-left
+      height: 0
 
   a
     align-self: center
@@ -111,7 +111,7 @@ watch(() => route.name, () => {
       font-family: 'Russo One', sans-serif
       font-size: calc((100vw - 320px) / (1280 - 320) * (34 - 30) + 30px)
 
-      @media screen and (max-width: 849px)
+      @media screen and (max-width: 809px)
         margin-right: 20px
 
       span
@@ -123,7 +123,7 @@ watch(() => route.name, () => {
     display: flex
     justify-content: space-between
 
-    @media screen and (max-width: 849px)
+    @media screen and (max-width: 809px)
       display: contents
 
       .nav-menu-left
@@ -187,7 +187,7 @@ watch(() => route.name, () => {
       gap: 20px
 
     .nav-menu-right
-      @media screen and (max-width: 849px)
+      @media screen and (max-width: 809px)
         .nav-icon
           width: 20%
         .current
@@ -196,6 +196,6 @@ watch(() => route.name, () => {
       .extra-links
         display: none
 
-        @media screen and (max-width: 849px)
+        @media screen and (max-width: 809px)
           display: contents
 </style>

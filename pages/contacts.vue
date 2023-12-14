@@ -47,9 +47,6 @@
     width: 95%
     margin: auto
 
-    h1
-      margin: 20px auto
-
 .contacts
   display: flex
   margin-bottom: 20px

@@ -44,7 +44,7 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
   flex-direction: column
   font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 
-  @media screen and (max-width: 1079px)
+  @media screen and (max-width: 1239px)
     width: 98%
 
   @media screen and (max-width: 709px)

@@ -37,7 +37,6 @@ export const useProductsStore = defineStore('cardsStore', () => {
 
     const getProduct = (id: number): ReturnWithStatus<IProduct> => {
         let p = currentProducts.value.get(id)
-        console.log(currentProducts.value)
         if (!p) {
           return { ok: false }
         }
