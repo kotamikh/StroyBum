@@ -113,6 +113,7 @@ watch(() => route.name, () => {
 
       @media screen and (max-width: 809px)
         margin-right: 0
+        margin-bottom: 40px
 
       span
         color: var(--yellow)

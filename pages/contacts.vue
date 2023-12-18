@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h1>Контакты</h1>
+    <h1 class="page-name">Контакты</h1>
     <div class="contacts">
       <div class="contacts-text">
         <div class="address">
@@ -134,5 +134,3 @@
       width: 90%
       align-self: center
 </style>
-<script setup lang="ts">
-</script>

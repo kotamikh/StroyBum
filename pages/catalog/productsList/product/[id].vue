@@ -6,7 +6,7 @@
         useSubjectsBrandsStore().findSubjectName(product.subject)
       }}</a>
     <p>/</p>
-    <h1>{{ product.name }}</h1>
+    <p>{{ product.name }}</p>
   </div>
   <div :class="[{ favourite : isFavourite }, 'product-card']">
     <div :class="[ product.images.length <= 1 ? 'two-cols' : '', 'main-information' ]">
@@ -44,27 +44,26 @@
       <div class="current-photo">
         <button v-if="product.images.length > 1" :class="[{ active : isLeftButtonActive }, 'left-button']"
                 @click="setCurrentImage(currentImageIndex - 1)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
             <path d="M15.41 16.58L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.42Z"/>
           </svg>
         </button>
         <img :src="currentImage" :alt="product.name"/>
         <button v-if="product.images.length > 1" :class="[{ active : isRightButtonActive }, 'right-button']"
                 @click="setCurrentImage(currentImageIndex + 1)">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
             <path d="M8.59 16.58L13.17 12L8.59 7.41L10 6l6 6l-6 6l-1.41-1.42Z"/>
+          </svg>
+        </button>
+        <button class="fav-btn" @click="useProductsStore().toggleFavourite(product.id)">
+          <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+            <path
+                d="M240 98a57.63 57.63 0 0 1-17 41l-89.3 90.62a8 8 0 0 1-11.4 0L33 139a58 58 0 0 1 82-82.1l13 12.15l13.09-12.19A58 58 0 0 1 240 98Z"/>
           </svg>
         </button>
       </div>
       <div class="product-information">
-        <h1>{{ product.name }}
-          <button class="fav-btn" @click="useProductsStore().toggleFavourite(product.id)">
-            <svg class="fav-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-              <path
-                  d="M240 98a57.63 57.63 0 0 1-17 41l-89.3 90.62a8 8 0 0 1-11.4 0L33 139a58 58 0 0 1 82-82.1l13 12.15l13.09-12.19A58 58 0 0 1 240 98Z"/>
-            </svg>
-          </button>
-        </h1>
+        <h1>{{ product.name }}</h1>
         <div class="price-stock-cart">
           <div class="price-stock">
             <div class="price">
@@ -191,7 +190,13 @@ const moveToDown = () => {
   margin: 30px 0
   flex-wrap: wrap
   column-gap: 10px
-  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
+
+  @media screen and (max-width: 809px)
+    margin-top: 0
+
+  @media screen and (max-width: 559px)
+    margin: 0
 
   a,
   p
@@ -200,35 +205,30 @@ const moveToDown = () => {
   a:hover
     color: var(--grey)
 
-  h1
-    margin: 0
-    font-size: inherit
-
 .product-card
   width: 100%
-  margin: 20px auto
 
   .two-cols.main-information
     grid-template-columns: 1fr 2.5fr 4.5fr
 
-    @media screen and (max-width: 849px)
+    @media screen and (max-width: 809px)
       grid-template-columns: 0.5fr 3.5fr 4fr
 
     @media screen and (max-width: 559px)
       grid-template-columns: 1fr
-      grid-template-rows: 2fr 1fr
+      grid-template-rows: 1fr 0.5fr
 
   .main-information
     display: grid
     margin-bottom: 5%
     grid-template-columns: 1fr 2.5fr 4.5fr
 
-    @media screen and (max-width: 849px)
-      grid-template-columns: 1fr 3.5fr 3.5fr
+    @media screen and (max-width: 809px)
+      grid-template-columns: 1fr 3fr 3.5fr
 
     @media screen and (max-width: 559px)
       grid-template-columns: 1fr
-      grid-template-rows: 2fr 1fr
+      grid-template-rows: 1fr 0.5fr
 
       .col-1
         display: none
@@ -337,6 +337,23 @@ const moveToDown = () => {
         @media screen and (max-width: 559px)
           border: 0
 
+    .fav-btn
+      top: 0
+      right: 0
+      border: none
+      padding: 5px
+      position: absolute
+      display: inline-flex
+      background-color: transparent
+      width: calc((100vw - 320px) / (1280 - 320) * (42 - 32) + 32px)
+
+      .fav-mark
+        width: inherit
+        fill: rgba(128, 128, 128, 0.4)
+
+        &:hover
+          fill: var(--middle-grey)
+
     .product-information
       gap: 5%
       display: flex
@@ -344,7 +361,7 @@ const moveToDown = () => {
       flex-direction: column
       justify-content: center
 
-      @media screen and (max-width: 849px)
+      @media screen and (max-width: 809px)
         margin: 0 5%
 
       @media screen and (max-width: 559px)
@@ -356,24 +373,7 @@ const moveToDown = () => {
       h1
         margin: 0
         position: relative
-        font-size: calc((100vw - 320px) / (1280 - 320) * (28 - 18) + 18px)
-
-        @media screen and (max-width: 849px)
-          font-size: calc((100vw - 320px) / (1280 - 320) * (24 - 18) + 18px)
-
-      .fav-btn
-        border: none
-        position: absolute
-        display: inline-flex
-        background-color: transparent
-        width: calc((100vw - 320px) / (1280 - 320) * (42 - 30) + 30px)
-
-      .fav-mark
-        width: inherit
-        fill: rgba(128, 128, 128, 0.4)
-
-        &:hover
-          fill: var(--middle-grey)
+        font-size: calc((100vw - 320px) / (1280 - 320) * (24 - 16) + 16px)
 
       .price-stock-cart
         display: contents

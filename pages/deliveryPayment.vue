@@ -4,9 +4,9 @@
       <div class="method">
         <h2 class="header-1">Самовывоз</h2>
         <div class="text-center">
-          <p>г. Киров, 2-й Кирпичный пер. 2/1
+          <p><span>Адрес:</span> г. Киров, 2-й Кирпичный пер. 2/1
             (территория базы “Слон”).</p>
-          <p>Режим работы: Пн-Пт 8:30-17:30,
+          <p><span>Режим работы:</span> Пн-Пт 8:30-17:30,
             Сб 9:00-13:00.</p>
         </div>
         <img :src="pickup" alt="самовывоз" class="box-img"/>
@@ -37,22 +37,26 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
   color: var(--grey)
 
 .wrapper
-  width: 85%
+  width: 100%
   display: flex
-  margin: 60px auto 0
+  margin: 60px auto 20px
   flex-direction: column
   font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 
-  @media screen and (max-width: 1239px)
-    width: 98%
+  h2
+    font-weight: 600
+    color: var(--grey)
+    margin-bottom: 10px
+    font-size: calc((100vw - 320px) / (1280 - 320) * (22 - 20) + 20px)
 
-  @media screen and (max-width: 709px)
-    width: 95%
-    margin: 40px auto 10px
+  @media screen and (max-width: 809px)
+    margin-top: 0
 
   .delivery-methods
     display: grid
     grid-column-gap: 4%
+    grid-row-gap: 10px
+    margin-bottom: 40px
     height: max-content
     grid-template-rows: 0.5fr 2fr 2.5fr
     grid-template-columns: repeat(2, 1fr)
@@ -67,9 +71,10 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
       flex-direction: column
 
     @media screen and (max-width: 484px)
-      width: 90%
+      width: 100%
+      margin-bottom: 30px
 
-    @media screen and (min-width: 709px)
+    @media screen and (min-width: 710px)
       .method
         display: contents
 
@@ -90,6 +95,7 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
 
       img
         margin: auto
+
         @media screen and (max-width: 709px)
           top: 30%
           margin: 0
@@ -100,7 +106,11 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
         @media screen and (max-width: 484px)
           top: -15px
           width: 50px
-          left: 100px
+
+          &.box-img
+            left: 120px
+          &.delivery-img
+            left: 105px
 
       .box-img
         max-width: 140px
@@ -112,28 +122,9 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
 
     h2
       width: fit-content
-      margin-bottom: 10px
-
-      @media screen and (max-width: 709px)
-        text-align: left
 
     p
-      margin-bottom: 10px
-
-      @media screen and (max-width: 709px)
-        margin-bottom: 20px
-
       span
+        color: #808080
         font-weight: bold
-
-  .payment
-    h2
-      margin: 40px 0 10px
-      vertical-align: middle
-
-    @media screen and (max-width: 709px)
-      margin-top: 20px
-
-      h2
-        margin-top: 0
 </style>

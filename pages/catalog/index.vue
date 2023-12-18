@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h1>Каталог</h1>
+    <h1 class="page-name">Каталог</h1>
     <ul class="categories">
       <li v-for="[id, category] in useSubjectsBrandsStore().subjectsMap"
           :key="id">

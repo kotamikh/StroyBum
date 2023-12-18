@@ -1,10 +1,11 @@
 <template>
-  <div class="crumbs-filter">
-    <div class="bread-crumbs">
-      <a @click="navigateTo('/catalog')">Каталог</a>
-      <p>/</p>
-      <p>{{ name }}</p>
-    </div>
+  <div class="bread-crumbs">
+    <a @click="navigateTo('/catalog')">Каталог</a>
+    <p>/</p>
+    <p>{{ name }}</p>
+  </div>
+  <div class="name-filter">
+    <h1 class="category-name">{{ name }}</h1>
     <div class="filter">
       <button class="filter-btn" @click="showFilter = !showFilter">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32">
@@ -18,7 +19,6 @@
       />
     </div>
   </div>
-  <h1>{{ name }}</h1>
   <div v-if="!products.size" class="empty-page">
     <p>Здесь ничего нет...</p>
     <img src="@/assets/common-images/смайлик.png" alt="sad-smile">
@@ -62,9 +62,9 @@ const isVisible = ref(false)
 function onIntersectionObserver([{ isIntersecting }]: IntersectionObserverEntry[]) {
   isVisible.value = isIntersecting
   if (limit.value < productNumber) {
-      limit.value += 6
-      useProductsStore().loadWithConditions(0, limit.value, categoryId)
-    }
+    limit.value += 6
+    useProductsStore().loadWithConditions(0, limit.value, categoryId)
+  }
 }
 
 const showFilteredProducts = async (priceFilter: string, discountCheck: boolean, brandFilter: number) => {
@@ -89,19 +89,32 @@ const showFilteredProducts = async (priceFilter: string, discountCheck: boolean,
 </script>
 
 <style scoped lang="sass">
-.crumbs-filter
+.bread-crumbs
+  gap: 10px
   display: flex
+  margin-top: 30px
+  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+
+  @media screen and (max-width: 809px)
+    display: none
+
+  a:hover
+    color: var(--grey)
+
+.name-filter
+  display: flex
+  margin: 20px 0
   align-items: center
   justify-content: space-between
 
-  .bread-crumbs
-    gap: 10px
-    display: flex
-    margin: 30px 0
-    font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+  @media screen and (max-width: 809px)
+    margin-top: 0
 
-    a:hover
-      color: var(--grey)
+  .category-name
+    margin: 0
+    font-weight: 600
+    color: var(--grey)
+    font-size: calc((100vw - 320px) / (1280 - 320) * (28 - 24) + 24px)
 
   .filter
     width: fit-content
@@ -116,15 +129,18 @@ const showFilteredProducts = async (priceFilter: string, discountCheck: boolean,
       align-items: center
       justify-content: center
       background-color: transparent
+      font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
+
+      @media screen and (max-width: 809px)
+        svg
+          width: 20px
+          height: 20px
 
       &:hover
         color: var(--grey)
 
         svg > path
           fill: var(--grey)
-
-h1
-  margin-top: 0
 
 .empty-page
   margin: auto
@@ -135,9 +151,11 @@ h1
 
 .catalog
   display: grid
-  grid-row-gap: 2rem
-  grid-column-gap: 1rem
+  grid-gap: 2rem
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+
+  @media screen and (max-width: 949px)
+    grid-column-gap: 1rem
 
   @media screen and (max-width: 687px)
     grid-row-gap: 1rem

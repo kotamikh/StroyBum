@@ -1,7 +1,7 @@
 <template>
-  <h1>
+  <h1 class="page-name">
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256">
-      <path fill="#808080"
+      <path fill="#555555"
             d="M96 216a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm88-16a16 16 0 1 0 16 16a16 16 0 0 0-16-16Zm47.65-125.65l-28.53 92.71A23.89 23.89 0 0 1 180.18 184H84.07A24.11 24.11 0 0 1 61 166.59L24.82 40H8a8 8 0 0 1 0-16h16.82a16.08 16.08 0 0 1 15.39 11.6L48.32 64H224a8 8 0 0 1 7.65 10.35ZM213.17 80H52.89l23.49 82.2a8 8 0 0 0 7.69 5.8h96.11a8 8 0 0 0 7.65-5.65Z"/>
     </svg>
     Корзина
@@ -49,7 +49,6 @@ import { computed } from "@vue/reactivity";
 import { useProductsStore } from "~/store/products";
 
 const store = useProductsStore()
-console.log(store.cartQuantity)
 
 const cartProducts = computed<IProduct[]>(() => {
   const result: IProduct[] = []
@@ -79,10 +78,13 @@ const commonSum = computed(() => {
 *:not(h1)
   font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
 
-h1
+.page-name
   gap: 10px
   display: flex
   align-items: center
+
+  @media screen and (max-width: 809px)
+    display: none
 
 .cart-products
   gap: 10px

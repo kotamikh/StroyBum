@@ -19,16 +19,16 @@
 
   @media screen and (max-width: 809px)
     display: flex
+    margin: 10px auto
     flex-direction: column
 
   .content
     display: flex
-    padding: 20px 0 70px 0
+    padding-bottom: 70px
     flex-direction: column
 
     @media screen and (max-width: 809px)
-      padding-top: 0
-      padding-bottom: 160px
+      padding-bottom: 170px
 
     @media screen and (max-width: 344px)
       padding-bottom: 220px
