@@ -55,7 +55,6 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
   .delivery-methods
     display: grid
     grid-column-gap: 4%
-    grid-row-gap: 10px
     margin-bottom: 40px
     height: max-content
     grid-template-rows: 0.5fr 2fr 2.5fr

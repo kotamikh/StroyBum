@@ -25,7 +25,11 @@ h1.page-name {
 h2,
 .page-name {
   color: var(--grey);
-  font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px);
+  font-size: calc((100vw - 320px) / (1280 - 320) * (24 - 18) + 18px);
+}
+
+.page-name {
+  font-weight: lighter;
 }
 
 a {

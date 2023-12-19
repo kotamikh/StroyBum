@@ -87,7 +87,7 @@ const commonSum = computed(() => {
     display: none
 
 .cart-products
-  gap: 10px
+  gap: 20px
   display: flex
   flex-direction: column
 
