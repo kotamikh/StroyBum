@@ -79,15 +79,14 @@
     <div class="additional-information">
       <div class="characteristics">
         <h2>Характеристики</h2>
-        <ul>
-          <li v-for="(characteristic, index) in product.characteristics"
-              :key="index">
-            <p class="left">
-              <span class="label">{{ characteristic[0] }}</span>
-            </p>
-            <span class="value">{{ characteristic[1] }}</span>
-          </li>
-        </ul>
+        <table>
+          <tr v-for="(characteristic, index) in product.characteristics"
+              :key="index"
+          >
+            <th><span class="char-name">{{ characteristic[0] }}</span></th>
+            <td>{{ characteristic[1] }}</td>
+          </tr>
+        </table>
       </div>
       <div v-if="product.description" class="description">
         <h2>Описание</h2>
@@ -383,45 +382,48 @@ const moveToDown = () => {
           align-items: center
           justify-content: space-between
 
+        .price-stock
+          color: black
+          display: flex
+          flex-direction: column
+
+          .price
+            gap: 20px
+            display: flex
+            font-size: calc((100vw - 320px) / (1280 - 320) * (32 - 18) + 18px)
+
+            .old-price
+              font-size: 0.6em
+              color: var(--middle-grey)
+              text-decoration: line-through
+
+            p > .rub
+              width: 0.5em
+              color: inherit
+              line-height: 0.2em
+              display: inline-block
+              vertical-align: middle
+              text-decoration: inherit
+              border-bottom: 0.07em solid
+
+          .stock
+            font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
+
         .cart
           padding: 1% 5%
           width: fit-content
-          font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
+          font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
 
           @media screen and (max-width: 469px)
             margin: 0
-
-      .price-stock
-        color: black
-        display: flex
-        flex-direction: column
-
-        .price
-          gap: 20px
-          display: flex
-          font-size: calc((100vw - 320px) / (1280 - 320) * (32 - 18) + 18px)
-
-          .old-price
-            font-size: 0.6em
-            color: var(--middle-grey)
-            text-decoration: line-through
-
-          p > .rub
-            width: 0.5em
-            color: inherit
-            line-height: 0.2em
-            display: inline-block
-            vertical-align: middle
-            text-decoration: inherit
-            border-bottom: 0.07em solid
-
-        .stock
-          font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
 
   .additional-information
     gap: 30px
     display: flex
     flex-direction: column
+
+    .characteristics
+      min-width: 70%
 
     .characteristics,
     .description
@@ -429,35 +431,31 @@ const moveToDown = () => {
 
       h2
         color: var(--grey)
-        margin-bottom: 20px
+        margin-bottom: 2%
         font-size: calc((100vw - 320px) / (1280 - 320) * (22 - 18) + 18px)
 
-      ul
-        margin: 0
+      th
+        width: 60%
+        text-align: left
+        vertical-align: bottom
         position: relative
 
-        li
-          margin-bottom: 10px
+        .char-name
+          z-index: 1
+          width: 100%
+          text-align: end
+          position: relative
+          padding-right: 8px
+          background-color: white
 
-          .left
-            width: 40%
-            float: left
-            overflow: hidden
-            position: relative
-            @media screen and (max-width: 759px)
-              width: 60%
-
-            span.label
-              position: relative
-              display: inline-block
-
-              &:after
-                content: ''
-                bottom: 0
-                left: 100%
-                right: -600px
-                position: absolute
-                border-bottom: 1px dashed #888
+        &:after
+          content: ""
+          left: 0
+          width: 100%
+          bottom: 8px
+          display: block
+          position: absolute
+          border-bottom: 1px dashed rgba(128, 128, 128, 0.5)
 
 .product-card.favourite
   .fav-btn > .fav-mark

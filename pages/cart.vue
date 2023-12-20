@@ -98,7 +98,6 @@ const commonSum = computed(() => {
   margin-top: 40px
   border-radius: 15px
   flex-direction: column
-  background-color: rgba(0, 48, 120, 0.04)
   box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
   -moz-box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
   -webkit-box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
