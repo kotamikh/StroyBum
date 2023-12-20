@@ -7,7 +7,7 @@
         <a @click="navigateTo(`/catalog/productsList/${useSubjectsBrandsStore().findSubjectName(id)}`)"
            class="category">
           <img :src="category.image" alt="img" style="width: 3rem"/>
-          <h3>{{ category.name }}</h3>
+          <div class="category-name">{{ category.name }}</div>
         </a>
       </li>
     </ul>
@@ -21,6 +21,9 @@ import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 </script>
 
 <style scoped lang="sass">
+*
+  color: var(--light-grey)
+
 .wrapper
   @media screen and (max-width: 1000px)
     width: 95%
@@ -58,8 +61,8 @@ import { useSubjectsBrandsStore } from "~/store/subjects-brands";
   @media screen and (min-width: 549px)
     li
       &:hover
-        h3
-          color: #4d4d4d
+        .category-name
+          color: var(--dark-grey)
           text-decoration: underline
           text-underline-position: under
           text-decoration-thickness: 2px
@@ -69,5 +72,5 @@ import { useSubjectsBrandsStore } from "~/store/subjects-brands";
     gap: 10px
     display: flex
     align-items: center
-    font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
+    font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 </style>

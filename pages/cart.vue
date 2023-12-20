@@ -98,9 +98,10 @@ const commonSum = computed(() => {
   margin-top: 40px
   border-radius: 15px
   flex-direction: column
-  box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
-  -moz-box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
-  -webkit-box-shadow: 0 3px 10px 0 rgba(34, 60, 80, 0.2)
+  background-color: rgba(55, 55, 55, 0.04)
+  box-shadow: 0 3px 10px 0 rgba(55, 55, 55, 0.2)
+  -moz-box-shadow: 0 3px 10px 0 rgba(55, 55, 55, 0.2)
+  -webkit-box-shadow: 0 3px 10px 0 rgba(55, 55, 55, 0.2)
 
   @media screen and (max-width: 559px)
     margin-top: 20px
@@ -162,7 +163,7 @@ const commonSum = computed(() => {
         cursor: pointer
         width: fit-content
         padding: 10px 25px
-        border-radius: 8px
+        border-radius: 15px
         background-color: var(--yellow)
         transition: all 0.2s ease-in-out
 

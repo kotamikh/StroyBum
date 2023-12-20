@@ -26,6 +26,9 @@ export default {
 </script>
 
 <style scoped lang="sass">
+*
+  color: var(--light-grey)
+
 .footer
   bottom: 0
   display: flex
@@ -34,7 +37,6 @@ export default {
 
   height: 75px
   width: inherit
-  color: var(--grey)
   background-color: white
   font-size: calc((100vw - 320px) / (1440 - 320) * (16 - 14) + 14px)
 
@@ -47,16 +49,18 @@ export default {
     width: 100%
     flex-wrap: wrap
     height: fit-content
-    margin-bottom: 45px
+    margin-bottom: 50px
     justify-content: space-between
-    background-color: var(--middle-grey)
+    border-top: 2px solid var(--grey)
+    border-bottom: 2px solid var(--grey)
+    background-color:  rgba(255, 241, 118, 0.8)
 
     p,
     a,
     svg > path,
     span
-      fill: white
-      color: white
+      fill: var(--grey)
+      color: var(--grey)
 
   @media screen and (max-width: 579px)
     align-items: flex-start
@@ -74,13 +78,14 @@ export default {
 
       &:hover,
       &:focus
+        color: var(--grey)
         text-decoration: underline
         text-decoration-thickness: 2px
         text-underline-position: under
         text-decoration-color: var(--yellow)
 
     span
-      font-weight: bolder
+      color: var(--grey)
 
     &:last-of-type
       margin-right: 0
@@ -93,5 +98,5 @@ export default {
     display: contents
 
   svg
-    fill: var(--middle-grey)
+    fill: var(--light-grey)
 </style>

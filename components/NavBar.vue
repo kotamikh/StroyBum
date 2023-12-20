@@ -90,6 +90,9 @@ watch(() => route.name, () => {
 <style scoped lang="sass">
 @import url('https://fonts.cdnfonts.com/css/russo-one')
 
+*
+  color: var(--light-grey)
+
 .navigation-panel
   width: 100%
   display: flex

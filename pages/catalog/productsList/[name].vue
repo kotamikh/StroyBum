@@ -89,10 +89,14 @@ const showFilteredProducts = async (priceFilter: string, discountCheck: boolean,
 </script>
 
 <style scoped lang="sass">
+*
+  color: var(--light-grey)
+
 .bread-crumbs
   gap: 10px
   display: flex
   margin-top: 30px
+  font-weight: lighter
   font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 
   @media screen and (max-width: 809px)
@@ -112,7 +116,7 @@ const showFilteredProducts = async (priceFilter: string, discountCheck: boolean,
 
   .category-name
     margin: 0
-    font-weight: 600
+    font-weight: lighter
     color: var(--grey)
     font-size: calc((100vw - 320px) / (1280 - 320) * (28 - 24) + 24px)
 

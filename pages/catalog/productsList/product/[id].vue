@@ -182,7 +182,7 @@ const moveToDown = () => {
 
 <style scoped lang="sass">
 *
-  color: var(--grey)
+  font-weight: lighter
 
 .bread-crumbs
   display: flex
@@ -199,7 +199,7 @@ const moveToDown = () => {
 
   a,
   p
-    color: var(--middle-grey)
+    color: var(--light-grey)
 
   a:hover
     color: var(--grey)
@@ -287,7 +287,7 @@ const moveToDown = () => {
           fill: #808080
 
       .up-button
-        top: -10px
+        top: -8px
 
       .down-button
         bottom: -60px
@@ -351,7 +351,7 @@ const moveToDown = () => {
         fill: rgba(128, 128, 128, 0.4)
 
         &:hover
-          fill: var(--middle-grey)
+          fill: var(--light-grey)
 
     .product-information
       gap: 5%
@@ -372,6 +372,7 @@ const moveToDown = () => {
       h1
         margin: 0
         position: relative
+        font-weight: normal
         font-size: calc((100vw - 320px) / (1280 - 320) * (24 - 16) + 16px)
 
       .price-stock-cart
@@ -394,7 +395,7 @@ const moveToDown = () => {
 
             .old-price
               font-size: 0.6em
-              color: var(--middle-grey)
+              color: var(--light-grey)
               text-decoration: line-through
 
             p > .rub
@@ -410,7 +411,7 @@ const moveToDown = () => {
             font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
 
         .cart
-          padding: 1% 5%
+          padding: 1% 7%
           width: fit-content
           font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px)
 
@@ -422,8 +423,8 @@ const moveToDown = () => {
     display: flex
     flex-direction: column
 
-    .characteristics
-      min-width: 70%
+    .characteristics table
+      min-width: 60%
 
     .characteristics,
     .description
@@ -432,13 +433,14 @@ const moveToDown = () => {
       h2
         color: var(--grey)
         margin-bottom: 2%
+        font-weight: normal
         font-size: calc((100vw - 320px) / (1280 - 320) * (22 - 18) + 18px)
 
       th
         width: 60%
         text-align: left
-        vertical-align: bottom
         position: relative
+        vertical-align: bottom
 
         .char-name
           z-index: 1
@@ -446,13 +448,14 @@ const moveToDown = () => {
           text-align: end
           position: relative
           padding-right: 8px
+          font-weight: normal
           background-color: white
 
         &:after
           content: ""
           left: 0
           width: 100%
-          bottom: 8px
+          bottom: 6px
           display: block
           position: absolute
           border-bottom: 1px dashed rgba(128, 128, 128, 0.5)

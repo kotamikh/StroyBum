@@ -1,14 +1,13 @@
 * {
-  font-weight: normal;
-  font-family: Roboto, sans-serif;
-
   --grey: #555555;
   --green: #49AE66;
   --yellow: #ffdf3c;
+  --dark-grey: #464646;
+  --light-grey: #808080;
   --dark-yellow: #fcd111;
-  --middle-grey: #808080;
   box-sizing: border-box;
-  color: var(--middle-grey);
+  color: var(--grey);
+  font-family: Roboto, sans-serif;
 }
 
 body {
@@ -23,9 +22,9 @@ h1.page-name {
 }
 
 h2,
-.page-name {
+h1.page-name {
   color: var(--grey);
-  font-size: calc((100vw - 320px) / (1280 - 320) * (24 - 18) + 18px);
+  font-size: calc((100vw - 320px) / (1280 - 320) * (24 - 20) + 20px);
 }
 
 .page-name {

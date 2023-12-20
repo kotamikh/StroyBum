@@ -110,7 +110,7 @@ const passInputsData = () => {
         background-color: transparent
 
         svg
-          fill: var(--middle-grey)
+          fill: var(--light-grey)
 
         &:hover
           svg

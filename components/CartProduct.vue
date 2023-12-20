@@ -82,9 +82,9 @@ const increaseTheAmount = (id: number) => {
   border-radius: 15px
   justify-items: center
   grid-template-columns: 2fr 3fr 3fr 1fr
-  box-shadow: 0 5px 10px 2px rgba(0, 48, 120, 0.15)
-  -moz-box-shadow: 0 5px 10px 2px rgba(0, 48, 120, 0.15)
-  -webkit-box-shadow: 0 5px 10px 2px rgba(0, 48, 120, 0.15)
+  box-shadow: 0 3px 10px 0 rgba(55, 55, 55, 0.2)
+  -moz-box-shadow: 0 3px 10px 0 rgba(55, 55, 55, 0.2)
+  -webkit-box-shadow: 0 3px 10px 0 rgba(55, 55, 55, 0.2)
 
   @media screen and (max-width: 559px)
     grid-template-columns: 2fr 1.5fr 0.5fr
@@ -145,7 +145,7 @@ const increaseTheAmount = (id: number) => {
 
     .old-price
       font-size: 0.9em
-      color: var(--middle-grey)
+      color: var(--light-grey)
       text-decoration: line-through
 
     p > .rub
@@ -167,10 +167,10 @@ const increaseTheAmount = (id: number) => {
       background-color: white
       transition: all 0.2s ease
       justify-content: space-between
-      border: 2px solid rgba(0, 48, 120, 0.04)
+      border: 2px solid rgba(55, 55, 55, 0.06)
 
       &:hover
-        border: 2px solid rgba(0, 48, 120, 0.15)
+        border: 2px solid rgba(55, 55, 55, 0.15)
 
     .quantity
       margin: 0 20px
@@ -192,7 +192,7 @@ const increaseTheAmount = (id: number) => {
     background-color: transparent
 
     &:hover
-      background-color: rgba(0, 48, 120, 0.04)
+      background-color: rgba(55, 55, 55, 0.06)
       svg > path
         fill: var(--grey)
 

@@ -34,7 +34,7 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
 
 <style scoped lang="sass">
 *
-  color: var(--grey)
+  font-weight: lighter
 
 .wrapper
   width: 100%
@@ -44,9 +44,8 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
   font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 16) + 16px)
 
   h2
-    font-weight: 600
-    color: var(--grey)
     margin-bottom: 10px
+    color: var(--dark-grey)
     font-size: calc((100vw - 320px) / (1280 - 320) * (22 - 20) + 20px)
 
   @media screen and (max-width: 809px)
@@ -124,6 +123,6 @@ import delivery from 'assets/delivery-payment-images/доставка.png'
 
     p
       span
-        color: #808080
-        font-weight: bold
+        font-weight: normal
+        color: var(--dark-grey)
 </style>

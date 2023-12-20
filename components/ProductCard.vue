@@ -92,7 +92,7 @@ const goToProductPage = () => {
     .fav-mark
       &:hover
         path
-          fill: var(--middle-grey)
+          fill: var(--light-grey)
 
   .img-holder
     width: 100%
@@ -150,7 +150,7 @@ const goToProductPage = () => {
       font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px)
 
     .old-price
-      color: var(--middle-grey)
+      color: var(--light-grey)
       text-decoration: line-through
       font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
 

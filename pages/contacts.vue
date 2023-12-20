@@ -42,7 +42,6 @@
 
 <style scoped lang="sass">
 *
-  color: var(--grey)
   font-weight: lighter
 
 .wrapper
