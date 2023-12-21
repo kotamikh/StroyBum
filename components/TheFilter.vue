@@ -94,10 +94,11 @@ const passInputsData = () => {
     flex-direction: column
     justify-content: center
     background-color: #F5F7FA
-    border-left: 3px solid rgba(128, 128, 128, 0.7)
+    border-left: 2px solid rgba(128, 128, 128, 0.7)
 
     .title
       display: flex
+      color: var(--light-grey)
       align-items: center
       justify-content: space-between
       font-family: 'Russo One', sans-serif

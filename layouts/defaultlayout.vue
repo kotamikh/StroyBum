@@ -28,8 +28,8 @@
     flex-direction: column
 
     @media screen and (max-width: 809px)
-      padding-bottom: 170px
+      padding-bottom: 150px
 
-    @media screen and (max-width: 344px)
-      padding-bottom: 220px
+    @media screen and (max-width: 539px)
+      padding-bottom: 180px
 </style>

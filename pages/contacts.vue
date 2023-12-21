@@ -53,12 +53,13 @@
     display: flex
     margin: 0 auto 30px
     justify-content: space-between
-    font-size: calc((100vw - 320px) / (1280 - 320) * (14 - 12) + 12px)
+    font-size: calc((100vw - 320px) / (1280 - 320) * (15 - 13) + 13px)
 
     @media screen and (max-width: 809px)
+      gap: 20px
       width: 100%
 
-    @media screen and (max-width: 599px)
+    @media screen and (max-width: 699px)
       flex-wrap: wrap
       justify-content: center
 
@@ -70,6 +71,7 @@
       flex-direction: column
       p
         color: rgba(85, 85, 85, 0.90)
+
       img
         width: calc((100vw - 320px) / (1440 - 320) * (95 - 65) + 65px)
 
@@ -79,10 +81,10 @@
       @media screen and (max-width: 809px)
         width: 35%
 
-      @media screen and (max-width: 599px)
+      @media screen and (max-width: 699px)
         width: 45%
 
-      @media screen and (max-width: 359px)
+      @media screen and (max-width: 469px)
         width: 65%
 
   .button-vk
