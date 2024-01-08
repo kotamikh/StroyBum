@@ -1,6 +1,7 @@
 export interface ICategoryDto {
     name: string;
     image: string;
+    parentId: number;
 }
 
 export interface ICategory extends ICategoryDto {

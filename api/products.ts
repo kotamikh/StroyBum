@@ -24,6 +24,7 @@ const getDefaultProduct = (): IProduct => {
         characteristics: [],
         subject: 0,
         brand: 0,
+        currency: 0
     }
 }
 

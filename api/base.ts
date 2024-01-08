@@ -59,9 +59,9 @@ export const useHttpGet = async <T>(requestParams: Omit<RequestParameters, "meth
     })
 }
 
-export const useHttpPost = async <T>(requestParams: Omit<RequestParameters, "method">): Promise<ResponseWithError<T>> => {
+export const useHttpPut = async <T>(requestParams: Omit<RequestParameters, "method">): Promise<ResponseWithError<T>> => {
     return useCustomFetch<T>({
-        method: "POST",
+        method: "PUT",
         ...requestParams
     })
 }

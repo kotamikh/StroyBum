@@ -15,10 +15,10 @@
           <div>
             <p>По цене</p>
             <ul>
-              <li><input type="radio" id="fromHigh" value="fromHigh" v-model="priceFilter">
+              <li><input type="checkbox" id="fromHigh" value="fromHigh" v-model="priceFilter" :disabled="isDisabled">
                 <label for="fromHigh">Сначала дороже</label>
               </li>
-              <li><input type="radio" id="fromLow" value="fromLow" v-model="priceFilter">
+              <li><input type="checkbox" id="fromLow" value="fromLow" v-model="priceFilter">
                 <label for="fromLow">Сначала дешевле</label>
               </li>
             </ul>
@@ -29,7 +29,7 @@
           <div class="brands-list"><p>По бренду</p>
             <label v-for="brand in brands"
                    :key="brand.id">
-              <input type="radio" id="{{ brand.id }}" :value=brand.id v-model="brandFilter">
+              <input type="checkbox" id="{{ brand.id }}" :value=brand.id v-model="brandFilter">
               <span>{{ brand.name }}</span>
             </label>
           </div>
@@ -66,6 +66,10 @@ const brands = await store.getBrandsBySubject(subject)
 
 const passInputsData = () => {
   emit('closeFilter', priceFilter.value, discountCheck.value, brandFilter.value)
+}
+
+const isDisabled = () => {
+
 }
 </script>
 

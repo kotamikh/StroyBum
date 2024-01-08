@@ -67,8 +67,8 @@
         <div class="price-stock-cart">
           <div class="price-stock">
             <div class="price">
-              <p>{{ product.price }} <span class="rub">Р</span></p>
-              <p v-if="product.discount !== 0" class="old-price">{{ countDiscount }} <span class="rub">Р</span></p>
+              <p>{{ product.price }} {{ chosenCurrencyName }}</p>
+              <p v-if="product.discount !== 0" class="old-price">{{ countDiscount }} {{ chosenCurrencyName }}</p>
             </div>
             <p class="stock">{{ product.stock === 1 ? 'В наличии' : 'Под заказ' }}</p>
           </div>
@@ -104,6 +104,7 @@ import { computed } from "@vue/reactivity";
 import { useProductsApi } from "~/api/products";
 import { useProductsStore } from "~/store/products";
 import { useSubjectsBrandsStore } from "~/store/subjects-brands";
+import { useCurrencyStore } from "~/store/currency";
 
 const router = useRouter()
 const store = useProductsStore()
@@ -114,6 +115,14 @@ const isFavourite = computed<boolean>(() => {
 })
 
 const countDiscount = computed(() => Math.ceil(product.value.price / (100 - product.value.discount) * 100))
+const chosenCurrencyName = computed<string>(() => {
+  useCurrencyStore().loadAllCurrencies()
+  const currency = useCurrencyStore().allCurrencies.find(c => c.id == product.value.currency)
+  if (currency) {
+    return currency.name
+  }
+  return ""
+})
 
 const currentImageIndex = ref<number>(0)
 const currentImage = computed<string>(() => product.value.images[currentImageIndex.value] || useProductsApi().getDefaultImage())
