@@ -33,6 +33,7 @@
                   :stock="product.stock"
                   :discount="product.discount"
                   :subject="product.subject"
+                  :currency="product.currency"
     />
     <div class="control-block" v-intersection-observer="[onIntersectionObserver, { root }]"></div>
   </div>

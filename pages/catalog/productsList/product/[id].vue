@@ -103,8 +103,8 @@ import { onMounted } from "#imports";
 import { computed } from "@vue/reactivity";
 import { useProductsApi } from "~/api/products";
 import { useProductsStore } from "~/store/products";
-import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 import { useCurrencyStore } from "~/store/currency";
+import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 
 const router = useRouter()
 const store = useProductsStore()

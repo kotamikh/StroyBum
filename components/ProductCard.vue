@@ -12,10 +12,9 @@
       <img :src="mainImage" class="product-img" alt="product-img"/>
     </div>
     <div class="price">
-      <p class="current-price">{{ price }} <span class="rub">Р</span></p>
+      <p class="current-price">{{ price }} <span class="currency">{{ chosenCurrencyName }}</span></p>
       <p v-if="discount !== 0" class="old-price">
-        {{ countDiscount }}
-        <span class="rub">Р</span></p>
+        {{ countDiscount }} {{ chosenCurrencyName }}</p>
     </div>
     <p class="product-name">{{ name }}</p>
     <div class="stock-cart">
@@ -32,6 +31,7 @@ import { useProductsStore } from "~/store/products";
 import CartButton from "~/components/CartButton.vue";
 import { IProduct, StockType } from "~/types/Product";
 import defaultImg from 'assets/common-images/default-image.jpeg';
+import { useCurrencyStore } from "~/store/currency";
 
 export interface Props extends IProduct {
   id: number,
@@ -40,7 +40,8 @@ export interface Props extends IProduct {
   price: number,
   stock: StockType,
   discount: number,
-  subject: number
+  subject: number,
+  currency: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -49,7 +50,18 @@ const props = withDefaults(defineProps<Props>(), {
   images: () => [],
   price: 0,
   stock: StockType.OnOrder,
-  discount: 0
+  discount: 0,
+  subject: 0,
+  currency: 0
+})
+
+const chosenCurrencyName = computed<string>(() => {
+  useCurrencyStore().loadAllCurrencies()
+  const currency = useCurrencyStore().allCurrencies.find(c => c.id == props.currency)
+  if (currency) {
+    return currency.name
+  }
+  return ""
 })
 
 const mainImage = computed(() => props.images.length === 0 ? defaultImg : props.images[0])
@@ -143,8 +155,9 @@ const goToProductPage = () => {
         fill: rgba(128, 128, 128, 0.4)
 
   .price
-    gap: 10px
+    column-gap: 10px
     display: flex
+    flex-wrap: wrap
 
     .current-price
       font-size: calc((100vw - 320px) / (1280 - 320) * (20 - 18) + 18px)
@@ -152,16 +165,11 @@ const goToProductPage = () => {
     .old-price
       color: var(--light-grey)
       text-decoration: line-through
-      font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
+      font-size: calc((100vw - 320px) / (1280 - 320) * (14 - 12) + 12px)
 
-    p > .rub
-      width: 0.5em
+    .currency
       color: inherit
-      line-height: 0.2em
-      display: inline-block
-      vertical-align: middle
-      text-decoration: inherit
-      border-bottom: 0.07em solid
+      font-size: 0.85rem
 
   .product-name
     overflow: hidden
@@ -186,12 +194,9 @@ const goToProductPage = () => {
       width: 90%
       margin: auto
       flex-direction: column
-      justify-content: space-between
 
       .stock
         align-self: flex-start
-      .cart
-        justify-self: flex-end
 
 .product-card.favourite
   .fav-btn > .fav-mark
