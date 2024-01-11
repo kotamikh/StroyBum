@@ -15,7 +15,8 @@
         Фильтровать товары
       </button>
       <the-filter v-model:show="showFilter"
-                  @close-filter="showFilteredProducts"
+                  @close-filter="showFilter = false"
+                  @show-products="showFilteredProducts"
       />
     </div>
   </div>
@@ -68,21 +69,21 @@ function onIntersectionObserver([{ isIntersecting }]: IntersectionObserverEntry[
   }
 }
 
-const showFilteredProducts = async (priceFilter: string, discountCheck: boolean, brandFilter: number) => {
+const showFilteredProducts = async (fromHighPrice: boolean, fromLowPrice: boolean, discountCheck: boolean, checkedBrands: Array<number>) => {
   if (discountCheck) {
     products = new Map([...products].filter(el => el[1].discount > 0))
   }
   if (!discountCheck) {
     products = await useProductsStore().loadWithConditions(0, limit.value, categoryId)
   }
-  if (priceFilter === 'fromHigh') {
+  if (fromHighPrice) {
     products = new Map([...products].sort((el1, el2) => el2[1].price - el1[1].price))
   }
-  if (priceFilter === 'fromLow') {
+  if (fromLowPrice) {
     products = new Map([...products].sort((el1, el2) => el1[1].price - el2[1].price))
   }
-  if (brandFilter) {
-    products = new Map([...products].filter(el => el[1].brand === brandFilter))
+  if (checkedBrands.length > 0) {
+    products = new Map([...products].filter(el => checkedBrands.includes(el[1].brand)))
   }
 
   showFilter.value = false

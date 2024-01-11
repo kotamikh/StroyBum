@@ -15,10 +15,10 @@
           <div>
             <p>По цене</p>
             <ul>
-              <li><input type="checkbox" id="fromHigh" value="fromHigh" v-model="priceFilter" :disabled="isDisabled">
+              <li><input type="checkbox" id="fromHigh" value="fromHigh" v-model="fromHighPrice" @click="setFromHigh">
                 <label for="fromHigh">Сначала дороже</label>
               </li>
-              <li><input type="checkbox" id="fromLow" value="fromLow" v-model="priceFilter">
+              <li><input type="checkbox" id="fromLow" value="fromLow" v-model="fromLowPrice" @click="setFromLow">
                 <label for="fromLow">Сначала дешевле</label>
               </li>
             </ul>
@@ -29,7 +29,7 @@
           <div class="brands-list"><p>По бренду</p>
             <label v-for="brand in brands"
                    :key="brand.id">
-              <input type="checkbox" id="{{ brand.id }}" :value=brand.id v-model="brandFilter">
+              <input type="checkbox" id="brand.id" :value="brand.id" v-model="checkedBrands">
               <span>{{ brand.name }}</span>
             </label>
           </div>
@@ -51,11 +51,20 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['closeFilter'])
+const emit = defineEmits(['closeFilter', 'showProducts'])
 
-const priceFilter = ref('')
+const fromHighPrice = ref(false)
+const fromLowPrice = ref(false)
+
+const setFromHigh = () => {
+  fromLowPrice.value = false
+}
+const setFromLow = () => {
+  fromHighPrice.value = false
+}
+
 const discountCheck = ref(false)
-const brandFilter = ref(0)
+const checkedBrands = ref([])
 
 const route = useRoute()
 const store = useSubjectsBrandsStore()
@@ -65,11 +74,7 @@ const subject = store.findSubjectId(name)
 const brands = await store.getBrandsBySubject(subject)
 
 const passInputsData = () => {
-  emit('closeFilter', priceFilter.value, discountCheck.value, brandFilter.value)
-}
-
-const isDisabled = () => {
-
+  emit('showProducts', fromHighPrice.value, fromLowPrice.value, discountCheck.value, checkedBrands.value)
 }
 </script>
 

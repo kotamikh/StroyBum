@@ -20,8 +20,8 @@ export const useProductsStore = defineStore('cardsStore', () => {
             for (const p of products) {
                 allProducts.value.set(p.id, p)
             }
+            return allProducts.value
         }
-        return allProducts.value
     }
 
     const loadWithConditions = async (offset: number, limit: number, subject?: number, brand?: number)=> {
@@ -31,8 +31,9 @@ export const useProductsStore = defineStore('cardsStore', () => {
             for (const p of products) {
                 currentProducts.value.set(p.id, p)
             }
+            return currentProducts.value
         }
-        return currentProducts.value
+        return []
     }
 
     const getProduct = (id: number): ReturnWithStatus<IProduct> => {
