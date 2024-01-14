@@ -2,7 +2,7 @@
   <div class="bread-crumbs">
     <a @click="router.push('/catalog')">Каталог</a>
     <p>/</p>
-    <a @click="router.push(`/catalog/productsList/${useSubjectsBrandsStore().findSubjectName(product.subject)}`)">{{
+    <a @click="router.push(`/catalog/productsList/${product.subject}`)">{{
         useSubjectsBrandsStore().findSubjectName(product.subject)
       }}</a>
     <p>/</p>

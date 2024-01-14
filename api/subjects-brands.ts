@@ -1,5 +1,5 @@
 import { useHttpGet } from "~/api/base";
-import { IBrand, ICategory } from "~/types/subjectsBrands";
+import { IBrand, ICategoryExtended } from "~/types/subjectsBrands";
 
 export type brandsBySubject = {
    category: string
@@ -7,12 +7,22 @@ export type brandsBySubject = {
 
 const ROUTES = {
     brands: "/api/v1/brands",
-    subjects: "/api/v1/subjects",
+    subjects: "/api/v2/subjects",
     brandsbysubject: '/api/v1/brands-by-subject'
 }
 
-const getAllSubjects = async (): Promise<ICategory[]>  => {
-    const { data, error } = await useHttpGet<ICategory[]>({ url: ROUTES.subjects })
+const getDefaultSubject = (): ICategoryExtended => {
+    return {
+        id: 0,
+        name: 'unknown',
+        image: '',
+        parentId: 0,
+        children: []
+    }
+}
+
+const getAllSubjects = async (): Promise<ICategoryExtended[]>  => {
+    const { data, error } = await useHttpGet<ICategoryExtended[]>({ url: ROUTES.subjects })
     if (data) {
         return data
     } else {
@@ -45,6 +55,7 @@ export const useSubjectsBrandsApi = () => {
     return {
         getAllBrands,
         getAllSubjects,
+        getDefaultSubject,
         getBrandsBySubject
     }
 }

@@ -31,6 +31,7 @@ init().then(() => {
 
 const productsCount = ref(100)
 useProductsStore().loadAll(0, productsCount.value)
+useSubjectsBrandsStore().loadAllSubjects()
 </script>
 
 <style lang="sass">

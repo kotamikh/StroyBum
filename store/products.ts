@@ -24,16 +24,15 @@ export const useProductsStore = defineStore('cardsStore', () => {
         }
     }
 
-    const loadWithConditions = async (offset: number, limit: number, subject?: number, brand?: number)=> {
+    const loadWithConditions = async (offset: number, limit: number, subject?: number, brand?: number): Promise<Map<number, IProduct>> => {
         const products = await api.getAll({ offset, limit, subject, brand })
+        currentProducts.value.clear()
         if (products.length > 0) {
-            currentProducts.value.clear()
             for (const p of products) {
                 currentProducts.value.set(p.id, p)
             }
-            return currentProducts.value
         }
-        return []
+        return currentProducts.value
     }
 
     const getProduct = (id: number): ReturnWithStatus<IProduct> => {

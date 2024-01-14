@@ -2,18 +2,20 @@
   <div class="bread-crumbs">
     <a @click="navigateTo('/catalog')">Каталог</a>
     <p>/</p>
-    <p>{{ name }}</p>
+    <a v-if="category.parentId !== 0" @click="navigateTo(`/catalog/subCategories/${parentalCategory.id}`)">{{ parentalCategory.name }}</a>
+    <p v-if="category.parentId !== 0">/</p>
+    <p>{{ category.name }}</p>
   </div>
   <div class="name-filter">
-    <h1 class="category-name">{{ name }}</h1>
+    <h1 class="category-name">{{ category.name }}</h1>
     <div class="filter">
-      <button class="filter-btn" @click="showFilter = !showFilter">
+      <div class="filter-btn" @click="showFilter = !showFilter">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32">
           <path fill="#808080"
                 d="M18 28h-4a2 2 0 0 1-2-2v-7.59L4.59 11A2 2 0 0 1 4 9.59V6a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v3.59a2 2 0 0 1-.59 1.41L20 18.41V26a2 2 0 0 1-2 2ZM6 6v3.59l8 8V26h4v-8.41l8-8V6Z"/>
         </svg>
-        Фильтровать товары
-      </button>
+        <p>Фильтровать товары</p>
+      </div>
       <the-filter v-model:show="showFilter"
                   @close-filter="showFilter = false"
                   @show-products="showFilteredProducts"
@@ -50,10 +52,11 @@ import { useSubjectsBrandsStore } from "~/store/subjects-brands";
 
 const route = useRoute()
 const showFilter = ref(false)
-const name = route.params.name.toString()
+const categoryId = Number(route.params.id)
+const category = useSubjectsBrandsStore().findSubjectById(categoryId)
+const parentalCategory = useSubjectsBrandsStore().findSubjectById(category.parentId)
 
-const limit = ref<number>(6)
-const categoryId = useSubjectsBrandsStore().findSubjectId(name)
+const limit = ref<number>(5)
 const productNumber = await useProductsStore().countProductNumber(0, 250)
 
 let products = await useProductsStore().loadWithConditions(0, limit.value, categoryId)
@@ -64,7 +67,7 @@ const isVisible = ref(false)
 function onIntersectionObserver([{ isIntersecting }]: IntersectionObserverEntry[]) {
   isVisible.value = isIntersecting
   if (limit.value < productNumber) {
-    limit.value += 6
+    limit.value += 5
     useProductsStore().loadWithConditions(0, limit.value, categoryId)
   }
 }
@@ -109,18 +112,18 @@ const showFilteredProducts = async (fromHighPrice: boolean, fromLowPrice: boolea
 
 .name-filter
   display: flex
-  margin: 20px 0
+  margin: 30px 0
   align-items: center
   justify-content: space-between
 
   @media screen and (max-width: 809px)
-    margin-top: 0
+    margin: 0 10px 30px
 
   .category-name
     margin: 0
-    font-weight: lighter
     color: var(--grey)
-    font-size: calc((100vw - 320px) / (1280 - 320) * (28 - 24) + 24px)
+    font-weight: lighter
+    font-size: calc((100vw - 320px) / (1280 - 320) * (24 - 18) + 18px)
 
   .filter
     width: fit-content
@@ -131,8 +134,8 @@ const showFilteredProducts = async (fromHighPrice: boolean, fromLowPrice: boolea
       gap: 5px
       border: none
       display: flex
-      padding: 5px 10px
-      align-items: center
+      padding: 5px
+      align-items: flex-end
       justify-content: center
       background-color: transparent
       font-size: calc((100vw - 320px) / (1280 - 320) * (16 - 14) + 14px)
@@ -142,8 +145,16 @@ const showFilteredProducts = async (fromHighPrice: boolean, fromLowPrice: boolea
           width: 20px
           height: 20px
 
+      @media screen and (max-width: 449px)
+        p
+          display: none
+        svg
+          width: 25px
+          height: 25px
+
       &:hover
-        color: var(--grey)
+        p
+          color: var(--grey)
 
         svg > path
           fill: var(--grey)
@@ -158,6 +169,7 @@ const showFilteredProducts = async (fromHighPrice: boolean, fromLowPrice: boolea
 .catalog
   display: grid
   grid-gap: 2rem
+  justify-items: center
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
 
   @media screen and (max-width: 949px)

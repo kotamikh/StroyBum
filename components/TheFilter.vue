@@ -68,10 +68,9 @@ const checkedBrands = ref([])
 
 const route = useRoute()
 const store = useSubjectsBrandsStore()
-const name = route.params.name.toString()
+const subjectId = Number(route.params.id)
 
-const subject = store.findSubjectId(name)
-const brands = await store.getBrandsBySubject(subject)
+const brands = await store.getBrandsBySubject(subjectId)
 
 const passInputsData = () => {
   emit('showProducts', fromHighPrice.value, fromLowPrice.value, discountCheck.value, checkedBrands.value)
@@ -95,7 +94,7 @@ const passInputsData = () => {
     width: 25%
     padding: 30px
     height: inherit
-    min-width: 320px
+    min-width: 310px
     margin-left: auto
 
     gap: 20px
@@ -104,6 +103,9 @@ const passInputsData = () => {
     justify-content: center
     background-color: #F5F7FA
     border-left: 2px solid rgba(128, 128, 128, 0.7)
+
+    @media screen and (max-width: 425px)
+      width: 100%
 
     .title
       display: flex

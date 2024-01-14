@@ -1,16 +1,16 @@
 import { ref } from "vue"
 import { Ref } from "vue/dist/vue"
 import { defineStore } from "pinia"
-import { IBrand, ICategory } from "~/types/subjectsBrands"
+import { IBrand, ICategoryExtended } from "~/types/subjectsBrands"
 import { useSubjectsBrandsApi } from "~/api/subjects-brands";
 
 export const useSubjectsBrandsStore = defineStore("categoriesBrands", () => {
     const api = useSubjectsBrandsApi()
     const allBrands = ref<Array<IBrand>>([])
     const brandsBySubject = ref<Array<IBrand>>([])
-    const subjectsMap: Ref<Map<number, ICategory>> = ref(new Map<number, ICategory>())
+    const subjectsMap: Ref<Map<number, ICategoryExtended>> = ref(new Map<number, ICategoryExtended>())
     
-    const loadAllSubjects = async (): Promise<Map<number, ICategory>> => {
+    const loadAllSubjects = async (): Promise<Map<number, ICategoryExtended>> => {
         const subjects = await api.getAllSubjects()
         if (subjects.length > 0) {
             subjectsMap.value.clear()
@@ -31,14 +31,40 @@ export const useSubjectsBrandsStore = defineStore("categoriesBrands", () => {
       }
     }
 
-    const findSubjectId = (subjectName: string): number => {
-        for (let [subjectId, subject] of subjectsMap.value.entries()) {
-            if (subject.name === subjectName) {
-                return subjectId
+    const findSubjectById = (subjectId: number): ICategoryExtended => {
+        const subject = subjectsMap.value.get(subjectId)
+        if (subject) {
+            return subject
+        } else {
+            return api.getDefaultSubject()
+        }
+    }
+
+    const findParentalSubjects = (): Array<ICategoryExtended> => {
+        let parentalSubjects = []
+        for (let [key, value] of subjectsMap.value) {
+            if (value.parentId === 0) {
+                parentalSubjects.push(value)
             }
         }
-        return 0
+        console.log(parentalSubjects)
+        return parentalSubjects
     }
+
+    const findChildrenSubjects = (childrenIds: Array<number>): ICategoryExtended[] => {
+        const childrenSubjects = []
+        if (childrenIds.length !== 0) {
+            for (let c = 0; c < childrenIds.length; c++) {
+                let child = useSubjectsBrandsStore().subjectsMap.get(childrenIds[c])
+                if (child){
+                    childrenSubjects.push(child)
+                }
+            }
+            return childrenSubjects
+        }
+        return []
+    }
+
 
     const loadAllBrands = async (): Promise<Array<IBrand>> => {
         const brands = await api.getAllBrands()
@@ -70,11 +96,13 @@ export const useSubjectsBrandsStore = defineStore("categoriesBrands", () => {
         getBrand,
         allBrands,
         subjectsMap,
-        findSubjectId,
         loadAllBrands,
         brandsBySubject,
         loadAllSubjects,
         findSubjectName,
-        getBrandsBySubject
+        findSubjectById,
+        getBrandsBySubject,
+        findParentalSubjects,
+        findChildrenSubjects
     }
 })
