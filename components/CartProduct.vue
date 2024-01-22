@@ -9,10 +9,8 @@
     <div class="price-quantity">
       <div class="price">
         <p>Цена:</p>
-        <p>{{ price }} <span class="rub">Р</span></p>
-        <p v-if="discount !== 0" class="old-price">
-          {{ countDiscount }}
-          <span class="rub">Р</span></p>
+        <p>{{ price }} <span class="currency">{{ chosenCurrencyName }}</span></p>
+        <p v-if="discount !== 0" class="old-price">{{ countDiscount }} {{ chosenCurrencyName }}</p>
       </div>
       <div class="quantity">
         <p>Количество:</p>
@@ -37,14 +35,9 @@ import { computed } from "@vue/reactivity";
 import { IProduct } from "~/types/Product";
 import { useProductsStore } from "~/store/products";
 import defaultImg from "assets/common-images/default-image.jpeg";
+import { useCurrencyStore } from "~/store/currency";
 
-export interface Props extends IProduct {
-  id: number,
-  name: string,
-  images: Array<string>,
-  price: number,
-  discount: number
-}
+type Props = Omit<IProduct, 'stock' | 'description' | 'characteristics' | 'subject' | 'brand'>
 
 const props = withDefaults(defineProps<Props>(), {
   id: 0,
@@ -56,6 +49,14 @@ const props = withDefaults(defineProps<Props>(), {
 
 const mainImage = computed(() => props.images.length === 0 ? defaultImg : props.images[0])
 const countDiscount = computed(() => Math.ceil(props.price / (100 - props.discount) * 100))
+
+const chosenCurrencyName = computed<string>(() => {
+  const currency = useCurrencyStore().allCurrencies.find(c => c.id == props.currency)
+  if (currency) {
+    return currency.name
+  }
+  return ""
+})
 
 const store = useProductsStore()
 const quantity = computed(() => store.cartQuantity.get(props.id))

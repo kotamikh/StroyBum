@@ -13,6 +13,7 @@
                   :images="product.images"
                   :price="product.price"
                   :discount="product.discount"
+                  :currency="product.currency"
     />
   </div>
   <div class="order-form">
