@@ -12,25 +12,51 @@
           </button>
         </p>
         <div class="filter-list">
-          <div>
+          <div class="price-list">
             <p>По цене</p>
             <ul>
-              <li><input type="checkbox" id="fromHigh" value="fromHigh" v-model="fromHighPrice" @click="setFromHigh">
-                <label for="fromHigh">Сначала дороже</label>
+              <li>
+                <label for="fromHigh">
+                  <input type="checkbox" class="checkbox" id="fromHigh" value="fromHigh"
+                         v-model="fromHighPrice"
+                         @click="setFromHigh">
+                  <span class="custom-checkbox"></span>
+                  Сначала дороже
+                </label>
               </li>
-              <li><input type="checkbox" id="fromLow" value="fromLow" v-model="fromLowPrice" @click="setFromLow">
-                <label for="fromLow">Сначала дешевле</label>
+              <li>
+                <label for="fromLow">
+                  <input type="checkbox" class="checkbox" id="fromLow" value="fromLow"
+                         v-model="fromLowPrice"
+                         @click="setFromLow">
+                  <span class="custom-checkbox"></span>
+                  Сначала дешевле
+                </label>
               </li>
             </ul>
           </div>
-          <div><label for="sale">Товары со скидкой</label>
-            <input type="checkbox" name="sale" v-model="discountCheck" @click="discountCheck = !discountCheck">
+          <div class="brands-list">
+            <p>По бренду</p>
+            <ul>
+              <li v-for="brand in brands"
+                  :key="brand.id">
+                <label :for="brand.id.toString()">
+                  <input type="checkbox" class="checkbox" :id="brand.id.toString()" :value="brand.id"
+                         v-model="checkedBrands">
+                  <span class="custom-checkbox"></span>
+                  {{ brand.name }}
+                </label>
+              </li>
+            </ul>
           </div>
-          <div class="brands-list"><p>По бренду</p>
-            <label v-for="brand in brands"
-                   :key="brand.id">
-              <input type="checkbox" id="brand.id" :value="brand.id" v-model="checkedBrands">
-              <span>{{ brand.name }}</span>
+          <div class="sale-checkbox">
+            <p>Скидка</p>
+            <label for="sale">
+              <input type="checkbox" class="checkbox" name="sale" id="sale"
+                     v-model="discountCheck"
+                     @click="discountCheck = !discountCheck">
+              <span class="custom-checkbox"></span>
+              Товары со скидкой
             </label>
           </div>
         </div>
@@ -133,12 +159,42 @@ const passInputsData = () => {
       display: flex
       flex-direction: column
 
+      p
+        font-weight: bold
+        color: var(--light-grey)
+
       ul
         margin: 0
 
-      .brands-list
+      label
         display: flex
-        flex-direction: column
+        align-items: center
+
+        input
+          display: none
+
+          &:checked ~ .custom-checkbox::before
+            display: block
+
+        .custom-checkbox
+          position: relative
+          display: inline-block
+          width: 18px
+          height: 18px
+          border: 2px solid var(--light-grey)
+          border-radius: 2px
+          margin: 0 8px
+
+          &::before
+            content: ""
+            position: absolute
+            display: none
+            width: 8px
+            height: 8px
+            background-color: var(--yellow)
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
 
     .filter-search
       border: none
