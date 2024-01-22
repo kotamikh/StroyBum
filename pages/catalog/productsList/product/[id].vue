@@ -116,7 +116,6 @@ const isFavourite = computed<boolean>(() => {
 
 const countDiscount = computed(() => Math.ceil(product.value.price / (100 - product.value.discount) * 100))
 const chosenCurrencyName = computed<string>(() => {
-  useCurrencyStore().loadAllCurrencies()
   const currency = useCurrencyStore().allCurrencies.find(c => c.id == product.value.currency)
   if (currency) {
     return currency.name

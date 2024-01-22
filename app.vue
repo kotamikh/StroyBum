@@ -17,6 +17,7 @@ import 'assets/styles/main.css'
 import 'assets/styles/reset.css'
 import { useProductsStore } from "~/store/products";
 import { useSubjectsBrandsStore } from "~/store/subjects-brands";
+import { useCurrencyStore } from "~/store/currency";
 
 const loading = ref<boolean>(true)
 
@@ -32,6 +33,7 @@ init().then(() => {
 const productsCount = ref(100)
 useProductsStore().loadAll(0, productsCount.value)
 useSubjectsBrandsStore().loadAllSubjects()
+useCurrencyStore().loadAllCurrencies()
 </script>
 
 <style lang="sass">

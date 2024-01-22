@@ -33,16 +33,7 @@ import { IProduct, StockType } from "~/types/Product";
 import defaultImg from 'assets/common-images/default-image.jpeg';
 import { useCurrencyStore } from "~/store/currency";
 
-export interface Props extends IProduct {
-  id: number,
-  name: string,
-  images: Array<string>,
-  price: number,
-  stock: StockType,
-  discount: number,
-  subject: number,
-  currency: number
-}
+type Props = Omit<IProduct, 'description' | 'characteristics' | 'brand'>
 
 const props = withDefaults(defineProps<Props>(), {
   id: 0,
@@ -56,7 +47,6 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const chosenCurrencyName = computed<string>(() => {
-  useCurrencyStore().loadAllCurrencies()
   const currency = useCurrencyStore().allCurrencies.find(c => c.id == props.currency)
   if (currency) {
     return currency.name

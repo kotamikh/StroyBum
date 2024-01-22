@@ -47,7 +47,6 @@ export const useSubjectsBrandsStore = defineStore("categoriesBrands", () => {
                 parentalSubjects.push(value)
             }
         }
-        console.log(parentalSubjects)
         return parentalSubjects
     }
 

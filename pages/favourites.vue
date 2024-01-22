@@ -11,6 +11,7 @@
                   :stock="product.stock"
                   :subject="product.subject"
                   :discount="product.discount"
+                  :currency="product.currency"
     />
   </div>
 </template>
