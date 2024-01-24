@@ -1,5 +1,5 @@
 import { useHttpGet } from "~/api/base";
-import { IBrand, ICategoryExtended } from "~/types/subjectsBrands";
+import { IBrand, ICategoryExtended } from "~/types/SubjectsBrands";
 
 export type brandsBySubject = {
    category: string

@@ -445,7 +445,7 @@ const moveToDown = () => {
         font-size: calc((100vw - 320px) / (1280 - 320) * (22 - 18) + 18px)
 
       th
-        width: 60%
+        width: 55%
         text-align: left
         position: relative
         vertical-align: bottom

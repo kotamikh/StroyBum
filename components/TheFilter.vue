@@ -35,14 +35,18 @@
               </li>
             </ul>
           </div>
-          <div class="brands-list">
+          <div class="brands-list"
+               :class="brands.length > 1 ? '' : 'disabled'"
+          >
             <p>По бренду</p>
             <ul>
               <li v-for="brand in brands"
                   :key="brand.id">
                 <label :for="brand.id.toString()">
                   <input type="checkbox" class="checkbox" :id="brand.id.toString()" :value="brand.id"
-                         v-model="checkedBrands">
+                         v-model="checkedBrands"
+                         :disabled="brands.length <= 1"
+                  >
                   <span class="custom-checkbox"></span>
                   {{ brand.name }}
                 </label>
@@ -159,6 +163,11 @@ const passInputsData = () => {
       display: flex
       flex-direction: column
 
+      .brands-list.disabled
+        p,
+        label
+          color: #b4b4b4
+
       p
         font-weight: bold
         color: var(--light-grey)
@@ -176,24 +185,28 @@ const passInputsData = () => {
           &:checked ~ .custom-checkbox::before
             display: block
 
+          &:disabled ~ .custom-checkbox
+            border: 2px solid #b4b4b4
+            color: #b4b4b4
+
         .custom-checkbox
-          position: relative
-          display: inline-block
           width: 18px
           height: 18px
-          border: 2px solid var(--light-grey)
-          border-radius: 2px
           margin: 0 8px
+          position: relative
+          border-radius: 2px
+          display: inline-block
+          border: 2px solid var(--light-grey)
 
           &::before
             content: ""
-            position: absolute
-            display: none
-            width: 8px
-            height: 8px
-            background-color: var(--yellow)
             top: 50%
             left: 50%
+            width: 8px
+            height: 8px
+            display: none
+            position: absolute
+            background-color: var(--yellow)
             transform: translate(-50%, -50%)
 
     .filter-search

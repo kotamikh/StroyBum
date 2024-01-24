@@ -1,7 +1,7 @@
 import { ref } from "vue"
 import { Ref } from "vue/dist/vue"
 import { defineStore } from "pinia"
-import { IBrand, ICategoryExtended } from "~/types/subjectsBrands"
+import { IBrand, ICategoryExtended } from "~/types/SubjectsBrands"
 import { useSubjectsBrandsApi } from "~/api/subjects-brands";
 
 export const useSubjectsBrandsStore = defineStore("categoriesBrands", () => {
