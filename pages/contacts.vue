@@ -15,7 +15,7 @@
       <div class="contacts-item">
         <img src="@/assets/contacts-images/телефон.png" alt="telephone">
         <span>Телефоны</span>
-        <p>+7 (8332) 75-69-83<br/>+7 (8332) 79-69-00</p>
+        <p>+7 (8332) 79-69-00<br/>+7 (8332) 75-69-83</p>
       </div>
     </div>
     <div class="button-vk">

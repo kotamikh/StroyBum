@@ -5,7 +5,7 @@
         2-й Кирпичный пер. 2/1</p>
     </div>
     <div class="footer-item telephone-item">
-      <p class="telephone"><span>Телефон: </span>+7 (8332)-75-69-83</p>
+      <p class="telephone"><span>Телефон: </span>+7 (8332) 79-69-00</p>
       <a href="https://vk.com/stroibum_kirov" class="vk-link" target="_blank" rel="noopener">
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48">
           <path fill="#555555"
